@@ -8,7 +8,7 @@ function resolve(dir) {
 
 const name = defaultSettings.title || 'vue Element Admin' // page title
 
-// If your port is set to 80,//test push
+// If your port is set to 80,//test push2
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
 // You can change the port by the following method:
