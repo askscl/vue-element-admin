@@ -9,7 +9,7 @@ function resolve(dir) {
 const name = defaultSettings.title || 'vue Element Admin' // page title
 
 // If your port is set to 80,
-// use administrator privileges to execute the command line.
+// use administrator privileges to execute the command line.//test_home
 // For example, Mac: sudo npm run
 // You can change the port by the following method:
 // port = 9527 npm run dev OR npm run dev --port = 9527
