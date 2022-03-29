@@ -108,6 +108,45 @@ export const constantRoutes = [
       }
     ]
   },
+  // 单页测试
+  {
+    path: '/testSingle',
+    component: Layout,
+    redirect: '/testSingle/testSingle',
+    children: [
+      {
+        path: 'testSingle',
+        component: () => import('@/views/testSingle/testSingle'),
+        name: 'testSingle',
+        meta: { title: '单页测试', icon: 'example', noCache: true }
+      }
+    ]
+  },
+  // 测试小组
+  {
+    path: '/test',
+    component: Layout,
+    redirect: '/test/test01',
+    name: '测试小组',
+    meta: {
+      title: '测试小组',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'test01',
+        component: () => import('@/views/test/test01'),
+        name: 'test01',
+        meta: { title: '测试1', icon: 'example', noCache: true }
+      },
+      {
+        path: 'test02',
+        component: () => import('@/views/test/test02'),
+        name: 'test02',
+        meta: { title: '测试2', icon: 'example', noCache: true }
+      }
+    ]
+  },
   {
     path: '/profile',
     component: Layout,
