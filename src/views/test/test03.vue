@@ -1,16 +1,23 @@
 <template>
   <div>
-    <div class="tips">我是测试222</div>
+    <div class="tips">
+      03
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'Test02',
+  name: 'TestN',
   data() {
-    return {}
+    return {
+
+    }
   },
-  methods: {}
+  methods: {
+
+  }
 }
 </script>
 <style lang="scss" scoped>
+
 </style>

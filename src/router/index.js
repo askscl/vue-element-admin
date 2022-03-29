@@ -126,8 +126,6 @@ export const constantRoutes = [
   {
     path: '/test',
     component: Layout,
-    redirect: '/test/test01',
-    name: '测试小组',
     meta: {
       title: '测试小组',
       icon: 'example'
@@ -136,14 +134,17 @@ export const constantRoutes = [
       {
         path: 'test01',
         component: () => import('@/views/test/test01'),
-        name: 'test01',
-        meta: { title: '测试1', icon: 'example', noCache: true }
+        meta: { title: 'iframe通信测试' }
       },
       {
         path: 'test02',
         component: () => import('@/views/test/test02'),
-        name: 'test02',
-        meta: { title: '测试2', icon: 'example', noCache: true }
+        meta: { title: '测试02' }
+      },
+      {
+        path: 'test03',
+        component: () => import('@/views/test/test03'),
+        meta: { title: '测试03' }
       }
     ]
   },
