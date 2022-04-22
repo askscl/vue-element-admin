@@ -73,7 +73,7 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/dashboard',//首页
     children: [
       {
         path: 'dashboard',
@@ -84,7 +84,7 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/documentation',
+    path: '/documentation',//文档
     component: Layout,
     children: [
       {
@@ -96,7 +96,7 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/guide',
+    path: '/guide',//引导页
     component: Layout,
     redirect: '/guide/index',
     children: [
@@ -108,9 +108,8 @@ export const constantRoutes = [
       }
     ]
   },
-  // 单页测试
   {
-    path: '/testSingle',
+    path: '/testSingle',// 单页测试
     component: Layout,
     redirect: '/testSingle/testSingle',
     children: [
@@ -118,16 +117,15 @@ export const constantRoutes = [
         path: 'testSingle',
         component: () => import('@/views/testSingle/testSingle'),
         name: 'testSingle',
-        meta: { title: '单页测试', icon: 'example', noCache: true }
+        meta: { title: 'singlePage', icon: 'example', noCache: true }
       }
     ]
   },
-  // 测试小组
   {
-    path: '/test',
+    path: '/test',// 测试小组
     component: Layout,
     meta: {
-      title: '测试小组',
+      title: 'testGroup',
       icon: 'example'
     },
     children: [
@@ -137,9 +135,9 @@ export const constantRoutes = [
         meta: { title: 'iframe通信测试' }
       },
       {
-        path: 'test02',
-        component: () => import('@/views/test/test02'),
-        meta: { title: '测试02' }
+        path: 'solt',
+        component: () => import('@/views/test/solt/solt'),
+        meta: { title: '插槽测试' }
       },
       {
         path: 'test03',
