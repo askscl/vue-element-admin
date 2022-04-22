@@ -132,8 +132,8 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: 'test01',
-        component: () => import('@/views/test/test01'),
+        path: 'iframe',
+        component: () => import('@/views/test/iframe'),
         meta: { title: 'iframe通信测试' }
       },
       {
