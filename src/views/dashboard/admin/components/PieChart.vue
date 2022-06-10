@@ -61,6 +61,7 @@ export default {
             roseType: 'radius',
             radius: [15, 95],
             center: ['50%', '38%'],
+            avoidLabelOverlap: true, //解决引线重叠问题
             data: [
               { value: 320, name: 'Industries' },
               { value: 240, name: 'Technology' },
