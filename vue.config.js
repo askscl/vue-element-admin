@@ -32,11 +32,11 @@ module.exports = {
       配置Type: boolean | 'warning' | 'default' | 'error' 
       Default: true
       value：
-      false：关闭每次保存都进行检测
-      true：开启每次保存都进行检测，效果与warning一样
-      ‘warning’：开启每次保存都进行检测，lint 错误将显示到控制台命令行，而且编译并不会失败。
-      ‘error’：开启每次保存都进行检测，lint 错误将显示到浏览器页，且编译失败。
-      ‘default’：同’error’
+        false：关闭每次保存都进行检测
+        true：开启每次保存都进行检测，效果与warning一样
+        ‘warning’：开启每次保存都进行检测，lint 错误将显示到控制台命令行，而且编译并不会失败。
+        ‘error’：开启每次保存都进行检测，lint 错误将显示到浏览器页，且编译失败。
+        ‘default’：同’error’
      */
     productionSourceMap: false,
     devServer: {
