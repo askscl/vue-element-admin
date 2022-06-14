@@ -15,7 +15,8 @@
     </div>
 </template>
 <script>
-import { getUtilsNumber, getUtilsList, getUtilsList2 } from '@/utils'
+// import { getUtilsNumber, getUtilsList, getUtilsList2 } from '@/utils'
+import { getUtilsNumber, getUtilsList, getUtilsList2 } from '@/utils/testUtil'
 export default {
     name: 'testUtils',//公共函数带异步操作测试
     data() {
