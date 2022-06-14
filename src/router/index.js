@@ -145,10 +145,15 @@ export const constantRoutes = [
                 meta: { title: '插槽测试' }
             },
             {
+                path: 'testUtils',
+                component: () => import('@/views/test/testUtils'),
+                meta: { title: '公共函数带异步操作测试' }
+            },
+            {
                 path: 'test03',
                 component: () => import('@/views/test/test03'),
                 meta: { title: '测试03' }
-            }
+            },
         ]
     },
     {
