@@ -33,12 +33,15 @@ export default {
             selectValue:''
         }
     },
-    async mounted() {
+    mounted() {
         this.showUtilsNumber = getUtilsNumber();
         this.showUtilsList = getUtilsList();
         //getUtilsList2是一个promise, 所有带async的函数，返回值都是一个promise
-        this.showUtilsListApi = await getUtilsList2();
+        // this.showUtilsListApi = await getUtilsList2();
         //   console.log(this.showUtilsListApi)
+        getUtilsList2().then((res) => {
+            this.showUtilsListApi = res
+        })
     },
     methods: {
 
