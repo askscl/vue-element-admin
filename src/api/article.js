@@ -39,3 +39,12 @@ export function updateArticle(data) {
     data
   })
 }
+
+//测试用的
+export function fetchTest(pv) {
+    return request({
+      url: '/vue-element-admin/article/test',
+      method: 'get',
+      params: { pv }
+    })
+  }

@@ -1,5 +1,5 @@
 // 公共方法测试 start
-import { fetchPv as getUtilsListApi } from '@/api/article'
+import { fetchTest as getUtilsListApi } from '@/api/article'
 export function getUtilsNumber() {
     return 99
 }

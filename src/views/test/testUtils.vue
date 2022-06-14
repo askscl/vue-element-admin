@@ -10,7 +10,13 @@
         </div>
         <!-- 通过api返回一个数组 -->
         <div class="tips">
-            {{showUtilsListApi}}
+            <p>{{showUtilsListApi}}</p>
+            <p>
+                <el-select v-model="selectValue" placeholder="请选择">
+                    <el-option v-for="item in showUtilsListApi" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+            </p>
         </div>
     </div>
 </template>
@@ -24,6 +30,7 @@ export default {
             showUtilsNumber: 0,
             showUtilsList: 0,
             showUtilsListApi: [],
+            selectValue:''
         }
     },
     async mounted() {
