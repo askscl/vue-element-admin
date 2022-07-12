@@ -157,10 +157,10 @@ export const constantRoutes = [
         ]
     },
     {
-        path: '/cssLearn',// 测试小组
+        path: '/cssLearn',// css学习
         component: Layout,
         meta: {
-            title: 'cssLearn',
+            title: 'css学习',
             icon: 'example'
         },
         children: [
@@ -168,6 +168,11 @@ export const constantRoutes = [
                 path: 'scrollTimeline',
                 component: () => import('@/views/cssLearn/scrollTimeline'),
                 meta: { title: '滚动时间线' }
+            },
+            {
+                path: 'learn01',
+                component: () => import('@/views/cssLearn/learn01'),
+                meta: { title: 'learn01' }
             },
         ]
     },
