@@ -157,6 +157,21 @@ export const constantRoutes = [
         ]
     },
     {
+        path: '/cssLearn',// 测试小组
+        component: Layout,
+        meta: {
+            title: 'cssLearn',
+            icon: 'example'
+        },
+        children: [
+            {
+                path: 'scrollTimeline',
+                component: () => import('@/views/cssLearn/scrollTimeline'),
+                meta: { title: '滚动时间线' }
+            },
+        ]
+    },
+    {
         path: '/profile',
         component: Layout,
         redirect: '/profile/index',
