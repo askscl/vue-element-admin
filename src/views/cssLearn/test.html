@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<head>
+    <style type="text/css">
+        #g-content {
+            width: 300px;
+            height: 170vh;
+            background: #999;
+            padding: 70vh 0 0;
+        }
+
+        #g-box {
+            font-size: 150px;
+            animation-name: rotate;
+            animation-duration: 3s;
+            animation-direction: alternate;
+            animation-easing-function: linear;
+            animation-timeline: box-rotate;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @scroll-timeline box-rotate {
+            source: selector("#g-content");
+        }
+    </style>
+</head>
+
+<body>
+    <div id="g-content">
+        <div id="g-box">F</div>
+    </div>
+</body>
+
+</html>

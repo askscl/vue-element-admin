@@ -1,7 +1,10 @@
 <template>
     <div>
          <div class="tips">
-             滚动时间线学习
+             练习02
+         </div>
+         <div id="g-container">
+             <p>...文本内容。。。</p>
          </div>
     </div>
 </template>

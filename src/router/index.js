@@ -166,7 +166,7 @@ export const constantRoutes = [
         children: [
             {
                 path: 'scrollTimeline',
-                component: () => import('@/views/cssLearn/scrollTimeline'),
+                component: () => import('@/views/cssLearn/scrollTimeline/scrollTimeline'),
                 meta: { title: '滚动时间线' }
             },
             {
