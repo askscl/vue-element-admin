@@ -1,7 +1,7 @@
 <template>
     <div>
          <div class="tips">
-             练习01
+             <!-- 旋转的F -->
          </div>
          <div id="g-content">
              <div id="g-box">F</div>
@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-    name: 'stepThree',
+    name: 'test01',
     data(){
         return {
 
@@ -27,6 +27,7 @@ export default {
     width: 300px;
     height: 170vh;
     background: #999;
+    margin: 0 auto;
     padding: 70vh 0 0;
 }
 #g-box{
