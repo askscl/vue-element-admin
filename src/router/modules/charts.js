@@ -34,6 +34,11 @@ const chartsRouter = {
             path: 'mapChart',
             component: () => import('@/views/charts/mapChart'),
             meta: { title: '地图图表' }
+        },
+        {
+            path: 'bar',
+            component: () => import('@/views/charts/bar'),
+            meta: { title: '柱状图' }
         }
     ]
 }
