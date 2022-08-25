@@ -17,10 +17,10 @@ export default {
         }
     },
     mounted() {
-        this.initChart();
+        this.initBarChart();
     },
     methods: {
-        initChart() {
+        initBarChart() {
             var chartDom = document.getElementById('main');
             var myChart = echarts.init(chartDom);
             var option;
@@ -33,10 +33,10 @@ export default {
             option = {
                 xAxis: {
                     data: dataAxis,
-                    axisLabel: {
+                    /* axisLabel: {
                         inside: true,
                         color: '#fff'
-                    },
+                    }, */
                     axisTick: {
                         show: false
                     },
@@ -46,7 +46,10 @@ export default {
                     z: 10
                 },
                 yAxis: {
-                    name:'单位:次',
+                    name:'单位：次',
+                    nameTextStyle: {
+                        padding: [0, 0, 0, -10]
+                    },
                     axisLine: {
                         show: false
                     },
@@ -56,6 +59,15 @@ export default {
                     axisLabel: {
                         color: '#999'
                     }
+                },
+                grid:{//x\left相当于padding-left,y相当于padding-top,解决图表太靠左，或太靠上的问题
+                    // x: '50px',
+                    // x: '50%',
+                    // y: '30px',
+                    // y: '30%'
+                    left: '50px',
+                    right: '15px',
+                    bottom: '30px',
                 },
                 dataZoom: [
                     {
@@ -88,6 +100,9 @@ export default {
                 ]
             };
             option && myChart.setOption(option);
+            window.onresize = () => {
+                myChart.resize();
+            };
         }
     }
 }
@@ -95,6 +110,8 @@ export default {
 <style lang="scss" scoped>
 #main {
     width: 500px;
-    height: 500px;
+    height: 400px;
+    border: 1px solid #999;
+    margin: 0 auto;
 }
 </style>

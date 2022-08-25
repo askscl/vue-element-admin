@@ -39,6 +39,11 @@ const chartsRouter = {
             path: 'bar',
             component: () => import('@/views/charts/bar'),
             meta: { title: '柱状图' }
+        },
+        {
+            path: 'pie',
+            component: () => import('@/views/charts/pie'),
+            meta: { title: '饼图' }
         }
     ]
 }
