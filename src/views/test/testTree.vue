@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="tips">
-            树的测试
+            懒加载树测试
         </div>
         <el-tree :props="props" :load="loadNode" lazy>
         </el-tree>
