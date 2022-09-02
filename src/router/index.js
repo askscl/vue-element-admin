@@ -126,6 +126,7 @@ export const constantRoutes = [
             }
         ]
     },
+    // 测试小组==========================================================================
     {
         path: '/test',// 测试小组
         component: Layout,
@@ -150,9 +151,14 @@ export const constantRoutes = [
                 meta: { title: '公共函数带异步操作测试' }
             },
             {
-                path: 'test03',
-                component: () => import('@/views/test/test03'),
-                meta: { title: '测试03' }
+                path: 'testTree',
+                component: () => import('@/views/test/testTree'),
+                meta: { title: 'el树测试' }
+            },
+            {
+                path: 'test04',
+                component: () => import('@/views/test/test04'),
+                meta: { title: '测试04' }
             },
         ]
     },

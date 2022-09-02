@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="tips">
-      03
+      04
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'TestN',
+  name: 'Test04',
   data() {
     return {
 
