@@ -153,12 +153,17 @@ export const constantRoutes = [
             {
                 path: 'testTree',
                 component: () => import('@/views/test/testTree'),
-                meta: { title: 'el树测试' }
+                meta: { title: 'el懒加载树测试' }
             },
             {
-                path: 'test04',
-                component: () => import('@/views/test/test04'),
-                meta: { title: '测试04' }
+                path: 'testLine',
+                component: () => import('@/views/test/testLine'),
+                meta: { title: '边界线功能' }
+            },
+            {
+                path: 'test05',
+                component: () => import('@/views/test/test05'),
+                meta: { title: '测试05' }
             },
         ]
     },
