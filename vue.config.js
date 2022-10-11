@@ -15,6 +15,36 @@ const name = defaultSettings.title || 'vue Element Admin' // page title
 // port = 9527 npm run dev OR npm run dev --port = 9527
 const port = process.env.port || process.env.npm_config_port || 9827 // dev port
 
+//获取版本信息
+let gitVersion = '';
+function getGitVersion(){
+    let fs = require('fs');
+    let gitHead = fs.readFileSync(".git/HEAD", "utf-8").trim();
+    let ref = gitHead.split(": ")[1];
+    let version = fs.readFileSync(".git/" + ref, "utf-8").trim();
+    gitVersion = version.slice(0, 8);
+    console.log('版本号：', gitVersion);
+}
+
+//获取打包时间
+let tiemVersion = ''
+function getTiemVersion() {
+    const date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    tiemVersion = '' + year + month + day + hours + minutes;
+    console.log('打包时间:', tiemVersion);
+};
+
+if(process.env.NODE_ENV === 'production'){
+    getGitVersion();
+    getTiemVersion();
+}
+
+
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
     /**
@@ -69,6 +99,10 @@ module.exports = {
             alias: {
                 '@': resolve('src')
             }
+        },
+        output: { // 输出重构  打包编译后的 文件名称  【模块名称.git版本号.打包时间】
+            filename: `static/js/[name].${gitVersion}.${tiemVersion}.js`,
+            chunkFilename: `static/js/[name].${gitVersion}.${tiemVersion}.js`
         }
     },
     chainWebpack(config) {
