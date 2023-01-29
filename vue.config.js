@@ -57,7 +57,7 @@ module.exports = {
     publicPath: '/',
     outputDir: 'dist',
     assetsDir: 'static',
-    lintOnSave: process.env.NODE_ENV === 'development', //是否在开发环境下每次保存代码时都启用 eslint验证。--
+    // lintOnSave: process.env.NODE_ENV === 'development', //是否在开发环境下每次保存代码时都启用 eslint验证。--
     /*
       配置Type: boolean | 'warning' | 'default' | 'error' 
       Default: true
