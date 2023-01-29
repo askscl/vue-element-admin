@@ -141,9 +141,14 @@ export const constantRoutes = [
                 meta: { title: 'iframe通信测试' }
             },
             {
-                path: 'solt',
-                component: () => import('@/views/test/solt/solt'),
+                path: 'slot',
+                component: () => import('@/views/test/slot/slotTest'),
                 meta: { title: '插槽测试' }
+            },
+            {
+                path: 'ProvideInject',
+                component: () => import('@/views/test/ProvideInject/ProvideInject'),
+                meta: { title: '依赖注入' }
             },
             {
                 path: 'testUtils',
