@@ -80,7 +80,6 @@ import TestLayout from './components/TestLayout/testLayout'
 import MyConmponent from './components/MyConmponent/MyConmponent'
 import FancyList from './components/FancyList/FancyList'
 export default {
-    name: "solt",
     components: {
         TestLayout,
         MyConmponent,
