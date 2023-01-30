@@ -140,16 +140,7 @@ export const constantRoutes = [
                 component: () => import('@/views/test/iframe'),
                 meta: { title: 'iframe通信测试' }
             },
-            {
-                path: 'slot',
-                component: () => import('@/views/test/slot/slotTest'),
-                meta: { title: '插槽测试' }
-            },
-            {
-                path: 'ProvideInject',
-                component: () => import('@/views/test/ProvideInject/ProvideInject'),
-                meta: { title: '依赖注入' }
-            },
+            
             {
                 path: 'testUtils',
                 component: () => import('@/views/test/testUtils'),
@@ -169,6 +160,26 @@ export const constantRoutes = [
                 path: 'test05',
                 component: () => import('@/views/test/test05'),
                 meta: { title: '测试05' }
+            },
+        ]
+    },
+    {
+        path: '/vueLearn',// css学习
+        component: Layout,
+        meta: {
+            title: 'vue学习',
+            icon: 'example'
+        },
+        children: [
+            {
+                path: 'slot',
+                component: () => import('@/views/test/slot/slotTest'),
+                meta: { title: '插槽测试' }
+            },
+            {
+                path: 'ProvideInject',
+                component: () => import('@/views/test/ProvideInject/ProvideInject'),
+                meta: { title: '依赖注入' }
             },
         ]
     },
