@@ -172,13 +172,13 @@ export const constantRoutes = [
         },
         children: [
             {
-                path: 'slot',
-                component: () => import('@/views/test/slot/slotTest'),
+                path: 'Slot',
+                component: () => import('@/views/vueLearn/SlotTest/SlotTest'),
                 meta: { title: '插槽测试' }
             },
             {
                 path: 'ProvideInject',
-                component: () => import('@/views/test/ProvideInject/ProvideInject'),
+                component: () => import('@/views/vueLearn/ProvideInject/ProvideInject'),
                 meta: { title: '依赖注入' }
             },
         ]

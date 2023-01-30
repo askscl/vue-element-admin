@@ -76,7 +76,7 @@
     </div>
 </template>
 <script>
-import TestLayout from './components/TestLayout/testLayout'
+import TestLayout from './components/TestLayout/TestLayout'
 import MyConmponent from './components/MyConmponent/MyConmponent'
 import FancyList from './components/FancyList/FancyList'
 export default {
