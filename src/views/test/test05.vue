@@ -7,7 +7,6 @@
 </template>
 <script>
 export default {
-  name: 'Test0N',
   data() {
     return {
 

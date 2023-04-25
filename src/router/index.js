@@ -157,6 +157,11 @@ export const constantRoutes = [
                 meta: { title: '边界线功能' }
             },
             {
+                path: 'testGrailLayout',
+                component: () => import('@/views/test/testGrailLayout'),
+                meta: { title: '圣杯布局' }
+            },
+            {
                 path: 'test05',
                 component: () => import('@/views/test/test05'),
                 meta: { title: '测试05' }
