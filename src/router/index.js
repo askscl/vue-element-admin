@@ -164,7 +164,12 @@ export const constantRoutes = [
             {
                 path: 'test05',
                 component: () => import('@/views/test/test05'),
-                meta: { title: '测试05' }
+                meta: { title: '解决修改数组下标的值，响应式失效' }
+            },
+            {
+                path: 'test06',
+                component: () => import('@/views/test/test06'),
+                meta: { title: '测试06' }
             },
         ]
     },
