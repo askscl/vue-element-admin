@@ -169,7 +169,12 @@ export const constantRoutes = [
             {
                 path: 'test06',
                 component: () => import('@/views/test/test06'),
-                meta: { title: '测试06' }
+                meta: { title: '两栏布局' }
+            },
+            {
+                path: 'test07',
+                component: () => import('@/views/test/test07'),
+                meta: { title: '测试07' }
             },
         ]
     },
