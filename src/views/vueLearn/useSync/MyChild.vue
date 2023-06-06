@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="tips">
-            <button @click="btn_change" >改变</button>
+            <button @click="btn_change">改变</button>
         </div>
     </div>
 </template>
