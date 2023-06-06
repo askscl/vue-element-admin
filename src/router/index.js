@@ -179,13 +179,18 @@ export const constantRoutes = [
         ]
     },
     {
-        path: '/vueLearn',// css学习
+        path: '/vueLearn',// vue学习
         component: Layout,
         meta: {
             title: 'vue学习',
             icon: 'example'
         },
         children: [
+            {
+                path: 'useSync',
+                component: () => import('@/views/vueLearn/useSync/Parent.vue'),
+                meta: { title: 'Sync父子组件' }
+            },
             {
                 path: 'Slot',
                 component: () => import('@/views/vueLearn/SlotTest/SlotTest'),
