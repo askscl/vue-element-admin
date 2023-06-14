@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.13/vue.min.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>虚拟滚动原理</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button type="danger" @click="virtualScrolling(20)">20条</el-button>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button type="primary" @click="virtualScrolling(100)">一百条</el-button>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button type="success" @click="virtualScrolling(1000)">一千条</el-button>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button @click="virtualScrolling(100000)">十万条</el-button>
+            </el-col>
+        </el-row>
+        <div class="wrap" @scroll="liScroll">
+            <ul class="ul_wrap" :style="`height:${ulHei}px`">
+                <li class="li_item" :style="`height:${liHei}px;transform:translateY(${ScroolNum}px)`"
+                    v-for="item in liList" :key="item">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<style>
+    .wrap {
+        height: 400px;
+        background-color: #fff;
+        overflow: scroll;
+        margin-top: 20px;
+    }
+
+    .li_item {
+        border: 1px red solid;
+        line-height: 50px;
+
+    }
+</style>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                liHei: 50,//li的高度
+                ulHei: 480,//ul的高度
+                liList: [],//真实展示的列表
+                scrollHei: 0,//@scroll事件滚动的top值
+                ScroolNum: 0,//scrollHei能被li高度取余数的整数值。ScroolNum=scrollHei-(scrollHei%liHei)
+                showList: 0,//真实展示的条数
+                tableData: [],//全部数据的集合
+                lastTime: 0,//最后时间
+            }
+        },
+        mounted() {
+            this.virtualScrolling(100)
+
+        },
+        methods: {
+            /**滚动监听 */
+            liScroll(e) {
+                if (new Date().getTime() - this.lastTime > 40) {//设置时间间隔，防止滚动事件高频触发消耗内存资源
+                    this.ele = e;//保存元素，方便重置scrollTop值
+                    this.scrollHei = e.target.scrollTop;//保存滚动条scrollTop值
+                    this.ScroolNum = this.scrollHei - (this.scrollHei % this.liHei);//获取已滚动到页面上方不可见的li元素的总高度（translateY的偏移高度）
+                    let len = this.ScroolNum / this.liHei;//计算已经有多少个li滚动到页面上方（视图上方用户不可见的数量）
+                    this.liList = this.tableData.slice(len, len + this.showList);//每次滚动事件后重新计算展示内容（截取的内容对应全部数据集的部分内容）
+                    this.lastTime = new Date().getTime();//记录最后一次更新时间
+                }
+
+            },
+            /**初始化数据*/
+            virtualScrolling(num) {
+                let arr = [];//初始化数组
+                for (let i = 0; i < num; i++) {//计算给定数据量
+                    arr.push(i + 1)
+                }
+                this.tableData = arr;//全部数据集
+                this.showList = Math.floor(this.ulHei / this.liHei) + 4;//计算真实渲染的列表数量
+                this.liList = this.tableData.slice(0, this.showList);//初始化可视列表的内容
+                this.lastTime = new Date().getTime();//记录最后一次更新时间
+                this.$message({
+                    message: `当前数据为${num}条`,
+                    type: 'success'
+                });
+
+                if (!!this.ele) {//判断监听元素是否保存到ele字段中
+                    this.ele.target.scrollTop = 0;//如果元素存在ele中则将scrollTop初始化为0;
+                    this.ScroolNum = 0;//初始化translateY的偏移高度
+                }
+
+            },
+        }
+    })
+</script>
+
+</html>
