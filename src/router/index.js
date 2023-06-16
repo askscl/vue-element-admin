@@ -167,8 +167,8 @@ export const constantRoutes = [
                 meta: { title: '解决修改数组下标的值，响应式失效' }
             },
             {
-                path: 'test06',
-                component: () => import('@/views/test/test06'),
+                path: 'twoDivLayout',
+                component: () => import('@/views/test/twoDivLayout'),
                 meta: { title: '两栏布局' }
             },
             {
