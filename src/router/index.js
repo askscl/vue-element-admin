@@ -162,8 +162,8 @@ export const constantRoutes = [
                 meta: { title: '圣杯布局' }
             },
             {
-                path: 'test05',
-                component: () => import('@/views/test/test05'),
+                path: 'testListMvvm',
+                component: () => import('@/views/test/testListMvvm'),
                 meta: { title: '解决修改数组下标的值，响应式失效' }
             },
             {
