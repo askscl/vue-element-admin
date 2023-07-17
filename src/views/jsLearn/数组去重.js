@@ -1,0 +1,70 @@
+const arr = [3, 3, 6, 8, 10, 10];
+
+/**
+ * 方法一：
+ * indexOf
+ */
+function noRepeat11(arr){
+    const noRepeatArr11 = arr.filter((item, index) => {
+        return arr.indexOf(item) === index; //因为indexOf 返回的是第一个的索引
+    });
+    console.log('noRepeatArr1: ',noRepeatArr11);
+}
+// noRepeat11(arr);
+
+function noRepeat12(arr){
+    const arr2 = [];
+    arr.forEach(item =>{
+        if(arr2.indexOf(item) == -1){
+            arr2.push(item);
+        }
+    })
+    console.log('noRepeat12: ', arr2);
+}
+// noRepeat12(arr);
+
+//逻辑太绕不推荐
+function noRepeat13(arr){
+    const arr2 = [];
+    for(let i = 0; i < arr.length; i++){
+        //注意此处是原数组的indexOf方法
+        if(arr.indexOf(arr[i]) == i){
+            arr2.push(arr[i]);
+        }
+    }
+    console.log('noRepeat13: ', arr2);
+}
+// noRepeat13(arr);
+/**
+ * 方法二：
+ * Set
+ */
+
+function noRepeat2(arr){
+    const noRepeatArr2 = [...new Set(arr)];
+    console.log('noRepeatArr2: ', noRepeatArr2);
+}
+// noRepeat2(arr);
+
+
+/**
+ * 方法三：
+ * 双重循环
+ * 
+ * 注意点：
+ * 1.i的边界值为什么是arr.length - 1
+ * 2.j从i+1开始？
+ * 3.
+ */
+ function noRepeat3(arr){
+    for(let i = 0 ; i < arr.length - 1; i++){
+        for(let j = i + 1; j < arr.length; j++){
+            if(arr[i] == arr[j]){
+                arr.splice(j, 1);
+                j--;//删除后，索引退一格
+            }
+        }
+    }
+    console.log('noRepeat3: ', arr);
+}
+noRepeat3(arr);
