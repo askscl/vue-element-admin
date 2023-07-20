@@ -9,17 +9,38 @@ const arr = [
     { id: 7, name: "小红" },
 ];
 
+
+/**
+ * 推荐指数：5星
+ * 方法4：使用Map
+ * @param {*} arr 
+ * @returns 
+ */
+
+ const noRepeatArr4 = function (arr) {
+    const map = new Map();
+    for(let i of arr){
+        if(!map.has(i.id)){
+            map.set(i.id, i);
+        }
+    }
+    return [...map.values()];
+}
+
+// console.log('noRepeatArr4:', noRepeatArr4(arr));
+
+
+// ===============================================================================================================
+
 /**
  * 方法1：双层for循环
  * 
  * 注意点：
- * 1.i 的边界值是arr.length - 1？
- * 2.j的起始索引是i + 1？
+ * 1.i 的边界值是arr.length - 1？---因为最后一个，后面没数据比较了，不需要比较
+ * 2.j的起始索引是i + 1？---当前数与，数后面的数字比较
  * 3.j--索引退一格
  * 
  */
-
-
 const noRepeatArr1 = function (arr) {
     for (let i = 0; i < arr.length - 1; i++) {
         for (let j = i + 1; j < arr.length; j++) {
@@ -34,12 +55,13 @@ const noRepeatArr1 = function (arr) {
 
 // console.log('noRepeatArr1:', noRepeatArr1(arr));
 
+
+// ===============================================================================================================
 /**
  * 方法2：indexOf()
  * @param {*} arr 
  * @returns 
  */
-
 const noRepeatArr2 = function (arr) {
     const idList = [];
     const arr2 = [];
@@ -55,6 +77,8 @@ const noRepeatArr2 = function (arr) {
 
 // console.log('noRepeatArr2:', noRepeatArr2(arr));
 
+
+// ===============================================================================================================
 /**
  * 方法3：for循环，利用对象属性唯一性
  * @param {*} arr 
@@ -96,29 +120,14 @@ const noRepeatArr33 = function(arr){
     const arr2=arr.reduce((a, b) => {
         // console.log(a);
         obj[b.id] ? '' : obj[b.id] = true && a.push(b);
-        return a;//非常关键的一步，
+        return a;//非常关键的一步，容易漏掉************************************
     }, []);
     return arr2;
 }
 // console.log('noRepeatArr33:', noRepeatArr33(arr));
 
-/**
- * 方法4：for循环，利用对象属性唯一性
- * @param {*} arr 
- * @returns 
- */
 
- const noRepeatArr4 = function (arr) {
-    const map = new Map();
-    for(let i of arr){
-        if(!map.has(i.id)){
-            map.set(i.id, i);
-        }
-    }
-    return [...map.values()];
-}
-
-// console.log('noRepeatArr4:', noRepeatArr4(arr));
+// ===============================================================================================================
 
 /**
  * 方法5：every()都满足返回true，否则 false

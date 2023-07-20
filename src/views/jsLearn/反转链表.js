@@ -28,7 +28,7 @@ function reverseList(head){
     let pre = null;
     while(cur){
         let flag = cur.next;
-        cur.next = pre;
+        cur.next = pre; //第一步，先把1的pre设为默认值 的null
         pre = cur;
         cur = flag;       
     }

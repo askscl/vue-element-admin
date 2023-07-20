@@ -15,7 +15,7 @@ function findSameItem(arr1, arr2){
     console.log(arrIn1);
     console.log(arrIn2);
     let i = 0, j = 0;
-    while(i < arrIn1.length && j < arrIn2.length){
+    while(i < arrIn1.length && j < arrIn2.length){//边界条件！
         if(arrIn1[i].id == arrIn2[j].id){
             arr.push(arrIn1[i]);
             arr.push(arrIn2[j]);
