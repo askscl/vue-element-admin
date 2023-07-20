@@ -217,6 +217,11 @@ export const constantRoutes = [
                 meta: { title: '滚动时间线' }
             },
             {
+                path: 'learnScss',
+                component: () => import('@/views/cssLearn/learnScss'),
+                meta: { title: 'learnScss' }
+            },
+            {
                 path: 'learn01',
                 component: () => import('@/views/cssLearn/learn01'),
                 meta: { title: 'learn01' }
