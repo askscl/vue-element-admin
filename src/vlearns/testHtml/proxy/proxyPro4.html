@@ -1,0 +1,99 @@
+<html>
+
+<body>
+    <div>
+        <h3>测试1：</h3>
+        <div id="content1"></div>
+    </div>
+    <div>
+        <h3>测试2：</h3>
+        <div id="content2"></div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    const div1 = document.querySelector('#content1');
+    const div2 = document.querySelector('#content2');
+
+    const bucket = new WeakMap();
+
+    // const data = { text: 'hello world', notExist: 1 };
+    const data = { text: 'hello world' };
+
+    //用一个全局变量存储被注册的副作用函数
+    let activeEffect;
+    function effect(fn) {
+        activeEffect = fn;
+        fn();
+    }
+
+    //对原始数据的代理
+    const obj = new Proxy(data, {
+        get(target, key) {
+
+            track(target, key);
+            return target[key];
+        },
+        set(target, key, val) {
+            target[key] = val;
+            trigger(target, key);
+        }
+    });
+
+    //依赖收集
+    function track(target, key) {
+        if (!activeEffect) return;
+        let depsMap = bucket.get(target);
+        if (!depsMap) {
+            //为何不是new Map，而是depsMap = new Map();
+            bucket.set(target, (depsMap = new Map()));
+        }
+        let deps = depsMap.get(key);
+        if (!deps) {
+            //为何不是new Set，而是deps = new Set()
+            depsMap.set(key, (deps = new Set()));
+        }
+        deps.add(activeEffect);
+    }
+
+    //派发更新
+    function trigger(target, key) {
+        const depsMap = bucket.get(target);
+        //这里如果拿到空数组
+        if (!depsMap) return
+        const effects = depsMap.get(key);
+        effects && effects.forEach(fn => fn());
+    }
+
+
+    effect(
+        () => {
+            console.log('effect run1');
+            div1.innerText = obj.text;
+        }
+    );
+
+    let num = 5;
+    const timer = setInterval(() => {
+        if(num != 0){
+            obj.text = num--;
+        }else{
+            obj.text = '五档：尼卡形态！';
+            clearInterval(timer);
+        }
+        
+    }, 1000);
+
+
+    effect(
+        () => {
+            console.log('effect notExist');
+            div2.innerText = obj.notExist;
+        }
+    )
+    setTimeout(() => {
+        obj.notExist = 'hello vue3';
+    }, 2000)
+</script>

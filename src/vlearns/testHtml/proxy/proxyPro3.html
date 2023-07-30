@@ -1,0 +1,87 @@
+<html>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+
+
+    const bucket = new WeakMap();
+
+    const data = { text: 'hello world', notExist: 1};
+
+    //用一个全局变量存储被注册的副作用函数
+    let activeEffect;
+    function effect(fn) {
+        activeEffect = fn;
+        fn();
+    }
+
+    //对原始数据的代理
+    const obj = new Proxy(data, {
+        get(target, key) {
+            if (!activeEffect) return target[key];
+            let depsMap = bucket.get(target);
+            if (!depsMap) {
+                //为何不是new Map，而是depsMap = new Map();
+                bucket.set(target, (depsMap = new Map()));
+            }
+            let deps = depsMap.get(key);
+            if (!deps) {
+                //为何不是new Set，而是deps = new Set()
+                depsMap.set(key, (deps = new Set()));
+            }
+            deps.add(activeEffect);
+
+            return target[key];
+        },
+        set(target, key, val) {
+            target[key] = val;
+            const depsMap = bucket.get(target);
+            //这里如果拿到空数组
+            if(!depsMap) return
+            const effects= depsMap.get(key);
+            effects && effects.forEach(fn => fn());
+            return true;
+        }
+    });
+
+
+    effect(
+        () => {
+            console.log('effect run1');
+            document.body.innerText = obj.text;
+        }
+    );
+
+    /* let num = 5;
+    const timer = setInterval(() => {
+        if(num != 0){
+            obj.text = num--;
+        }else{
+            obj.text = '五档：尼卡形态！';
+            clearInterval(timer);
+        }
+        
+    }, 1000); */
+
+    effect(
+        () => {
+            console.log('effect run2');
+            document.body.innerText = obj.text;
+        }
+    )
+    
+    effect(
+        () => {
+            console.log('effect notExist');
+            document.body.innerText = obj.notExist;
+        }
+    )
+    setTimeout(() => {
+        obj.notExist = 'hello vue3';
+    }, 2000)
+</script>
