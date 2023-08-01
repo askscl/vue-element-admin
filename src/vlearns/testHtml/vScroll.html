@@ -29,7 +29,7 @@
         </el-row>
         <div class="wrap" @scroll="liScroll">
             <ul class="ul_wrap" :style="`height:${ulHei}px`">
-                <li class="li_item" :style="`height:${liHei}px;transform:translateY(${ScroolNum}px)`"
+                <li class="li_item" :style="`height: ${liHei}px; transform: translateY(${ScroolNum}px)`"
                     v-for="item in liList" :key="item">
                     {{item}}
                 </li>
@@ -56,13 +56,17 @@
         el: '#app',
         data() {
             return {
+                tableData: [],//全部数据的集合
+                liList: [],//真实展示的列表
+                
                 liHei: 50,//li的高度
                 ulHei: 480,//ul的高度
-                liList: [],//真实展示的列表
+                
+                
                 scrollHei: 0,//@scroll事件滚动的top值
                 ScroolNum: 0,//scrollHei能被li高度取余数的整数值。ScroolNum=scrollHei-(scrollHei%liHei)
                 showList: 0,//真实展示的条数
-                tableData: [],//全部数据的集合
+                
                 lastTime: 0,//最后时间
             }
         },
@@ -90,6 +94,8 @@
                     arr.push(i + 1)
                 }
                 this.tableData = arr;//全部数据集
+
+
                 this.showList = Math.floor(this.ulHei / this.liHei) + 4;//计算真实渲染的列表数量
                 this.liList = this.tableData.slice(0, this.showList);//初始化可视列表的内容
                 this.lastTime = new Date().getTime();//记录最后一次更新时间

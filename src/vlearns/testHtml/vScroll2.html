@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.13/vue.min.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>虚拟滚动原理</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-row :gutter="10">
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button type="danger" @click="virtualScrolling(20)">20条</el-button>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button type="primary" @click="virtualScrolling(100)">一百条</el-button>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button type="success" @click="virtualScrolling(1000)">一千条</el-button>
+            </el-col>
+            <el-col :xs="6" :sm="6" :md="5" :lg="4" :xl="2">
+                <el-button @click="virtualScrolling(100000)">十万条</el-button>
+            </el-col>
+        </el-row>
+        <div class="wrap" @scroll="liScroll">
+            <ul :style="`height:${ulHei}px`">
+                <li class="li_item" :style="`height:${liHei}px; transform: translateY(${scrollLiHeis}px)`"
+                    v-for="item in liList" :key="item">{{item}}</li>
+            </ul>
+
+        </div>
+
+        <br />
+        <div class="cont" v-if=false>
+            <div class="inner"></div>
+        </div>
+    </div>
+</body>
+<style>
+    .cont {
+        border: 1px solid red;
+        width: 100%;
+        height: 100px;
+        overflow: scroll;
+    }
+
+    .inner {
+        transform: translateY(10px);
+        border: 1px solid #333;
+        height: 50px;
+    }
+
+
+    .wrap {
+        height: 500px;
+        overflow: scroll;
+
+    }
+
+    .li_item {
+        border: 1px solid red;
+        list-style: none;
+    }
+</style>
+<script>
+    
+    
+     
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                tableList: [],
+                liList: [],
+
+                liHei: 50,
+                ulHei: 500,
+                liLen: 0,//一页显示多少条
+                
+                scrollHei: 0,//滚动条滚动的距离
+                scrollLiHeis: 0,//已经滚动的li距离=======自身-余数 = liHei的整数倍,这个变量是整个虚拟滚动的核心
+                lastTime: 0
+            }
+        },
+        mounted() {
+            this.virtualScrolling(100)
+            /* 
+            题目：固定高度的li，的虚拟滚动实现
+            
+            注意事项：
+                1.如何计算起始索引
+                    1.1取滚动条的e.target.scrollTop;
+                    1.2计算出已滚动上去的距离，不足一个不算：(特殊技巧：使用自身-自身%liHei)
+                    1.3计算出已滚动的li个数，将其当作起始索引
+                2.取滚动条的哪个值
+            */
+        },
+        methods: {
+            /**滚动监听 */
+            liScroll(e) {
+                if((new Date().getTime() - this.lastTime) > 40){
+                    this.scrollHei = e.target.scrollTop;
+                    // console.log(this.scrollLiHeis);
+                    this.scrollLiHeis = this.scrollHei - this.scrollHei % this.liHei;
+                    const hasScrollLiNum = this.scrollLiHeis / this.liHei;
+                    this.liList = this.tableList.slice(hasScrollLiNum, hasScrollLiNum + this.liLen);
+                    this.lastTime = new Date().getTime();
+                }
+                
+
+            },
+            /**初始化数据*/
+            virtualScrolling(num) {
+                
+                const midList = [];
+                for (let i = 0; i < num; i++) {
+                    midList.push(i+1)
+                }
+                this.tableList = midList;
+
+                //此外+4,让滚动条可滚动足够的距离来触发改变页面的内容 ，不加也可以，但是可以滚动的距离太短用户体验不好
+                this.liLen = Math.floor(this.ulHei / this.liHei) + 4;
+                this.liList = this.tableList.slice(0, this.liLen);
+                this.lastTime = new Date().getTime();
+
+
+            },
+        }
+    })
+</script>
+
+</html>

@@ -162,14 +162,25 @@ export const constantRoutes = [
                 meta: { title: '圣杯布局' }
             },
             {
+                path: 'twoDivLayout',
+                component: () => import('@/views/test/twoDivLayout'),
+                meta: { title: '两栏布局' }
+            },
+            {
                 path: 'testListMvvm',
                 component: () => import('@/views/test/testListMvvm'),
                 meta: { title: '解决修改数组下标的值，响应式失效' }
             },
+            
+            /* {
+                path: 'vScrollPro',
+                component: () => import('@/vlearns/testHtml/vScrollPro/vScrollPro.vue'),
+                meta: { title: '不定高的虚拟滚动' }
+            }, */
             {
-                path: 'twoDivLayout',
-                component: () => import('@/views/test/twoDivLayout'),
-                meta: { title: '两栏布局' }
+                path: 'vScrollPro2',
+                component: () => import('@/vlearns/testHtml/vScrollPro/vScrollPro2.vue'),
+                meta: { title: '不定高的虚拟滚动' }
             },
             {
                 path: 'test07',
