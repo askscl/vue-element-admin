@@ -119,12 +119,16 @@ export default {
             const scrollTop = this.$refs.scrollsss.scrollTop;
             // console.log('scrollTop', scrollTop);
             let startIndex = this.getStartIndex(scrollTop);
-            // 如果是奇数开始，就取其前一位偶数
+
+            // 如果是奇数开始，就取其前一位偶数=====可以解决格子跳色问题，为什么？
+            // console.log(startIndex);
+            // this.startIndex = startIndex;
             if (startIndex % 2 !== 0) {
                 this.startIndex = startIndex - 1;
             } else {
                 this.startIndex = startIndex;
             }
+            
             this.endIndex = this.startIndex + this.visibleCount;
             this.scrollTop = this.itemTopCache[this.startIndex] || 0;
         }
