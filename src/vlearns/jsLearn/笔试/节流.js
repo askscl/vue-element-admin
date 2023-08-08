@@ -81,6 +81,9 @@ run2(); */
 
 //两个类型结合
 function throttle3(fn, delay, immediatly){
+    if(immediatly === undefined){
+        immediatly = true;
+    }
     if(immediatly){
         //立即执行--时间戳
         let time;
