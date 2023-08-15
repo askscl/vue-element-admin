@@ -1,0 +1,45 @@
+<!-- 
+    包含块的概念理解
+    本质：确定参考物是哪个，从而理解子项的宽高计算
+ -->
+<html>
+    <body>
+        <div class="fa">
+            <div class="son">
+                <div class="s_son"></div>
+            </div>
+        </div>
+    </body>
+</html>
+<style>
+.fa{
+    background-color: gray;
+    width: 600px;   
+    height: 500px;
+    padding: 100px;
+    position: relative;
+}
+/* 
+position：默认值时，子块的高度为  包含块的 内容区域(width\height)  作为参考值
+*/
+.son{
+    /* width: 300px, height: 250px */
+    width: 50%;
+    height: 50%;
+    background-color: blue;
+}
+/* 
+position：absolute时，子块的高度为  包含块的内边距 + 内容区域(width\height)  作为参考值
+*/
+.s_son{
+    /* width: 400px, height: 350px */
+    width: 50%;
+    height: 50%;
+    background-color: yellow;
+    position: absolute;
+}
+
+/* 
+position：fixed时，子块的高度为  视口(width\height)  作为参考值
+*/
+</style>
