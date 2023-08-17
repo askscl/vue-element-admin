@@ -36,7 +36,7 @@
 
 .content{background: #000; width: 100%; height: calc(100vh - 84px); position: relative;}
 
-@function getShow($n){
+@function getShadows($n){
     $shadows: '#{random(100)}vw #{random(100)}vh #fff';
     @for $i from 2 through $n{
         $shadows: '#{$shadows}, #{random(100)}vw #{random(100)}vh #fff';
@@ -59,7 +59,7 @@ $count: 1000;
         position: absolute;
         left: 0;
         top: 0;
-        box-shadow: getShow($count);
+        box-shadow: getShadows($count);
         //100s 匀速 无穷运动
         animation: moveUp $duration linear infinite;
         &::after{
@@ -71,7 +71,7 @@ $count: 1000;
             position: absolute;
             left: 0;
             top: calc(100vh - 84px);
-            box-shadow: getShow($count);
+            box-shadow: getShadows($count);
         }
     }
 }
