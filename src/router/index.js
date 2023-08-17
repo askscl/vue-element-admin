@@ -233,6 +233,11 @@ export const constantRoutes = [
                 meta: { title: 'learnScss' }
             },
             {
+                path: 'learnScssStar',
+                component: () => import('@/views/cssLearn/learnScss/star.vue'),
+                meta: { title: '星空' }
+            },
+            {
                 path: 'learn01',
                 component: () => import('@/views/cssLearn/learn01'),
                 meta: { title: 'learn01' }
