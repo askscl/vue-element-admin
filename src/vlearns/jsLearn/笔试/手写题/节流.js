@@ -15,7 +15,6 @@
 2.懒加载
 
 注意事项一:
-1.
 2.每隔一段时间，就要触发
 3.与防抖的区别：
     3.1防抖是一定要等动作结束之后才触发；
@@ -25,8 +24,9 @@
 注意事项二：
 1.执行节流函数，需要加上两个额外 的括号
 2.timer = null, clearTimeout(timer); 两句不等价，注意区分
-3.要实现传入参数，需要写成fn.call(null, args)
-4.Date.now()可以获取当前时间
+3.args是一个类数组对象，记得用上apply, 不能使用call
+4.要实现传入参数，需要写成fn.apply(null, args)
+5.Date.now()可以获取当前时间
 
 */
 
@@ -37,31 +37,34 @@ function throttle(fn, delay){
             return
         }else{
             const args = arguments;
+            // console.log(args);
+            // console.log(Array.isArray(args));//false
             timer = setTimeout(() =>{
-                fn.call(null, args);
-                //这一句是否与clearTimeout(timer);等价------不等价，根据测试打印，发现停止的计时器等于一个数字，无法用于if判断
-                //此处较容易写成以上的代码
-                timer = null;
+                
+                fn.apply(null, args);   //args是一个类数组对象，记得用上apply, 不能使用call
+                
+                timer = null;  //这一句是否与clearTimeout(timer);等价?------不等价，根据测试打印，发现停止的计时器等于一个数字，无法用于if判断    //此处较容易写成以上的代码
                 // console.log(`timer:${timer}`);
             }, delay);
         }
     }
 }
-function test(){
-    console.log(`我是执行函数`);
+function test(num){
+    console.log(`我是执行函数${num}`);
 }
-// const run = throttle(test, 2000);
-// run();
-// run();
-// run();
+const run = throttle(test, 2000);
+run(1);
+run(1);
+run(1);
 
 
 //类型二
+// 利用时间戳
 function throttle2(fn, delay){
     let time;
     return function(){
         if(!time || Date.now() - time >= delay){
-            fn.call(null, arguments);
+            fn.apply(null, arguments);
             time = Date.now();
         }
     }
@@ -89,7 +92,7 @@ function throttle3(fn, delay, immediatly){
         let time;
         return function(){
             if(!time || Date.now() - time >= delay){
-                fn.call(null, arguments);
+                fn.apply(null, arguments);
                 time = Date.now();
             }
         }
@@ -101,7 +104,7 @@ function throttle3(fn, delay, immediatly){
                 return
             }else{
                 timer=setTimeout(() => {
-                    fn.call(null, arguments);
+                    fn.apply(null, arguments);
                     timer = null;
                 }, delay)
             }
@@ -121,13 +124,13 @@ const run3 = throttle3(() => {
 // run3();
 
 
-const run4 = throttle3(()=> {
-    console.log('aa')
-}, 1000, false);
+// const run4 = throttle3(()=> {
+//     console.log('aa')
+// }, 1000, false);
 
-run4();
-run4();
-run4();
-run4();
-run4();
-run4();
+// run4();
+// run4();
+// run4();
+// run4();
+// run4();
+// run4();

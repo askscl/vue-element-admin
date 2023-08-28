@@ -12,6 +12,7 @@
  * 使用场景：
  * 1.搜索框输入
  * 2.窗口改变尺寸
+ * 3.类似于电梯关门，一旦有人进入，则重新计时，直到没人进入，倒计时关门
 
  * 思考：
  * 1.清空计时器的时机?
@@ -34,3 +35,12 @@ function debouce(fn, delay){
         
     }
 }
+
+const runner = debouce((num) => {
+    console.log(`你好啊${num}`);
+}, 300);
+
+runner(1);
+runner(1);
+runner(1);
+runner(1);
