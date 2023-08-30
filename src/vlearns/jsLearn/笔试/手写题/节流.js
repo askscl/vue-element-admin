@@ -26,6 +26,8 @@
 2.timer = null, clearTimeout(timer); 两句不等价，注意区分
 3.args是一个类数组对象，记得用上apply, 不能使用call
 4.要实现传入参数，需要写成fn.apply(null, args)
+    4.1. this指向问题，需要写成fn.apply(this)
+    4.2. 参数不要是可以省略的
 5.Date.now()可以获取当前时间
 
 */
@@ -41,9 +43,10 @@ function throttle(fn, delay){
             // console.log(Array.isArray(args));//false
             timer = setTimeout(() =>{
                 
-                fn.apply(null, args);   //args是一个类数组对象，记得用上apply, 不能使用call
+                fn.apply(this, args);   //args是一个类数组对象，记得用上apply, 不能使用call
                 
                 timer = null;  //这一句是否与clearTimeout(timer);等价?------不等价，根据测试打印，发现停止的计时器等于一个数字，无法用于if判断    //此处较容易写成以上的代码
+                // timer = undefined;
                 // console.log(`timer:${timer}`);
             }, delay);
         }
@@ -52,10 +55,28 @@ function throttle(fn, delay){
 function test(num){
     console.log(`我是执行函数${num}`);
 }
-const run = throttle(test, 2000);
+
+// 举例一
+const run = throttle(test, 1000);
 run(1);
 run(1);
 run(1);
+
+
+// 举例二--验证this指向
+const person = {
+    name: 'John',
+    age: 30,
+    greet() {
+        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+    }
+};
+person.run = throttle(person.greet, 1000);
+person.run();
+person.run();
+person.run();
+person.run();
+person.run();
 
 
 //类型二
@@ -64,7 +85,7 @@ function throttle2(fn, delay){
     let time;
     return function(){
         if(!time || Date.now() - time >= delay){
-            fn.apply(null, arguments);
+            fn.apply(this, arguments);
             time = Date.now();
         }
     }
@@ -92,7 +113,7 @@ function throttle3(fn, delay, immediatly){
         let time;
         return function(){
             if(!time || Date.now() - time >= delay){
-                fn.apply(null, arguments);
+                fn.apply(this, arguments);
                 time = Date.now();
             }
         }
@@ -104,7 +125,7 @@ function throttle3(fn, delay, immediatly){
                 return
             }else{
                 timer=setTimeout(() => {
-                    fn.apply(null, arguments);
+                    fn.apply(this, arguments);
                     timer = null;
                 }, delay)
             }
