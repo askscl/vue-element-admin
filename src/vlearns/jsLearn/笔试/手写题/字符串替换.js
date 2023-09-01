@@ -156,7 +156,7 @@ source：接受匹配的原始字符串
 */
 function testReplace2(){
     const pattern = /{{([a-z])}}/g;
-    const replaceStr = temp.replace(pattern, (matchStr, p1) =>{
+    const replaceStr = temp.replace(pattern, function(matchStr, p1){
         return data[p1];
     });
     console.log('testReplace2:\n', replaceStr);
