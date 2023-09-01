@@ -131,6 +131,7 @@ function testReplace(){
     // console.log(matchResults);
     /**
      * matchStr:匹配到的字符串
+     * $1,...$9：正则表达式中有几个 ()，就会传递几个参数，$1~$9 分别代表本次匹配中每个()提取的结果，最多9个
      * matchIndex:匹配到的字符串，在原字符串的索引
      * originalText:原字符串
      */
@@ -143,4 +144,21 @@ function testReplace(){
     });
     console.log(replaceStr)
 }
-testReplace();
+// testReplace();
+
+
+/* 
+function的4个参数说明
+matchStr：本次匹配到的结果
+$1,...$9：正则表达式中有几个 ()，就会传递几个参数，$1~$9 分别代表本次匹配中每个()提取的结果，最多9个---没有括号，则只有三个参数
+offset：记录本次匹配的开始位置
+source：接受匹配的原始字符串
+*/
+function testReplace2(){
+    const pattern = /{{([a-z])}}/g;
+    const replaceStr = temp.replace(pattern, (matchStr, p1) =>{
+        return data[p1];
+    });
+    console.log('testReplace2:\n', replaceStr);
+}
+testReplace2();

@@ -22,8 +22,8 @@ const getJson = function(url, type, data){
                  * this.responseText 永远获取的是字符串形式的响应体
                  * 注意：在客户端这样设置responseType会有兼容问题，所以一般不这样写
                  * */
-                resolve(xmlHttp.response);
-                // resolve(xmlHttp.responseText);
+                resolve(JSON.parse(xmlHttp.response));
+                // resolve(JSON.parse(xmlHttp.responseText));
             }else{
                 reject(new Error(xmlHttp.statusText));
             }
