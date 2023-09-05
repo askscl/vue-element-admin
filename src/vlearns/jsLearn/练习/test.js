@@ -1,21 +1,36 @@
-const str = 'adb_ab_c';
+// 创建一个空对象作为发布/订阅中心
+const pubSub = {};
 
+// 添加一个订阅方法
+pubSub.subscribe = function(event, callback) {
+  if (!this.subscribers) {
+    this.subscribers = {};
+  }
+  if (!this.subscribers[event]) {
+    this.subscribers[event] = [];
+  }
+  this.subscribers[event].push(callback);
+};
 
-/* 
-function的4个参数说明
-matchStr：本次匹配到的结果
-$1,...$9：正则表达式中有几个 ()，就会传递几个参数，$1~$9 分别代表本次匹配中每个()提取的结果，最多9个---没有括号，则只有三个参数
-offset：记录本次匹配的开始位置
-source：接受匹配的原始字符串
-*/
-const str2 = str.replace(/_([a-z])([a-z])/g, function(matchStr, p1, p2,y, z){
-    console.log(match)
-    console.log(p1)
-    console.log(p2)
-    console.log(y)
-    console.log(z)
-    return p1.toUpperCase();
-});
+// 添加一个发布方法
+pubSub.publish = function(event) {
+  if (this.subscribers && this.subscribers[event]) {
+    const args = Array.prototype.slice.call(arguments, 1);
+    this.subscribers[event].forEach(function(callback) {
+      callback.apply(undefined, args);
+    });
+  }
+};
 
-console.log(str2);
+// 使用示例
+const callback1 = function(param1, param2) {
+  console.log('Callback 1:', param1, param2);
+};
+const callback2 = function(param1, param2) {
+  console.log('Callback 2:', param1, param2);
+};
 
+pubSub.subscribe('event1', callback1);
+pubSub.subscribe('event1', callback2);
+
+pubSub.publish('event1', 'Hello', 'World'); 
