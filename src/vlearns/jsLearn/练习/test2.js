@@ -1,29 +1,31 @@
-// 定义一个示例对象
-const person = {
-    name: 'John',
-    age: 30,
-    greet() {
-        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left < right) {
+      let pivotIndex = partition(arr, left, right);
+      quickSort(arr, left, pivotIndex - 1);
+      quickSort(arr, pivotIndex + 1, right);
     }
-};
-
-// 定义一个防抖函数
-const debounce = (func, delay) => {
-    let timeout;
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(context, args), delay);
-    };
-};
-
-// 使用防抖函数来限制多次调用greet方法
-person.debouncedGreet = debounce(person.greet, 1000);
-
-// 多次触发debouncedGreet函数，只有最后一次会执行greet方法
-person.debouncedGreet();
-person.debouncedGreet();
-person.debouncedGreet();
-person.debouncedGreet();
-person.debouncedGreet();
+  }
+  
+  function partition(arr, left, right) {
+    let pivot = arr[left];
+    let i = left + 1;
+    let j = right;
+    while (i <= j) {
+      if (arr[i] < pivot) {
+        i++;
+      } else if (arr[j] >= pivot) {
+        j--;
+      } else {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        i++;
+        j--;
+      }
+    }
+    [arr[left], arr[j]] = [arr[j], arr[left]];
+    return j;
+  }
+  
+  // 测试用例
+  const arr = [9, 3, 2, 7, 1, 5, 8, 6, 4];
+  quickSort(arr); 
+  console.log(arr);

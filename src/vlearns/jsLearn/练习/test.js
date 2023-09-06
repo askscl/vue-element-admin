@@ -1,36 +1,39 @@
-// 创建一个空对象作为发布/订阅中心
-const pubSub = {};
+// 将对象的key转化为驼峰格式（嵌套有数组对象，有对象）
+function toCamelCase(obj) {
+    var newObj = {};
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            var value = obj[key];
+            if (typeof value === 'object') {
+                if (Array.isArray(value)) {
+                    newObj[key] = value.map(function(val) {
+                        return toCamelCase(val);
+                    });
+                } else {
+                    newObj[key] = toCamelCase(value);
+                }
+            } else {
+                newObj[key.replace(/_([a-zA-Z])/g, function(match, char) { 
+                    return char.toUpperCase(); 
+                })] = value;
+            }
+        }
+    }
+    return newObj;
+}
 
-// 添加一个订阅方法
-pubSub.subscribe = function(event, callback) {
-  if (!this.subscribers) {
-    this.subscribers = {};
-  }
-  if (!this.subscribers[event]) {
-    this.subscribers[event] = [];
-  }
-  this.subscribers[event].push(callback);
-};
+// const obj = { abc_abc: 1};
+// const obj = { abc_abc: 1, b: [{aaa_bbb: 2}]};
 
-// 添加一个发布方法
-pubSub.publish = function(event) {
-  if (this.subscribers && this.subscribers[event]) {
-    const args = Array.prototype.slice.call(arguments, 1);
-    this.subscribers[event].forEach(function(callback) {
-      callback.apply(undefined, args);
-    });
-  }
-};
+// console.log(toCamelCase(obj));
 
-// 使用示例
-const callback1 = function(param1, param2) {
-  console.log('Callback 1:', param1, param2);
-};
-const callback2 = function(param1, param2) {
-  console.log('Callback 2:', param1, param2);
-};
-
-pubSub.subscribe('event1', callback1);
-pubSub.subscribe('event1', callback2);
-
-pubSub.publish('event1', 'Hello', 'World'); 
+const obj2 = {
+    a_abc: 1,
+    b_Bcd: 2,
+    c: [
+        {
+            d_abc: 3
+        }
+    ]
+}
+console.log(toCamelCase(obj2));
