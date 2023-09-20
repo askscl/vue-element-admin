@@ -238,6 +238,11 @@ export const constantRoutes = [
                 meta: { title: '星空' }
             },
             {
+                path: 'autoHeight',
+                component: () => import('@/views/cssLearn/autoHeight.vue'),
+                meta: { title: '高度自适应' }
+            },
+            {
                 path: 'learn01',
                 component: () => import('@/views/cssLearn/learn01'),
                 meta: { title: 'learn01' }
