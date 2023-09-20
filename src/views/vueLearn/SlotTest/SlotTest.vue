@@ -19,6 +19,9 @@
         </div>
 
         <!-- 作用域插槽 -->
+        <!-- 
+            v-slot=将子组件的参数传递给父亲组件
+         -->
         <h5>作用域插槽</h5>
         <MyConmponent v-slot="slotProps">
             {{ slotProps.text}} {{ slotProps.count}}
@@ -26,18 +29,35 @@
         <MyConmponent v-slot="{text, count}">
             {{ text}} {{ count}}
         </MyConmponent>
+
+        <hr/>
+        <hr/>
+
+        <!-- 作用域插槽--具名作用域插槽 -->
+        <!-- 
+            #xxx=将子组件的参数传递给父亲组件
+            #xxx排序顺序，以子组件内部为准
+         -->
         <h5>作用域插槽--具名作用域插槽</h5>
         <MyConmponent>
-            <template #header="headerProps">
-                {{ headerProps }}
-            </template>
             <template #default="defaultProps">
                 {{ defaultProps }}
+            </template>
+            <template #header="headerProps">
+                {{ headerProps }}
             </template>
             <template #footer="footerProps">
                 {{ footerProps}}
             </template>
         </MyConmponent>
+
+        <hr/>
+        <hr/>
+
+        <!-- 向子组件的插槽传值，
+            1.使用template包裹，直接在标签内写html,（父传子）
+            2.用#插槽名拿到子组件数据（子传父） -->
+        <h5>向子组件的插槽传值</h5>
         <MyConmponent>
             <template #default="{ message }">
                 <p>{{message}}</p>
@@ -47,27 +67,33 @@
             </template>
         </MyConmponent>
 
+        <hr/>
+        <hr/>
+
+        <h2>作用域插槽</h2>
         <!-- 高级列表组件示例 -->
         <div>
-            <h5>作用域插槽--高级列表组件示例</h5>
+            <h5>高级列表组件示例</h5>
             <FancyList :api-url="url" :per-page="10">
-                <template #item="{body, username, like }">
+                <template #item="{body, username, likes }">
                     <div>
                         <p>{{ body }}</p>
-                        <p> by {{ username }} | {{ like}} likes </p>
+                        <p> by {{ username }} | {{ likes}} likes </p>
                     </div>
                 </template>
             </FancyList>
         </div>
 
+        <hr/>
+
         <!-- 无渲染组件 -->
         <div>
-            <h5>作用域插槽--无渲染组件</h5>
+            <h5>无渲染组件</h5>
             <FancyList :api-url="url" :per-page="10">
-                <template #item="{body, username, like }">
+                <template #item="{body, username, likes }">
                     <div>
                         <p>{{ body }}</p>
-                        <p> by {{ username }} | {{ like}} likes </p>
+                        <p> by {{ username }} | {{ likes }} likes </p>
                     </div>
                 </template>
             </FancyList>

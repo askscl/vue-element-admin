@@ -1,7 +1,7 @@
 <template>
     <div>
-        <slot :text="greetingMessage" :count="1" message="我在子组件"></slot>
-        <slot name="header" message="hello"></slot>
+        <slot :text="greetingMessage" :count="1" message="默认值：我在子组件"></slot>
+        <slot name="header" message="头部: hello world"></slot>
         <slot name="footer"></slot>
     </div>
 </template>

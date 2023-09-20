@@ -15,12 +15,12 @@ export default {
                 {
                     body: '我是一段话',
                     username: '小军',
-                    likes: 10005
+                    likes: 99
                 },
                 {
                     body: '我是一段话2',
-                    username: '小xa',
-                    likes: 10005
+                    username: '小绿',
+                    likes: 58
                 },
             ]
         }
