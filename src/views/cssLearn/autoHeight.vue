@@ -14,7 +14,7 @@ export default {
 <style lang="scss" scoped>
 .content{
     display: flex;
-    align-items: strectch;
+    align-items: strectch;//子项高度占满容器
     height: calc(100vh - 84px);
     .box{
         flex: 1;
