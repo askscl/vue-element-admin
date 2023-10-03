@@ -1,3 +1,5 @@
+// promise解决回调陷阱的链式写法
+
 const p = new Promise((resolve, reject) =>{
     if(true){
         resolve('成功');
