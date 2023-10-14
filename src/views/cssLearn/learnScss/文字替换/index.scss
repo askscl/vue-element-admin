@@ -1,0 +1,27 @@
+/* 
+注意事项：
+1.数组如何声明
+2.数组如何遍历---@each in
+3.字符串拼接---
+*/
+
+$words: 'hello', 'world', 'today';
+$max: 1920px;
+.content{
+    display: flex;
+    align-items: center;
+    &::after{
+        content: 'abc';
+        font-size: 20vw;
+        
+    }
+    @each $word in $words {
+        $max: $max - 500px;
+        @media screen and (max-width: $max){
+            &::after{
+                content: 'be #{$word}';
+            }
+        }
+        
+    }
+}
