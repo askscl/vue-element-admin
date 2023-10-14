@@ -228,9 +228,9 @@ export const constantRoutes = [
                 meta: { title: '滚动时间线' }
             },
             {
-                path: 'learnScss',
-                component: () => import('@/views/cssLearn/learnScss'),
-                meta: { title: 'learnScss' }
+                path: 'scssMap',
+                component: () => import('@/views/cssLearn/learnScss/scssMap'),
+                meta: { title: 'scssMap' }
             },
             {
                 path: 'learnScssStar',
