@@ -243,10 +243,16 @@ export const constantRoutes = [
                 meta: { title: '高度自适应' }
             },
             {
+                path: 'HeightFull',
+                component: () => import('@/views/cssLearn/HeightFull'),
+                meta: { title: '高度撑满' }
+            },
+            {
                 path: 'learn01',
                 component: () => import('@/views/cssLearn/learn01'),
                 meta: { title: 'learn01' }
             },
+            
         ]
     },
     {
