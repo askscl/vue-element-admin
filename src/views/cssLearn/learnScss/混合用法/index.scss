@@ -1,0 +1,71 @@
+$screens: (
+    'phone': (0px, 768px),
+    'pad': (768px, 1024px),
+    'pc': (1024px, 2000px),
+    'max': 2000px
+);
+
+//背景颜色不一样
+@mixin domColor($screen){
+
+    //map取值
+    $pm: map-get($map: $screens, $key: $screen);
+
+    @if(type-of($value: $pm) == 'list'){
+         //数组取值
+         $min: nth($list: $pm, $n: 1);
+         $max: nth($list: $pm, $n: 2);
+        @if($screen == 'phone' ){
+            @media (min-width: $min) and (max-width: $max){
+                @content
+            }
+        }
+        @else if($screen == 'pad'){
+            @media (min-width: $min) and (max-width: $max){
+                @content
+            }
+        }
+        @else if($screen == 'pc'){
+            @media (min-width: $min) and (max-width: $max){
+                background-color: rgb(12, 142, 142);
+            }
+        }
+    }
+    @else{
+        @media (min-width: $pm){
+            height: 1200px ;
+        }
+    }
+}
+
+
+.content{
+    // 背景颜色
+    @include domColor('phone'){
+        background-color: antiquewhite;
+    }
+    @include domColor('pad'){
+        background-color: aqua
+    }
+    @include domColor('pc')
+}
+body{
+    margin: 0;
+}
+.content{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    // 水平垂直居中
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .tips{
+        width: 50px;
+        height: 50px;
+        background-color: black;
+    }
+}
+
+
