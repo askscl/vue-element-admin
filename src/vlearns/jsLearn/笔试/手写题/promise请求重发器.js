@@ -7,11 +7,10 @@
 
 思考：
 1.setTimeout(()=>{ request(config).then(resolve, reject), 1000})为什么要这样写？
-这个问题是由于请求函数request在达到第三次失败后，虽然执行了resolve函数，但是结果并没有被retryRequest函数捕获。
-
-原因是你在request函数内部直接调用了reject函数，这会立即结束Promise，不会等待内部的setTimeout执行。然后，由于request函数返回的Promise没有被任何地方捕获，所以它的结果（无论是resolve还是reject）都会被忽略。
-
-要修复这个问题，你需要将setTimeout中的代码移到Promise的回调中，这样就能保证即使reject被调用，内部的代码也仍然会被执行。
+    1.1这个问题是由于请求函数request在达到第三次失败后，虽然执行了resolve函数，但是结果并没有被retryRequest函数捕获。
+    1.2原因是你在request函数内部直接调用了reject函数，这会立即结束Promise，不会等待内部的setTimeout执行。然后，由于request函数返回
+       的Promise没有被任何地方捕获，所以它的结果（无论是resolve还是reject）都会被忽略。
+    1.3要修复这个问题，你需要将setTimeout中的代码移到Promise的回调中，这样就能保证即使reject被调用，内部的代码也仍然会被执行。
 */
 const request = (()=>{
     let count = 0;
