@@ -29,3 +29,4 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
   const arr = [9, 3, 2, 7, 1, 5, 8, 6, 4];
   quickSort(arr); 
   console.log(arr);
+  //123
