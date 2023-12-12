@@ -250,6 +250,14 @@ Modern browsers and Internet Explorer 10+.
 
 Copyright (c) 2017-present PanJiaChen
 
+以下版本均可运行
 版本要求：
-npm:6.14.11----7.7.0也可以运行
-node:v14.16.0---node:16.13.2--也可以运行
+npm:6.14.11
+node:v14.16.0
+
+也可以运行
+npm:6.14.11
+node:16.13.2
+
+npm:7.7.0
+node:16.19.0
