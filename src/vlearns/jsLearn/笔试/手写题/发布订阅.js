@@ -13,7 +13,14 @@ pubSub.subscribe = function(event, callback){
     this.subscribes[event].push(callback);
 }
 // 发布
-pubSub.publish = function(event){
+/* 
+Array.prototype.slice.call
+Array.prototype.slice.call
+Array.prototype.slice.call
+Array.prototype.slice.call
+Array.prototype.slice.call
+*/
+pubSub.publish = function(event){//实际event后面会加上函数的参数
     if(this.subscribes && this.subscribes[event]){
         const args = Array.prototype.slice.call(arguments, 1);//拿到后面的参数，除第一个事件名后面的
         console.log(args);

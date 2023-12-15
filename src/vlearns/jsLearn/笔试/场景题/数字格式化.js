@@ -38,7 +38,7 @@ function numberFormat(num){
     return arr.join(',')   
 
 }
-console.log(numberFormat(234567890));
+console.log(numberFormat(1234567890));
 // console.log(numberFormat(90));
 // console.log(numberFormat(7890));
 

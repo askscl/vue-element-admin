@@ -36,6 +36,7 @@ function partition(arr, left, right){
             j--;
         }
     }
+    //为何最后还要交换一次?
     [arr[left], arr[j]] = [arr[j], arr[left]];//为何用j指针，因为j的元素>=pivotItem，包含了等于
     return j;
 }

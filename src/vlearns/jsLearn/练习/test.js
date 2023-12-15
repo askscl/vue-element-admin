@@ -1,4 +1,10 @@
 /* 
+addEventListener addEventListener addEventListener addEventListener addEventListener
+addEventListener addEventListener addEventListener addEventListener addEventListener
+defineProperty  defineProperty defineProperty defineProperty defineProperty
+*/
+
+/* 
 justify-content justify-content justify-content justify-content
 justify-content
 align-items align-items align-items align-items align-items
@@ -101,6 +107,10 @@ ceil ceil ceil ceil ceil
 
 */
 
+
+/* 
+const pattern = /{{\w.\d?\s*\d+[a-zA-Z]}}/g
+*/
 const arr = [1, 2, 3];
 console.log(arr.findIndex(item => item > 1));
 console.log(arr)
@@ -113,4 +123,7 @@ const arr2 = [
     }
 ]
 // console.log(Array.from(arr.keys()))
-
+/* 
+arguments arguments arguments arguments arguments arguments
+Date.now() Date.now() Date.now() Date.now() Date.now()
+*/
