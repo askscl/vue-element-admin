@@ -91,6 +91,9 @@ module.exports = {
             }
         } */
     },
+
+
+    // 通过操作对象的形式来修改默认的webpack配置
     configureWebpack: {
         // provide the app's title in webpack's name field, so that
         // it can be accessed in index.html to inject the correct title.
@@ -106,6 +109,9 @@ module.exports = {
             chunkFilename: `static/js/[name].${gitVersion}.${tiemVersion}.js`
         }
     },
+
+
+    // 通过链式编程的形式来修改默认的webpack配置
     chainWebpack(config) {
         // it can improve the speed of the first screen, it is recommended to turn on preload
         // it can improve the speed of the first screen, it is recommended to turn on preload
@@ -114,12 +120,18 @@ module.exports = {
                 rel: 'preload',
                 // to ignore runtime.js
                 // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-                fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-                include: 'initial'
+                /* 
+                    这是一个排除列表，用于指定不应被预加载的文件。这里，我们排除了以下文件：
+                    源码映射文件（.map 结尾）
+                    hot-update.js（热更新文件）
+                    runtime.*.js（所有以 runtime 开头的 JavaScript 文件）
+                */
+                fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],  
+                include: 'initial'  //指定只有初始的 chunks（即页面上直接引用的 chunks）会被预加载。
             }
         ])
 
-        // when there are many pages, it will cause too many meaningless requests
+        // when there are many pages, it will cause too many meaningless requests--删除名为 'prefetch' 的插件
         config.plugins.delete('prefetch')
 
         // set svg-sprite-loader
@@ -127,6 +139,8 @@ module.exports = {
             .rule('svg')
             .exclude.add(resolve('src/icons'))
             .end()
+        // 对于位于'src/icons'目录或其子目录中的.svg文件，使用'svg-sprite-loader'进行处理，并为每个SVG图标设置一个symbol ID，格式为'icon-'加上图标的名称
+        // 将加载的SVG图片拼接成雪碧图，放到页面中，方便其它地方复用
         config.module
             .rule('icons')
             .test(/\.svg$/)
@@ -142,6 +156,8 @@ module.exports = {
         config
             .when(process.env.NODE_ENV !== 'development',
                 config => {
+                    // script-ext-html-webpack-plugin 是一个 Webpack 插件，它主要用于优化和控制 HTML 文档中引入的 <script> 标签的属性。
+                    // 该插件能够给 script 标签添加额外的属性，例如 async、defer、module 等，以及内联脚本。
                     config
                         .plugin('ScriptExtHtmlWebpackPlugin')
                         .after('html')
@@ -150,6 +166,7 @@ module.exports = {
                             inline: /runtime\..*\.js$/
                         }])
                         .end()
+                    // 将不同的依赖项分割到不同的代码块中
                     config
                         .optimization.splitChunks({
                             chunks: 'all',
@@ -175,7 +192,15 @@ module.exports = {
                             }
                         })
                     // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
-                    config.optimization.runtimeChunk('single')
+                    config
+                        .optimization.runtimeChunk('single')
+                    /* 
+                    config.optimization.runtimeChunk('single') 是 Webpack 配置中的一条指令，用于优化代码的打包和运行。
+                    具体来说，runtimeChunk 选项用于指定是否将 runtime 代码分割成单独的 chunk。
+                    >>>>>>>>>>>>当设置为 'single' 时，runtime 代码将被打包成一个单独的 chunk，这样可以减少重复的代码，提高加载性能。<<<<<<<<<<<<<<<
+                    这个选项通常与 splitChunks 一起使用，用于控制代码的分割和加载方式。通过将 runtime 代码与其他的 chunks 分割开来，可以更好地利用缓存和加载性能。
+                    需要注意的是，使用 runtimeChunk 选项可能会导致额外的 HTTP 请求数，因此在使用时需要权衡其带来的性能提升和可能的额外开销。
+                    */
                 }
             )
     },
