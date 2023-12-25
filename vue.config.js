@@ -45,7 +45,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 //打包优化
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 分析包大小
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // 压缩js
 const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
@@ -77,7 +77,7 @@ module.exports = {
     productionSourceMap: false,
     devServer: {
         port: port,
-        open: true,
+        open: true, // 配置自动启动浏览器
         overlay: {
             warnings: false,
             errors: true
@@ -113,9 +113,9 @@ module.exports = {
             filename: `static/js/[name].${gitVersion}.${tiemVersion}.js`,
             chunkFilename: `static/js/[name].${gitVersion}.${tiemVersion}.js`
         },
-        /* plugin:[
-            new BundleAnalyzerPlugin(),
-        ], */
+        plugins:[
+            // new BundleAnalyzerPlugin(),
+        ],
         optimization: {
             minimizer: [
                 new UglifyJsPlugin({
