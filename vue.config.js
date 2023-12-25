@@ -44,6 +44,11 @@ if(process.env.NODE_ENV === 'production'){
     getTiemVersion();
 }
 
+//打包优化
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // 压缩js
+const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
+const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -107,6 +112,30 @@ module.exports = {
         output: { // 输出重构  打包编译后的 文件名称  【模块名称.git版本号.打包时间】
             filename: `static/js/[name].${gitVersion}.${tiemVersion}.js`,
             chunkFilename: `static/js/[name].${gitVersion}.${tiemVersion}.js`
+        },
+        /* plugin:[
+            new BundleAnalyzerPlugin(),
+        ], */
+        optimization: {
+            minimizer: [
+                new UglifyJsPlugin({
+                    uglifyOptions: {
+                        compress: {
+                            drop_console: true, // 删除所有的 `console` 语句，可以自定义其他压缩选项  
+                        },
+                    },
+                }),
+                /* new TerserPlugin({
+                    terserOptions: {
+                        compress: {
+                            drop_console: true, // 删除所有的 `console` 语句  
+                            collapse_vars: true, // 内嵌定义了但是只用到一次的变量  
+                            reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值  
+                        },
+                    },
+                }), */
+                  
+            ],
         }
     },
 
@@ -169,25 +198,25 @@ module.exports = {
                     // 将不同的依赖项分割到不同的代码块中
                     config
                         .optimization.splitChunks({
-                            chunks: 'all',
+                            chunks: 'all', // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件
                             cacheGroups: {
                                 libs: {
                                     name: 'chunk-libs',
                                     test: /[\\/]node_modules[\\/]/,
                                     priority: 10,
-                                    chunks: 'initial' // only package third parties that are initially dependent
+                                    chunks: 'initial' // 只打包初始时依赖的第三方
                                 },
                                 elementUI: {
                                     name: 'chunk-elementUI', // split elementUI into a single package
-                                    priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+                                    priority: 20, // // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
                                     test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
                                 },
                                 commons: {
                                     name: 'chunk-commons',
                                     test: resolve('src/components'), // can customize your rules
-                                    minChunks: 3, //  minimum common number
+                                    minChunks: 3, //  minimum common number // 最小共用次数
                                     priority: 5,
-                                    reuseExistingChunk: true
+                                    reuseExistingChunk: true // 表示是否使用已有的 chunk，如果为 true 则表示如果当前的 chunk 包含的模块已经被抽取出去了，那么将不会重新
                                 }
                             }
                         })
@@ -203,6 +232,51 @@ module.exports = {
                     */
                 }
             )
+        
+        // 添加图片加载器--尝试image-webpack-loader版本8或者6均报找不到imagemin-gifsicle（且无法安装） --评估: 本项目assets图片很少，估计效果也不好 
+        /* 
+            mozjpeg：用于压缩 JPEG 图片的选项。其中，progressive 设置为 true 表示使用渐进式 JPEG 格式，quality 设置为 65 表示压缩质量为 65%。
+            optipng：用于优化 PNG 图片的选项。这里将 enabled 设置为 false 表示禁用 optipng 优化。
+            pngquant：用于压缩 PNG 图片的选项。其中，quality 设置为 [0.65, 0.9] 表示压缩质量范围在 65% 到 90% 之间，speed 设置为 4 表示压缩速度为 4（速度越高，压缩时间越短）。
+            gifsicle：用于优化 GIF 图片的选项。这里将 interlaced 设置为 false 表示禁用交错（interlaced）模式。
+            webp：用于将图片转换为 WebP 格式的选项。其中，quality 设置为 75 表示压缩质量为 75%。
+        */
+        /* 
+            config.module
+                .rule('images')
+                .use('image-webpack-loader')
+                .loader('image-webpack-loader')
+                .options({
+                    mozjpeg: {
+                        progressive: true,
+                        quality: 65,
+                    },
+                    optipng: {
+                        enabled: false,
+                    },
+                    pngquant: {
+                        quality: [0.65, 0.9],
+                        speed: 4,
+                    },
+                    webp: {
+                        quality: 75,
+                    },
+                })
+                .end()
+                .test(/\.(gif|png|jpe?g|svg)$/i)
+                .include.add(path.resolve(__dirname, 'src/assets')) // 设置需要处理的图片目录  
+                .end();
+        */ 
+
+        // 开启gzip压缩
+        config.plugin('CompressionPlugin').use(
+            new CompressionPlugin({
+                algorithm: 'gzip', // 压缩算法
+                test: /\.js(\?.*)?$/i,
+                threshold: 10240, // 只有大小大于该值的资源会被处理 10240（即10KB）
+                minRatio: 0.8, //最小压缩率
+            }),
+        )
     },
     css:{
         loaderOptions:{
