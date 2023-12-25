@@ -143,7 +143,6 @@ module.exports = {
     // 通过链式编程的形式来修改默认的webpack配置
     chainWebpack(config) {
         // it can improve the speed of the first screen, it is recommended to turn on preload
-        // it can improve the speed of the first screen, it is recommended to turn on preload
         config.plugin('preload').tap(() => [
             {
                 rel: 'preload',
