@@ -74,7 +74,7 @@ module.exports = {
         ‘error’：开启每次保存都进行检测，lint 错误将显示到浏览器页，且编译失败。
         ‘default’：同’error’
      */
-    productionSourceMap: false,
+    productionSourceMap: false, //关闭生成环境的sourceMap
     devServer: {
         port: port,
         open: true, // 配置自动启动浏览器
@@ -104,6 +104,7 @@ module.exports = {
         // it can be accessed in index.html to inject the correct title.
         name: name,
         devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
+        // devtool: process.env.NODE_ENV === 'development' ? 'eval-cheap-module-source-map' : 'nosources-source-map', 
         resolve: {
             alias: {
                 '@': resolve('src')
