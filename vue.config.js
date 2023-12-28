@@ -14,6 +14,7 @@ const name = defaultSettings.title || 'vue Element Admin' // page title
 // You can change the port by the following method:
 // port = 9527 npm run dev OR npm run dev --port = 9527
 const port = process.env.port || process.env.npm_config_port || 9827 // dev port
+const isProduction = process.env.NODE_ENV === 'production';
 
 //获取版本信息
 let gitVersion = '';
@@ -39,7 +40,7 @@ function getTiemVersion() {
     console.log('打包时间:', tiemVersion);
 };
 
-if(process.env.NODE_ENV === 'production'){
+if(isProduction){
     getGitVersion();
     getTiemVersion();
 }
@@ -49,6 +50,24 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // 压缩js
 const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
+
+const cdn = {
+    title: '啦啦啦',
+    css: [],
+    js: [
+        'https://npm.elemecdn.com/vue@2.6.10/dist/vue.js',
+        'https://unpkg.com/vue-router@3.0.2/dist/vue-router.js',
+        'https://unpkg.com/vuex@3.1.0/dist/vuex.js',
+        'https://unpkg.com/axios@0.18.1/dist/axios.min.js'
+    ]
+}
+
+const externals = {
+    vue: 'Vue',
+    vuex: 'Vuex',
+    'vue-router': 'VueRouter',
+    axios: 'axios'
+}
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -224,11 +243,11 @@ module.exports = {
                     config
                         .optimization.runtimeChunk('single')
                     /* 
-                    config.optimization.runtimeChunk('single') 是 Webpack 配置中的一条指令，用于优化代码的打包和运行。
-                    具体来说，runtimeChunk 选项用于指定是否将 runtime 代码分割成单独的 chunk。
-                    >>>>>>>>>>>>当设置为 'single' 时，runtime 代码将被打包成一个单独的 chunk，这样可以减少重复的代码，提高加载性能。<<<<<<<<<<<<<<<
-                    这个选项通常与 splitChunks 一起使用，用于控制代码的分割和加载方式。通过将 runtime 代码与其他的 chunks 分割开来，可以更好地利用缓存和加载性能。
-                    需要注意的是，使用 runtimeChunk 选项可能会导致额外的 HTTP 请求数，因此在使用时需要权衡其带来的性能提升和可能的额外开销。
+                        config.optimization.runtimeChunk('single') 是 Webpack 配置中的一条指令，用于优化代码的打包和运行。
+                        具体来说，runtimeChunk 选项用于指定是否将 runtime 代码分割成单独的 chunk。
+                        >>>>>>>>>>>>当设置为 'single' 时，runtime 代码将被打包成一个单独的 chunk，这样可以减少重复的代码，提高加载性能。<<<<<<<<<<<<<<<
+                        这个选项通常与 splitChunks 一起使用，用于控制代码的分割和加载方式。通过将 runtime 代码与其他的 chunks 分割开来，可以更好地利用缓存和加载性能。
+                        需要注意的是，使用 runtimeChunk 选项可能会导致额外的 HTTP 请求数，因此在使用时需要权衡其带来的性能提升和可能的额外开销。
                     */
                 }
             )
@@ -258,6 +277,7 @@ module.exports = {
                         quality: [0.65, 0.9],
                         speed: 4,
                     },
+                    // 不支持WEBP就不要写这一项
                     webp: {
                         quality: 75,
                     },
@@ -277,6 +297,20 @@ module.exports = {
                 minRatio: 0.8, //最小压缩率
             }),
         )
+
+        //cdn配置
+        // 生产环境配置
+        if (isProduction) {
+            // 生产环境注入cdn
+            config.plugin('html')
+                .tap(args => {
+                    args[0].cdn = cdn
+                    return args
+                })
+            
+            config.externals(externals); // 生产环境注入cdn
+        }
+
     },
     css:{
         loaderOptions:{
