@@ -134,7 +134,7 @@ module.exports = {
             chunkFilename: `static/js/[name].${gitVersion}.${tiemVersion}.js`
         },
         plugins:[
-            new BundleAnalyzerPlugin(),
+            // new BundleAnalyzerPlugin(),打包分析
         ],
         optimization: {
             minimizer: [
@@ -309,6 +309,8 @@ module.exports = {
                 })
             
             config.externals(externals); // 生产环境注入cdn
+
+            config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin);// 打包分析
         }
 
     },
