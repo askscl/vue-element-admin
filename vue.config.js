@@ -134,7 +134,7 @@ module.exports = {
             chunkFilename: `static/js/[name].${gitVersion}.${tiemVersion}.js`
         },
         plugins:[
-            // new BundleAnalyzerPlugin(),
+            new BundleAnalyzerPlugin(),
         ],
         optimization: {
             minimizer: [
