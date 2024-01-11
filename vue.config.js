@@ -50,6 +50,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // 压缩js
 const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
+const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
 
 const cdn = {
     title: '啦啦啦',
@@ -135,6 +136,26 @@ module.exports = {
         },
         plugins:[
             // new BundleAnalyzerPlugin(),打包分析
+            /**
+             * Perfsee 平台对应的项目 ID。--project
+             *
+             * 如果想要上传打包产物到平台进行分析，则该选项必填。**
+             * 给打包的产物指定一个项目内唯一的名字。
+             *
+             * 
+             * 在一次提交（单个 CI 工作流）中，如果有会构建多次，即有多个打包产物时会很有用。
+             *
+             * 因为我们和基准的对比是基于 `Entrypoint`，如果多次构建产生的打包产物的 `Entrypoint` 名字相同，我们无法确定哪个是正确的用来被对比的基准。
+             *
+             * 例如：`landing/main` 和 `customers/main` 很直接的告诉我们两份产物的区别，后续我们也可以用相同名字的产物进行对比。
+             *
+             * @default 'main'
+             */
+            /* new PerfseePlugin({
+                project: 'vue-element-admin',
+                artifactName: 'main',
+                enableAudit: true, // 是否开启本地性能分析
+            }), */
         ],
         optimization: {
             minimizer: [
