@@ -52,23 +52,26 @@ const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
 const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
 
-const cdn = {
-    title: '啦啦啦',
-    css: [],
-    js: [
-        'https://npm.elemecdn.com/vue@2.6.10/dist/vue.js',
-        'https://unpkg.com/vue-router@3.0.2/dist/vue-router.js',
-        'https://unpkg.com/vuex@3.1.0/dist/vuex.js',
-        'https://unpkg.com/axios@0.18.1/dist/axios.min.js'
-    ]
-}
+//cdn配置star
+    const cdn = {
+        title: '啦啦啦',
+        css: [],
+        js: [
+            'https://npm.elemecdn.com/vue@2.6.10/dist/vue.js',
+            'https://unpkg.com/vue-router@3.0.2/dist/vue-router.js',
+            'https://unpkg.com/vuex@3.1.0/dist/vuex.js',
+            'https://unpkg.com/axios@0.18.1/dist/axios.min.js'
+        ]
+    }
 
-const externals = {
-    vue: 'Vue',
-    vuex: 'Vuex',
-    'vue-router': 'VueRouter',
-    axios: 'axios'
-}
+    const externals = {
+        vue: 'Vue',
+        vuex: 'Vuex',
+        'vue-router': 'VueRouter',
+        axios: 'axios'
+    }
+//cdn配置end
+
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -319,7 +322,10 @@ module.exports = {
                 threshold: 10240, // 只有大小大于该值的资源会被处理 10240（即10KB）
                 minRatio: 0.8, //最小压缩率
             }),
-        )
+        );
+
+        //开启多进程打包
+
 
         //cdn配置
         // 生产环境配置
