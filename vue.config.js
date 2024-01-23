@@ -261,6 +261,8 @@ module.exports = {
                             }
                         })
                     // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
+                    //入口chunk中的运行时代码是指在入口chunk中包含的代码，这些代码在应用运行时会被执行。通常，这些代码是应用程序的主要逻辑，例如根组件、应用程序状态管理等。
+                    //在Webpack中，通过使用splitChunks可以将这些运行时代码提取出来，生成一个单独的chunk，以避免每次改动入口chunk时都需要重新打包整个应用。这样可以提高构建速度和缓存效率。
                     config
                         .optimization.runtimeChunk('single')
                     /* 
