@@ -162,14 +162,15 @@ module.exports = {
         ],
         optimization: {
             minimizer: [
-                new UglifyJsPlugin({
+                /* new UglifyJsPlugin({
                     uglifyOptions: {
                         compress: {
                             drop_console: true, // 删除所有的 `console` 语句，可以自定义其他压缩选项  
                         },
                     },
-                }),
-                /* new TerserPlugin({
+                }), */
+                //TerserPlugin可以更好地针对 ES6 的代码进行处理
+                new TerserPlugin({
                     terserOptions: {
                         compress: {
                             drop_console: true, // 删除所有的 `console` 语句  
@@ -177,7 +178,7 @@ module.exports = {
                             reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值  
                         },
                     },
-                }), */
+                }),
                   
             ],
         }

@@ -74,9 +74,6 @@ dependencies:
   svg-baker-runtime:
     specifier: ^1.4.7
     version: 1.4.7
-  tui-editor:
-    specifier: 1.3.3
-    version: 1.3.3
   vue:
     specifier: 2.6.10
     version: 2.6.10
@@ -199,6 +196,9 @@ devDependencies:
   terser-webpack-plugin:
     specifier: 1.4.5
     version: 1.4.5(webpack@4.47.0)
+  thread-loader:
+    specifier: ^4.0.2
+    version: 4.0.2(webpack@4.47.0)
   uglifyjs-webpack-plugin:
     specifier: ^2.2.0
     version: 2.2.0(webpack@4.47.0)
@@ -1935,16 +1935,6 @@ packages:
       '@babel/types': 7.23.6
     dev: true
 
-  /@types/codemirror@0.0.71:
-    resolution: {integrity: sha512-b2oEEnno1LIGKMR7uBEsr40al1UijF1HEpRn0+Yf1xOLl24iQgB7DBpZVMM7y54G5wCNoclDrRO65E6KHPNO2w==, tarball: https://registry.npmmirror.com/@types/codemirror/-/codemirror-0.0.71.tgz}
-    dependencies:
-      '@types/tern': 0.23.9
-    dev: false
-
-  /@types/estree@1.0.5:
-    resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==, tarball: https://registry.npmmirror.com/@types/estree/-/estree-1.0.5.tgz}
-    dev: false
-
   /@types/glob@7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==, tarball: https://registry.npmmirror.com/@types/glob/-/glob-7.2.0.tgz}
     dependencies:
@@ -1975,25 +1965,9 @@ packages:
       jest-diff: 24.9.0
     dev: true
 
-  /@types/jquery@3.5.29:
-    resolution: {integrity: sha512-oXQQC9X9MOPRrMhPHHOsXqeQDnWeCDT3PelUIg/Oy8FAbzSZtFHRjc7IpbfFVmpLtJ+UOoywpRsuO5Jxjybyeg==, tarball: https://registry.npmmirror.com/@types/jquery/-/jquery-3.5.29.tgz}
-    dependencies:
-      '@types/sizzle': 2.3.8
-    dev: false
-
   /@types/json-schema@7.0.15:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.15.tgz}
     dev: true
-
-  /@types/linkify-it@3.0.5:
-    resolution: {integrity: sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==, tarball: https://registry.npmmirror.com/@types/linkify-it/-/linkify-it-3.0.5.tgz}
-    dev: false
-
-  /@types/markdown-it@0.0.7:
-    resolution: {integrity: sha512-WyL6pa76ollQFQNEaLVa41ZUUvDvPY+qAUmlsphnrpL6I9p1m868b26FyeoOmo7X3/Ta/S9WKXcEYXUSHnxoVQ==, tarball: https://registry.npmmirror.com/@types/markdown-it/-/markdown-it-0.0.7.tgz}
-    dependencies:
-      '@types/linkify-it': 3.0.5
-    dev: false
 
   /@types/minimatch@5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==, tarball: https://registry.npmmirror.com/@types/minimatch/-/minimatch-5.1.2.tgz}
@@ -2013,10 +1987,6 @@ packages:
     resolution: {integrity: sha512-hroOstUScF6zhIi+5+x0dzqrHA1EJi+Irri6b1fxolMTqqHIV/Cg77EtnQcZqZCu8hR3mX2BzIxN4/GzI68Kfw==, tarball: https://registry.npmmirror.com/@types/q/-/q-1.5.8.tgz}
     dev: true
 
-  /@types/sizzle@2.3.8:
-    resolution: {integrity: sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==, tarball: https://registry.npmmirror.com/@types/sizzle/-/sizzle-2.3.8.tgz}
-    dev: false
-
   /@types/stack-utils@1.0.1:
     resolution: {integrity: sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==, tarball: https://registry.npmmirror.com/@types/stack-utils/-/stack-utils-1.0.1.tgz}
     dev: true
@@ -2028,12 +1998,6 @@ packages:
   /@types/strip-json-comments@0.0.30:
     resolution: {integrity: sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==, tarball: https://registry.npmmirror.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz}
     dev: true
-
-  /@types/tern@0.23.9:
-    resolution: {integrity: sha512-ypzHFE/wBzh+BlH6rrBgS5I/Z7RD21pGhZ2rltb/+ZrVM1awdZwjx7hE5XfuYgHWk9uvV5HLZN3SloevCAp3Bw==, tarball: https://registry.npmmirror.com/@types/tern/-/tern-0.23.9.tgz}
-    dependencies:
-      '@types/estree': 1.0.5
-    dev: false
 
   /@types/yargs-parser@21.0.3:
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==, tarball: https://registry.npmmirror.com/@types/yargs-parser/-/yargs-parser-21.0.3.tgz}
@@ -2813,12 +2777,32 @@ packages:
       ajv: 6.12.6
     dev: true
 
+  /ajv-formats@2.1.1(ajv@8.12.0):
+    resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==, tarball: https://registry.npmmirror.com/ajv-formats/-/ajv-formats-2.1.1.tgz}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
+    dependencies:
+      ajv: 8.12.0
+    dev: true
+
   /ajv-keywords@3.5.2(ajv@6.12.6):
     resolution: {integrity: sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==, tarball: https://registry.npmmirror.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz}
     peerDependencies:
       ajv: ^6.9.1
     dependencies:
       ajv: 6.12.6
+    dev: true
+
+  /ajv-keywords@5.1.0(ajv@8.12.0):
+    resolution: {integrity: sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==, tarball: https://registry.npmmirror.com/ajv-keywords/-/ajv-keywords-5.1.0.tgz}
+    peerDependencies:
+      ajv: ^8.8.2
+    dependencies:
+      ajv: 8.12.0
+      fast-deep-equal: 3.1.3
     dev: true
 
   /ajv@6.12.6:
@@ -2983,6 +2967,7 @@ packages:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==, tarball: https://registry.npmmirror.com/argparse/-/argparse-1.0.10.tgz}
     dependencies:
       sprintf-js: 1.0.3
+    dev: true
 
   /argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==, tarball: https://registry.npmmirror.com/argparse/-/argparse-2.0.1.tgz}
@@ -7153,12 +7138,6 @@ packages:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==, tarball: https://registry.npmmirror.com/highlight.js/-/highlight.js-10.7.3.tgz}
     dev: true
 
-  /highlight.js@9.18.5:
-    resolution: {integrity: sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==, tarball: https://registry.npmmirror.com/highlight.js/-/highlight.js-9.18.5.tgz}
-    deprecated: Support has ended for 9.x series. Upgrade to @latest
-    requiresBuild: true
-    dev: false
-
   /hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==, tarball: https://registry.npmmirror.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz}
     dependencies:
@@ -8642,10 +8621,6 @@ packages:
     hasBin: true
     dev: true
 
-  /jquery@3.7.1:
-    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==, tarball: https://registry.npmmirror.com/jquery/-/jquery-3.7.1.tgz}
-    dev: false
-
   /js-base64@2.6.4:
     resolution: {integrity: sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==, tarball: https://registry.npmmirror.com/js-base64/-/js-base64-2.6.4.tgz}
 
@@ -8955,12 +8930,6 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==, tarball: https://registry.npmmirror.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz}
     dev: true
 
-  /linkify-it@2.2.0:
-    resolution: {integrity: sha512-GnAl/knGn+i1U/wjBz3akz2stz+HrHLsxMwHQGofCDfPvlf+gDKN58UtfmUquTY4/MXeE2x7k19KQmeoZi94Iw==, tarball: https://registry.npmmirror.com/linkify-it/-/linkify-it-2.2.0.tgz}
-    dependencies:
-      uc.micro: 1.0.6
-    dev: false
-
   /lint-staged@8.1.5:
     resolution: {integrity: sha512-e5ZavfnSLcBJE1BTzRTqw6ly8OkqVyO3GL2M6teSmTBYQ/2BuueD5GIt2RPsP31u/vjKdexUyDCxSyK75q4BDA==, tarball: https://registry.npmmirror.com/lint-staged/-/lint-staged-8.1.5.tgz}
     hasBin: true
@@ -9077,6 +9046,11 @@ packages:
   /loader-runner@2.4.0:
     resolution: {integrity: sha512-Jsmr89RcXGIwivFY21FcRrisYZfvLMTWx5kOLc+JTxtpBOG6xML0vzbc6SEQG2FO9/4Fc3wW4LVcB5DmGflaRw==, tarball: https://registry.npmmirror.com/loader-runner/-/loader-runner-2.4.0.tgz}
     engines: {node: '>=4.3.0 <5.0.0 || >=5.10'}
+    dev: true
+
+  /loader-runner@4.3.0:
+    resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==, tarball: https://registry.npmmirror.com/loader-runner/-/loader-runner-4.3.0.tgz}
+    engines: {node: '>=6.11.5'}
     dev: true
 
   /loader-utils@0.2.17:
@@ -9290,17 +9264,6 @@ packages:
     dependencies:
       object-visit: 1.0.1
 
-  /markdown-it@8.4.2:
-    resolution: {integrity: sha512-GcRz3AWTqSUphY3vsUqQSFMbgR38a4Lh3GWlHRh/7MRwz8mcu9n2IO7HOh+bXHrR9kOPDl5RNCaEsrneb+xhHQ==, tarball: https://registry.npmmirror.com/markdown-it/-/markdown-it-8.4.2.tgz}
-    hasBin: true
-    dependencies:
-      argparse: 1.0.10
-      entities: 1.1.2
-      linkify-it: 2.2.0
-      mdurl: 1.0.1
-      uc.micro: 1.0.6
-    dev: false
-
   /matcher@1.1.1:
     resolution: {integrity: sha512-+BmqxWIubKTRKNWx/ahnCkk3mG8m7OturVlqq6HiojGJTd5hVYbgZm6WzcYPCoB+KBT4Vd6R7WSRG2OADNaCjg==, tarball: https://registry.npmmirror.com/matcher/-/matcher-1.1.1.tgz}
     engines: {node: '>=4'}
@@ -9323,10 +9286,6 @@ packages:
   /mdn-data@1.1.4:
     resolution: {integrity: sha512-FSYbp3lyKjyj3E7fMl6rYvUdX0FBXaluGqlFoYESWQlyUTq8R+wp0rkFxoYFqZlHCvsUXGjyJmLQSnXToYhOSA==, tarball: https://registry.npmmirror.com/mdn-data/-/mdn-data-1.1.4.tgz}
     dev: true
-
-  /mdurl@1.0.1:
-    resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==, tarball: https://registry.npmmirror.com/mdurl/-/mdurl-1.0.1.tgz}
-    dev: false
 
   /media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==, tarball: https://registry.npmmirror.com/media-typer/-/media-typer-0.3.0.tgz}
@@ -10633,10 +10592,6 @@ packages:
       find-up: 4.1.0
     dev: true
 
-  /plantuml-encoder@1.4.0:
-    resolution: {integrity: sha512-sxMwpDw/ySY1WB2CE3+IdMuEcWibJ72DDOsXLkSmEaSzwEUaYBT6DWgOfBiHGCux4q433X6+OEFWjlVqp7gL6g==, tarball: https://registry.npmmirror.com/plantuml-encoder/-/plantuml-encoder-1.4.0.tgz}
-    dev: false
-
   /please-upgrade-node@3.2.0:
     resolution: {integrity: sha512-gQR3WpIgNIKwBMVLkpMUeR3e1/E1y42bqDQZfql+kDeXd8COYfM8PQA4X6y7a8u9Ua9FHmsrrmirW2vHs45hWg==, tarball: https://registry.npmmirror.com/please-upgrade-node/-/please-upgrade-node-3.2.0.tgz}
     dependencies:
@@ -11903,6 +11858,16 @@ packages:
       ajv-keywords: 3.5.2(ajv@6.12.6)
     dev: true
 
+  /schema-utils@4.2.0:
+    resolution: {integrity: sha512-L0jRsrPpjdckP3oPug3/VxNKt2trR8TcabrM6FOAAlvC/9Phcmm+cuAgTlxBqdBR1WJx7Naj9WHw+aOmheSVbw==, tarball: https://registry.npmmirror.com/schema-utils/-/schema-utils-4.2.0.tgz}
+    engines: {node: '>= 12.13.0'}
+    dependencies:
+      '@types/json-schema': 7.0.15
+      ajv: 8.12.0
+      ajv-formats: 2.1.1(ajv@8.12.0)
+      ajv-keywords: 5.1.0(ajv@8.12.0)
+    dev: true
+
   /screenfull@4.2.0:
     resolution: {integrity: sha512-qpyI9XbwuMJElWRP5vTgxkFAl4k7HpyhIqBFOZEwX9QBXn0MAuRSpn7LOc6/4CeSwoz61oBu1VPV+2fbIWC+5Q==, tarball: https://registry.npmmirror.com/screenfull/-/screenfull-4.2.0.tgz}
     engines: {node: '>=0.10.0'}
@@ -12410,6 +12375,7 @@ packages:
 
   /sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==, tarball: https://registry.npmmirror.com/sprintf-js/-/sprintf-js-1.0.3.tgz}
+    dev: true
 
   /ssf@0.10.3:
     resolution: {integrity: sha512-pRuUdW0WwyB2doSqqjWyzwCD6PkfxpHAHdZp39K3dp/Hq7f+xfMwNAWIi16DyrRg4gg9c/RvLYkJTSawTPTm1w==, tarball: https://registry.npmmirror.com/ssf/-/ssf-0.10.3.tgz}
@@ -13003,6 +12969,19 @@ packages:
       webpack: 4.47.0
     dev: true
 
+  /thread-loader@4.0.2(webpack@4.47.0):
+    resolution: {integrity: sha512-UOk/KBydsQjh4Ja5kocxDUzhv11KYptHN/h8gdSwo6/MBkYrWqQua6K2qwlpXnCXS9c/uLs8F/JF8rpveF0+fA==, tarball: https://registry.npmmirror.com/thread-loader/-/thread-loader-4.0.2.tgz}
+    engines: {node: '>= 16.10.0'}
+    peerDependencies:
+      webpack: ^5.0.0
+    dependencies:
+      json-parse-better-errors: 1.0.2
+      loader-runner: 4.3.0
+      neo-async: 2.6.2
+      schema-utils: 4.2.0
+      webpack: 4.47.0
+    dev: true
+
   /throat@4.1.0:
     resolution: {integrity: sha512-wCVxLDcFxw7ujDxaeJC6nfl2XfHJNYs8yUYJnvMgtPEFlttP9tHSfRUv2vBe6C4hkVFPWoP1P6ZccbYjmSEkKA==, tarball: https://registry.npmmirror.com/throat/-/throat-4.1.0.tgz}
     dev: true
@@ -13073,10 +13052,6 @@ packages:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==, tarball: https://registry.npmmirror.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz}
     engines: {node: '>=4'}
     dev: true
-
-  /to-mark@1.1.9:
-    resolution: {integrity: sha512-qHVnIhvwJbIIqOjuJgH2JlOmV/wPSSAY0QOQ47xQb9VPCzhV0Nd23+bBD4K/mzDGJA5lckZMfkgLScYvqKnPpg==, tarball: https://registry.npmmirror.com/to-mark/-/to-mark-1.1.9.tgz}
-    dev: false
 
   /to-object-path@0.3.0:
     resolution: {integrity: sha512-9mWHdnGRuh3onocaHzukyvCZhzvr6tiflAy/JRFXcJX0TjgfWA9pk9t8CMbzmBE4Jfw58pXbkngtBtqYxzNEyg==, tarball: https://registry.npmmirror.com/to-object-path/-/to-object-path-0.3.0.tgz}
@@ -13217,45 +13192,6 @@ packages:
     resolution: {integrity: sha512-JVa5ijo+j/sOoHGjw0sxw734b1LhBkQ3bvUGNdxnVXDCX81Yx7TFgnZygxrIIWn23hbfTaMYLwRmAxFyDuFmIw==, tarball: https://registry.npmmirror.com/tty-browserify/-/tty-browserify-0.0.0.tgz}
     dev: true
 
-  /tui-chart@3.11.3:
-    resolution: {integrity: sha512-DsRzC1vcwZE5S3z2SGCWiQdiHL0VCon2zQthk3SmDRQwrrA/LB2aOrIZjFWsn3HjPt+rsu7hg+2Cmgp9e2C4KA==, tarball: https://registry.npmmirror.com/tui-chart/-/tui-chart-3.11.3.tgz}
-    dependencies:
-      core-js: 3.6.5
-      raphael: github.com/nhn/raphael/78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0
-      tui-code-snippet: 2.3.3
-    dev: false
-
-  /tui-code-snippet@1.5.2:
-    resolution: {integrity: sha512-6UqTlQaaC1KLcmC0HAoq5dtl1G4Fib+R+NC7pmaV7kiIlZ7JqKhUmnOoGRcreAyzd81UTK/vCvhrw9QJskpCFQ==, tarball: https://registry.npmmirror.com/tui-code-snippet/-/tui-code-snippet-1.5.2.tgz}
-    dev: false
-
-  /tui-code-snippet@2.3.3:
-    resolution: {integrity: sha512-5NEHTDFKillDNPy6MCgpXDNBTB7SZkHBFOF6vXfCDIFZcBdFYFXTd2xvAVvIeM3UYFRWu27xUf/Kxl5f9+RooQ==, tarball: https://registry.npmmirror.com/tui-code-snippet/-/tui-code-snippet-2.3.3.tgz}
-    dev: false
-
-  /tui-color-picker@2.2.8:
-    resolution: {integrity: sha512-q5sE9NQ5NR9lYpilYjcI7Sdv0KCogo+W8fZY+AYTj/HYg+9fscYy3UuJ6UQiV1bF+ARCLwFRWC8UcOt9kuUctQ==, tarball: https://registry.npmmirror.com/tui-color-picker/-/tui-color-picker-2.2.8.tgz}
-    dev: false
-
-  /tui-editor@1.3.3:
-    resolution: {integrity: sha512-AKck+bPC+4ZOeD7rNLeKvLF3zLITlU0QLxVesT0o66R1X7YowIKbWeBlVvSqcWv2eB/ZGJ9Qi6/1lFU2yYOuVA==, tarball: https://registry.npmmirror.com/tui-editor/-/tui-editor-1.3.3.tgz}
-    dependencies:
-      '@types/codemirror': 0.0.71
-      '@types/jquery': 3.5.29
-      '@types/markdown-it': 0.0.7
-      codemirror: 5.45.0
-      highlight.js: 9.18.5
-      jquery: 3.7.1
-      markdown-it: 8.4.2
-      plantuml-encoder: 1.4.0
-      resize-observer-polyfill: 1.5.1
-      squire-rte: github.com/sohee-lee7/Squire/b1e0e1031fa18912d233c204cbe7c7fae4a42621
-      to-mark: 1.1.9
-      tui-chart: 3.11.3
-      tui-code-snippet: 1.5.2
-      tui-color-picker: 2.2.8
-    dev: false
-
   /tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==, tarball: https://registry.npmmirror.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz}
     dependencies:
@@ -13337,10 +13273,6 @@ packages:
   /typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==, tarball: https://registry.npmmirror.com/typedarray/-/typedarray-0.0.6.tgz}
     dev: true
-
-  /uc.micro@1.0.6:
-    resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==, tarball: https://registry.npmmirror.com/uc.micro/-/uc.micro-1.0.6.tgz}
-    dev: false
 
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==, tarball: https://registry.npmmirror.com/uglify-js/-/uglify-js-3.17.4.tgz}
@@ -14408,24 +14340,4 @@ packages:
     resolution: {integrity: sha512-0VxCNJ7AGOMCWeHVyTrGzUgrK4asT4ml9PEkeGirAkKNYXYzoPJCLvmyfdoOXcjTHPs10OZVMfD1Rwg16AZyYw==, tarball: https://registry.npmmirror.com/zrender/-/zrender-5.4.4.tgz}
     dependencies:
       tslib: 2.3.0
-    dev: false
-
-  github.com/adobe-webplatform/eve/eef80ed:
-    resolution: {commit: eef80ed, repo: git+ssh://git@github.com/adobe-webplatform/eve.git, type: git}
-    name: eve
-    version: 0.4.1
-    dev: false
-
-  github.com/nhn/raphael/78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0:
-    resolution: {commit: 78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0, repo: git+ssh://git@github.com/nhn/raphael.git, type: git}
-    name: raphael
-    version: 2.2.0-c
-    dependencies:
-      eve: github.com/adobe-webplatform/eve/eef80ed
-    dev: false
-
-  github.com/sohee-lee7/Squire/b1e0e1031fa18912d233c204cbe7c7fae4a42621:
-    resolution: {commit: b1e0e1031fa18912d233c204cbe7c7fae4a42621, repo: git+ssh://git@github.com/sohee-lee7/Squire.git, type: git}
-    name: squire-rte
-    version: 1.9.0
     dev: false
