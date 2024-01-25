@@ -74,7 +74,7 @@ const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
 
 
 //开启多线程打包--未配置成功
-    const threadLoader = require('thread-loader');
+    /* const threadLoader = require('thread-loader');
     const threadLoaderOptions = {
         // 这里填写对应 thread-loader 的配置
         // 预热时的配置和使用 thread-loader 时的配置要一致，所以这里统一使用一个变量来管理
@@ -95,7 +95,7 @@ const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
 
         //   'babel-loader',
         // 更多其他需要使用 thread-loader 的 loader
-    ]);
+    ]); */
 //开启多线程打包end
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
@@ -313,33 +313,34 @@ module.exports = {
             gifsicle：用于优化 GIF 图片的选项。这里将 interlaced 设置为 false 表示禁用交错（interlaced）模式。
             webp：用于将图片转换为 WebP 格式的选项。其中，quality 设置为 75 表示压缩质量为 75%。
         */
-        /* 
-            config.module
-                .rule('images')
-                .use('image-webpack-loader')
-                .loader('image-webpack-loader')
-                .options({
-                    mozjpeg: {
-                        progressive: true,
-                        quality: 65,
-                    },
-                    optipng: {
-                        enabled: false,
-                    },
-                    pngquant: {
-                        quality: [0.65, 0.9],
-                        speed: 4,
-                    },
-                    // 不支持WEBP就不要写这一项
-                    webp: {
-                        quality: 75,
-                    },
-                })
-                .end()
-                .test(/\.(gif|png|jpe?g|svg)$/i)
-                .include.add(path.resolve(__dirname, 'src/assets')) // 设置需要处理的图片目录  
-                .end();
+        
+        /* config.module
+            .rule('images')
+            .use('image-webpack-loader')
+            .loader('image-webpack-loader')
+            .options({
+                mozjpeg: {
+                    progressive: true,
+                    quality: 65,
+                },
+                optipng: {
+                    enabled: false,
+                },
+                pngquant: {
+                    quality: [0.65, 0.9],
+                    speed: 4,
+                },
+                // 不支持WEBP就不要写这一项
+                webp: {
+                    quality: 75,
+                },
+            })
+            .end()
+            .test(/\.(gif|png|jpe?g|svg)$/i)
+            .include.add(path.resolve(__dirname, 'src/assets')) // 设置需要处理的图片目录  
+            .end();
         */
+       
 
         // 开启gzip压缩
         config.plugin('CompressionPlugin').use(
