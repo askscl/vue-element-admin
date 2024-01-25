@@ -18,7 +18,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 //获取版本信息
 let gitVersion = '';
-function getGitVersion(){
+function getGitVersion() {
     let fs = require('fs');
     let gitHead = fs.readFileSync(".git/HEAD", "utf-8").trim();
     let ref = gitHead.split(": ")[1];
@@ -40,7 +40,7 @@ function getTiemVersion() {
     console.log('打包时间:', tiemVersion);
 };
 
-if(isProduction){
+if (isProduction) {
     getGitVersion();
     getTiemVersion();
 }
@@ -53,7 +53,7 @@ const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文�
 const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
 
 //cdn配置star
-    const cdn = {
+    const CDNJsList = {
         title: '啦啦啦',
         css: [],
         js: [
@@ -72,6 +72,31 @@ const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
     }
 //cdn配置end
 
+
+//开启多线程打包--未配置成功
+    const threadLoader = require('thread-loader');
+    const threadLoaderOptions = {
+        // 这里填写对应 thread-loader 的配置
+        // 预热时的配置和使用 thread-loader 时的配置要一致，所以这里统一使用一个变量来管理
+        // 配置参考官方文档：https://github.com/webpack-contrib/thread-loader
+        workers: 1,
+        workerParallelJobs: 50,
+        workerNodeArgs: ['--max-old-space-size=1024'],
+        poolRespawn: false,
+        poolTimeout: 2000,
+        poolParallelJobs: 50,
+        name: 'js-thread-pool'
+    }
+
+    // thread-loader 的预热，可以加速启动
+    threadLoader.warmup(threadLoaderOptions, [
+        // 'sass-loader',
+        'svg-sprite-loader',
+
+        //   'babel-loader',
+        // 更多其他需要使用 thread-loader 的 loader
+    ]);
+//开启多线程打包end
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -128,6 +153,7 @@ module.exports = {
         name: name,
         devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
         // devtool: process.env.NODE_ENV === 'development' ? 'eval-cheap-module-source-map' : 'nosources-source-map', 
+        // devtool: process.env.NODE_ENV === 'development' ? 'cheap-source-map' : 'nosources-source-map', 
         resolve: {
             alias: {
                 '@': resolve('src')
@@ -137,7 +163,7 @@ module.exports = {
             filename: `static/js/[name].${gitVersion}.${tiemVersion}.js`,
             chunkFilename: `static/js/[name].${gitVersion}.${tiemVersion}.js`
         },
-        plugins:[
+        plugins: [
             // new BundleAnalyzerPlugin(),打包分析
             /**
              * Perfsee 平台对应的项目 ID。--project
@@ -179,7 +205,7 @@ module.exports = {
                         },
                     },
                 }),
-                  
+
             ],
         }
     },
@@ -199,7 +225,7 @@ module.exports = {
                     hot-update.js（热更新文件）
                     runtime.*.js（所有以 runtime 开头的 JavaScript 文件）
                 */
-                fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],  
+                fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
                 include: 'initial'  //指定只有初始的 chunks（即页面上直接引用的 chunks）会被预加载。
             }
         ])
@@ -278,7 +304,7 @@ module.exports = {
                     */
                 }
             )
-        
+
         // 添加图片加载器--尝试image-webpack-loader版本8或者6均报找不到imagemin-gifsicle（且无法安装） --评估: 本项目assets图片很少，估计效果也不好 
         /* 
             mozjpeg：用于压缩 JPEG 图片的选项。其中，progressive 设置为 true 表示使用渐进式 JPEG 格式，quality 设置为 65 表示压缩质量为 65%。
@@ -313,7 +339,7 @@ module.exports = {
                 .test(/\.(gif|png|jpe?g|svg)$/i)
                 .include.add(path.resolve(__dirname, 'src/assets')) // 设置需要处理的图片目录  
                 .end();
-        */ 
+        */
 
         // 开启gzip压缩
         config.plugin('CompressionPlugin').use(
@@ -326,7 +352,14 @@ module.exports = {
         );
 
         //开启多进程打包
-
+        /*
+            报错：
+            TypeError: this.getOptions is not a function，
+            排查：
+                1.sass-loader版本太高
+                2.node16对应sass-loader6.0+---未实践验证
+         */
+        // config.module.rule('js').test(/\.js$/).use('thread-loader').loader('thread-loader').end();
 
         //cdn配置
         // 生产环境配置
@@ -334,40 +367,41 @@ module.exports = {
             // 生产环境注入cdn
             config.plugin('html')
                 .tap(args => {
-                    args[0].cdn = cdn
+                    console.log(args[0]);
+                    args[0].cdn = CDNJsList
                     return args
                 })
-            
+
             config.externals(externals); // 生产环境注入cdn
 
             config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin);// 打包分析
         }
 
     },
-    css:{
-        loaderOptions:{
-            sass:{
+    css: {
+        loaderOptions: {
+            sass: {
                 //给sass-loader传递选项
             },
-            css:{
+            css: {
                 //给css-loader传递选项
             },
-            postcss:{
+            postcss: {
                 //给postcss-loader传递选项
-                plugins:[
+                plugins: [
                     //使用pxtovw组件
                     require("postcss-px-to-viewport")({
                         unitToConvert: 'pw', //需要转换的单位，默认为"px"；
-					    viewportWidth: 1920, //设计稿的视口宽度
-					    unitPrecision: 5, //单位转换后保留的小数位数
-					    propList: ['*'], //要进行转换的属性列表,*表示匹配所有,!表示不转换
-					    viewportUnit: 'vw', //转换后的视口单位
-					    fontViewportUnit: 'vw', //转换后字体使用的视口单位
-					    selectorBlackList: [], //不进行转换的css选择器，继续使用原有单位
-					    minPixelValue: 1, //设置最小的转换数值
-					    mediaQuery: false, //设置媒体查询里的单位是否需要转换单位
-					    replace: true, //是否直接更换属性值，而不添加备用属性
-					    exclude: [
+                        viewportWidth: 1920, //设计稿的视口宽度
+                        unitPrecision: 5, //单位转换后保留的小数位数
+                        propList: ['*'], //要进行转换的属性列表,*表示匹配所有,!表示不转换
+                        viewportUnit: 'vw', //转换后的视口单位
+                        fontViewportUnit: 'vw', //转换后字体使用的视口单位
+                        selectorBlackList: [], //不进行转换的css选择器，继续使用原有单位
+                        minPixelValue: 1, //设置最小的转换数值
+                        mediaQuery: false, //设置媒体查询里的单位是否需要转换单位
+                        replace: true, //是否直接更换属性值，而不添加备用属性
+                        exclude: [
                             /node_modules/,
                             // /gotop.vue/
                         ] //忽略某些文件夹下的文件
