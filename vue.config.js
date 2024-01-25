@@ -51,6 +51,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // 压缩js
 const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
 const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin'); // 开启缓存
 
 //cdn配置star
     const CDNJsList = {
@@ -185,6 +186,7 @@ module.exports = {
                 artifactName: 'main',
                 enableAudit: true, // 是否开启本地性能分析
             }), */
+            new HardSourceWebpackPlugin(), // 开启缓存
         ],
         optimization: {
             minimizer: [
