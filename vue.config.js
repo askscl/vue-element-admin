@@ -307,7 +307,7 @@ module.exports = {
                 }
             )
 
-        // 添加图片加载器--尝试image-webpack-loader版本8或者6均报找不到imagemin-gifsicle（且无法安装） --评估: 本项目assets图片很少，估计效果也不好 
+        // 添加图片加载器--报错：图片压缩乱码和找不到文件 --评估: 本项目assets图片很少，估计效果也不好 
         /* 
             mozjpeg：用于压缩 JPEG 图片的选项。其中，progressive 设置为 true 表示使用渐进式 JPEG 格式，quality 设置为 65 表示压缩质量为 65%。
             optipng：用于优化 PNG 图片的选项。这里将 enabled 设置为 false 表示禁用 optipng 优化。
