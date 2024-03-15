@@ -111,7 +111,7 @@ ceil ceil ceil ceil ceil
 /* 
 const pattern = /{{\w.\d?\s*\d+[a-zA-Z]}}/g
 */
-const arr = [1, 2, 3];
+/* const arr = [1, 2, 3];
 console.log(arr.findIndex(item => item > 1));
 console.log(arr)
 const arr2 = [
@@ -121,9 +121,34 @@ const arr2 = [
     {
         num: 2
     }
-]
+] */
 // console.log(Array.from(arr.keys()))
 /* 
 arguments arguments arguments arguments arguments arguments
 Date.now() Date.now() Date.now() Date.now() Date.now()
 */
+
+
+const num = {
+    a: 10,
+    add(){ return this.a +2;},
+    reduce: () => this.a - 2
+};
+
+console.log(num.add());
+console.log(num.reduce());
+
+const promise = new Promise((resolve, reject) => {
+    console.log(1);
+    setTimeout(() => {
+        console.log("timerStart");
+        resolve("success");
+        console.log("timerEnd");
+    }, 0);
+    console.log(2);
+});
+promise.then((res) => {
+    console.log(res);
+})
+
+console.log(4);
