@@ -1,6 +1,6 @@
 /**
- * 两数之和(leetcode1)
- * 
+两数之和(leetcode1)
+ 
 测试用例
 输入: nums =[2,7,11,15], target =9
 输出:[0,1]
@@ -23,14 +23,15 @@
 1.map的值放要找的索引，便于用map的，get查找到
  */
 
-const nums =[2,7,11,15], target =9;
+const nums =[2,7,11,15,2], target =9;
 
 function twoSum(arr, target){
     let map = new Map();
     let res = [];
     arr.forEach((item, index) =>{
         if(map.has(target - item)){
-            res = [index, map.get(target - item)];
+            // res = [index, map.get(target - item)];
+            res = [map.get(target - item), index];
         }else{
             map.set(item, index)
         }
