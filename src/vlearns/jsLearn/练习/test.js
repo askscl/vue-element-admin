@@ -129,7 +129,7 @@ Date.now() Date.now() Date.now() Date.now() Date.now()
 */
 
 
-const num = {
+/* const num = {
     a: 10,
     add(){ return this.a +2;},
     reduce: () => this.a - 2
@@ -151,4 +151,131 @@ promise.then((res) => {
     console.log(res);
 })
 
-console.log(4);
+console.log(4); */
+
+/* (function(){
+    var a = b = 5;
+})();
+console.log(window);
+console.log(b);
+console.log(a);
+ */
+
+
+/* const sortedListToBST = function(head){
+    if(!head) return null;
+    const nums = [];
+
+    while(head){
+        nums.push(head.val);
+        head = head.next;
+    }
+    return d(nums, 0, nums.length - 1);
+
+    function TreeNode(val){
+        this.val = val;
+        this.left = this.right = null;
+    }
+
+    function d(arr, low, high){
+        if(low > hight) return null;
+        const mid = Math.floor((low + high)/2);
+        const node = new TreeNode(arr[mid]);
+
+        node.left = d(arr, low, mid - 1);
+        node.right = d(arr, mid + 1, high);
+
+        return node;
+    }
+}; */
+
+/* const promise = new PromiseRejectionEvent((resovle, reject) => {
+    setTimeout(() =>{
+        reject(new Error("error"));
+    }, 1000);
+});
+
+promise.then(res =>{
+    console.log(res);;
+}).catch(error => {
+    console.error('捕获到错误： ', error);
+});
+
+function stringToNumber(str){
+    let result = 0;
+    let powerOfTen = 1;
+    for(let i = str.length - 1; i >= 0; i--){
+        const charCode = str.charCodeAt(i);
+
+        if(charCode < 48 || charCode > 57){
+            throw new Error("Invalid input");
+        }
+
+        result += (charCode - 48) * powerOfTen;
+        powerOfTen *= 10;
+    }
+
+    return result;
+} */
+
+const arr = [1, 2, 3, 4, 5];
+function bianArr(arr){
+    if(arr == null) return 
+    for(let i = 0; i < arr.length; i++){
+        console.log(arr[i]);
+    }
+}
+
+// bianArr(arr);
+
+function Node(val){
+    this.value = val;
+    this.next = null;
+}
+
+const node1 = new Node(1);
+const node2 = new Node(2);
+const node3 = new Node(3);
+const node4 = new Node(4);
+const node5 = new Node(5);
+const node6 = new Node(6);
+
+
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+node4.next = node5;
+node5.next = node6;
+
+function bianLink(root){
+    if(root == null) return;
+    let temp = root;
+    while(true){
+        if(temp != null){
+            console.log(temp.value);
+        }else{
+            break;
+        }
+        temp = temp.next;
+    }
+}
+// bianLink(node1);
+
+function bianLink2(root){
+    if(root == null) return;
+    let temp = root;
+    while(temp != null){
+        console.log(temp.value);
+        temp = temp.next;
+    }
+}
+
+// bianLink2(node1);
+
+function bianLink3(root){
+    if(root == null) return;
+    console.log(root.value);
+    bianLink3(root.next);
+}
+
+bianLink3(node1);
