@@ -25,9 +25,9 @@ function exchange(arr, i, j){
 //排序
 function arrSort(arr){
     if(arr == null) return;
-    for(let i = 0; i < arr.length - 1; i ++){
+    for(let i = 0; i < arr.length - 1; i ++){//-1表示，例如3个数排序，只要找2个最大的数
         let maxIndex = 0;
-        for(let j = 0; j < arr.length - i; j ++){
+        for(let j = 0; j < arr.length - i; j ++){ //-i,表示每轮扣掉一个
             if(compare( arr[maxIndex] , arr[j])){
                 maxIndex = j;
             }
