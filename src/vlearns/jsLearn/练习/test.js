@@ -218,7 +218,7 @@ function stringToNumber(str){
     return result;
 } */
 
-const arr = [1, 2, 3, 4, 5];
+/* const arr = [1, 2, 3, 4, 5];
 function bianArr(arr){
     if(arr == null) return 
     for(let i = 0; i < arr.length; i++){
@@ -278,4 +278,20 @@ function bianLink3(root){
     bianLink3(root.next);
 }
 
-bianLink3(node1);
+bianLink3(node1); */
+
+const arr2 = [3,9,2,7,1,5,8,6,4];
+
+function arrSort(arr){
+    if(arr == null) return;
+    for(let i = 0; i < arr.length - 1; i++){
+        for(let j = 0; j < arr.length - 1 - i; j++){
+            if(arr[j] > arr[j+1]){
+                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+            }
+        }
+    }
+    return arr;
+}
+
+console.log(arrSort(arr2));
