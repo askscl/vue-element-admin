@@ -13,6 +13,7 @@
 function quickSort(arr, low = 0, high = arr.length - 1) {  
     if (low < high) {  
         let pivotIndex = partition(arr, low, high);  
+        console.log(pivotIndex);
         quickSort(arr, low, pivotIndex - 1);  
         quickSort(arr, pivotIndex + 1, high);  
     }  

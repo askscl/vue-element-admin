@@ -280,18 +280,81 @@ function bianLink3(root){
 
 bianLink3(node1); */
 
-const arr2 = [3,9,2,7,1,5,8,6,4];
+/* const arr2 = [3,9,2,7,1,5,8,6,4];
 
-function arrSort(arr){
-    if(arr == null) return;
-    for(let i = 0; i < arr.length - 1; i++){
-        for(let j = 0; j < arr.length - 1 - i; j++){
-            if(arr[j] > arr[j+1]){
-                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
-            }
-        }
+function quickSort(arr, begin = 0, end=arr.length - 1){
+    if(arr == null || arr.length === 0) return;
+    if(begin < end){
+        const midIndex = partition(arr, begin , end);
+        quickSort(arr, begin, midIndex - 1);
+        quickSort(arr, midIndex + 1, end);
     }
-    return arr;
+    
 }
 
-console.log(arrSort(arr2));
+function partition(arr, left, right){
+    const midItem = arr[left];
+    let i = left + 1;
+    let j = right;
+    while(i <= j){
+        if(arr[i] < midItem){
+            i++
+        }else if(arr[j] > midItem){
+            j--
+        }else{
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            i++;
+            j--;
+        }
+    }
+    [arr[left], arr[j]] = [arr[j], arr[left]];
+    return j;
+}
+
+quickSort(arr2);
+console.log(arr2); */
+
+/* class Stack{
+    constructor(){
+        this.arr = []
+    }
+    push(val){
+        this.arr.push(val);
+    }
+    pop(){
+        this.arr.pop();
+    }
+}
+
+const stack = new Stack();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+console.log(stack.arr);
+stack.pop();
+console.log(stack.arr);
+stack.pop();
+console.log(stack.arr); */
+
+class Queue{
+    constructor(){
+        this.arr = [];
+    }
+    push(val){
+        this.arr.push(val);
+    }
+    pop(){
+        this.arr.shift();
+    }
+}
+
+const queue = new Queue();
+queue.push(1);
+queue.push(2);
+queue.push(3);
+console.log(queue.arr);
+
+queue.pop()
+console.log(queue.arr);
+queue.pop()
+console.log(queue.arr);

@@ -13,20 +13,28 @@
         第一次交换：遍历：一旦发现不符合的元素，就调换位置
         第二次交换：将枢轴换到合适的位置，目的让小于的在左边，大于的在右边
     2.两次无限循环的终止条件
-        2.1 left < right控制递归
-        2.2 i <= j
+        2.1 left < right控制递归====================>特别注意，写的时候 就要考虑
+        2.2 i <= j=================================》为啥要等号？
 
 思考：
     1.为什么最后left和j交换而不是与i交换？
         1.代码试过得不到正确排序，为什么？
     2.边界值如何确定？
+        2.1抖音上很多说while条件是i< j,即i==j时退出循环，很有可能是错的，因为只有动画演示，没有代码运行演示
+        2.2为什么每次i都会比j大一位？
     3.为啥要等号，没法理解
+    4.时间复杂度是多少？
+    5.空间复杂度是多少？
 
+动画：有ppt动画演示
 
+pivot：枢轴
+partition: 分治
 
 */
 
 function quickSort(arr, left = 0, right = arr.length - 1){
+    if(arr == null || arr.length === 0) return;
     if(left < right){
         const pivotIndex = partition(arr, left, right);
         // console.log(arr);
@@ -54,12 +62,12 @@ function partition(arr, left, right){
             j--;
         }
     }
-    // console.log(`i:${i}, j:${j}`);
+    console.log(`i:${i}, j:${j}`);
 
-    //为何最后还要交换一次?
+    //为何最后还要交换一次?，把枢轴放中间，让左边连续小，右边连续大
     [arr[left], arr[j]] = [arr[j], arr[left]];
 
-    // [arr[left], arr[i]] = [arr[i], arr[left]];//不能i指针来交换
+    // [arr[left], arr[i]] = [arr[i], arr[left]];//不能i指针来交换，i指针的交换效果导致，左不是连续小，右边不是连续大
 
     return j;
 }
