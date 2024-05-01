@@ -15,6 +15,7 @@
     2.两次无限循环的终止条件
         2.1 left < right控制递归====================>特别注意，写的时候 就要考虑
         2.2 i <= j=================================》为啥要等号？
+    3.靠j来找枢轴，不用i,是因为循环体来用来加1了，有可能超出索引
 
 思考：
     1.为什么最后left和j交换而不是与i交换？
@@ -22,6 +23,7 @@
     2.边界值如何确定？
         2.1抖音上很多说while条件是i< j,即i==j时退出循环，很有可能是错的，因为只有动画演示，没有代码运行演示
         2.2为什么每次i都会比j大一位？
+        2.3本质是双指针交叉问题产生的边界情况
     3.为啥要等号，没法理解
     4.时间复杂度是多少？
     5.空间复杂度是多少？
@@ -49,7 +51,7 @@ function partition(arr, left, right){
     const pivotItem = arr[left];
     let i = left + 1;
     let j = right;
-    while(i <= j){    //为啥要等号？
+    while(i <= j){    //为啥要等号？--本质是双指针交叉问题产生的边界情况，这边i已经是left+1了，当i==j时，j--会与left值一样，进而保证升序的数字不被乱动
         if(arr[i] < pivotItem){
             i++
         }else if(arr[j] > pivotItem){ 
@@ -61,13 +63,14 @@ function partition(arr, left, right){
             i++;
             j--;
         }
+        
     }
-    console.log(`i:${i}, j:${j}`);
-
+    // console.log(`i:${i}, j:${j}`);
+    // console.log(`left:${left}, j:${j}`);
     //为何最后还要交换一次?，把枢轴放中间，让左边连续小，右边连续大
     [arr[left], arr[j]] = [arr[j], arr[left]];
 
-    // [arr[left], arr[i]] = [arr[i], arr[left]];//不能i指针来交换，i指针的交换效果导致，左不是连续小，右边不是连续大
+    // [arr[left], arr[i]] = [arr[i], arr[left]];//不能i指针来交换，i指针的交换效果导致，左不是连续小，右边不是连续大(现象逆推)
 
     return j;
 }
@@ -77,7 +80,9 @@ function partition(arr, left, right){
 // const arr = [9, 3, 2, 7, 1, 5, 8, 6, 4];
 // const arr = [8, 7, 6, 5, 4, 2, 3, 1, 9];
 // const arr = [5, 1, 2, 3, 4, 6, 7, 8, 9];
-const arr = [5, 1, 2, 3, 4, 6, 7, 8];
-// const arr = [5, 1, 2, 3, 4, 6, 7, 8, 9, 1, 5];
+// const arr = [5, 1, 2, 3, 4, 6, 7, 8];
+const arr = [5, 1, 2, 3, 4, 6, 7, 8, 9, 1, 5];
+// const arr = [3,2,1];
+
 quickSort(arr)
 console.log(arr);
