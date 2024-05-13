@@ -183,9 +183,14 @@ export const constantRoutes = [
                 meta: { title: '不定高的虚拟滚动' }
             },
             {
-                path: 'test07',
-                component: () => import('@/views/test/test07'),
-                meta: { title: '测试07' }
+                path: 'functional',
+                component: () => import('@/views/test/functional'),
+                meta: { title: '函数式组件' }
+            },
+            {
+                path: 'test08',
+                component: () => import('@/views/test/test08'),
+                meta: { title: '测试08' }
             },
         ]
     },
