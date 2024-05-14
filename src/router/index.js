@@ -217,6 +217,16 @@ export const constantRoutes = [
                 component: () => import('@/views/vueLearn/ProvideInject/ProvideInject'),
                 meta: { title: '依赖注入' }
             },
+            {
+                path: 'Attrs',
+                component: () => import('@/views/vueLearn/Attrs/Attrs.vue'),
+                meta: { title: '$attrs通信' }
+            },
+            {
+                path: 'Listeners',
+                component: () => import('@/views/vueLearn/Listeners/Listeners.vue'),
+                meta: { title: '$listeners通信' }
+            },
         ]
     },
     {
