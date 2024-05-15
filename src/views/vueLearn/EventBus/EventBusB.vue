@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>B组件：{{ msg }}</p>
+        <p>儿子组件：{{ msg }}</p>
         <Child />
     </div>
 </template>

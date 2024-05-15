@@ -8,9 +8,12 @@
 import EventBusB from './EventBusB.vue';
 
 export default{
+    destroyed(){
+        this.$EventBus.$off('recevie');
+    },
     methods: {
         sendMsg() {
-            this.$EventBus.$emit('recevie', 'A消息');
+            this.$EventBus.$emit('recevie', '收到A消息');
         }
     },
     components: { EventBusB }
