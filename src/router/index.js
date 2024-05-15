@@ -227,6 +227,16 @@ export const constantRoutes = [
                 component: () => import('@/views/vueLearn/Listeners/Listeners.vue'),
                 meta: { title: '$listeners通信' }
             },
+            {
+                path: 'EventBusA',
+                component: () => import('@/views/vueLearn/EventBus/EventBusA.vue'),
+                meta: { title: '事件总线通信A' }
+            },
+            {
+                path: 'EventBusB',
+                component: () => import('@/views/vueLearn/EventBus/EventBusB.vue'),
+                meta: { title: '事件总线通信B' }
+            },
         ]
     },
     {

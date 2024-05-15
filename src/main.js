@@ -43,7 +43,10 @@ Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
 })
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+//事件总线声明：
+Vue.prototype.$EventBus = new Vue();
 
 new Vue({
     el: '#app',

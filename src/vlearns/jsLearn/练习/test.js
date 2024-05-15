@@ -336,7 +336,7 @@ console.log(stack.arr);
 stack.pop();
 console.log(stack.arr); */
 
-class Queue{
+/* class Queue{
     constructor(){
         this.arr = [];
     }
@@ -357,4 +357,33 @@ console.log(queue.arr);
 queue.pop()
 console.log(queue.arr);
 queue.pop()
-console.log(queue.arr);
+console.log(queue.arr); */
+
+function deepClone(obj){
+    if(obj == null) return null;
+    if(typeof obj !== 'object') return obj;
+    const newObj = Array.isArray(obj) ? [] : {};
+    for(let i in obj){
+        if(obj.hasOwnProperty(i)){
+            newObj[i] = typeof obj[i] === 'object' ?  deepClone(obj[i]) : obj[i];
+        }
+    }
+    return newObj;
+}
+
+
+const a = {
+    id: 1,
+    name: '你好',
+    list: [1, 2, 3],
+    school: {
+        schoolName: 'aaa',
+        age: 20
+    }
+}
+
+const b = deepClone(a);
+b.list[0]=100,
+b.school.age = 99;
+console.log('a:', a);
+console.log('b:', b);
