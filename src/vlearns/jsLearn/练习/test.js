@@ -359,7 +359,7 @@ console.log(queue.arr);
 queue.pop()
 console.log(queue.arr); */
 
-function deepClone(obj){
+/* function deepClone(obj){
     if(obj == null) return null;
     if(typeof obj !== 'object') return obj;
     const newObj = Array.isArray(obj) ? [] : {};
@@ -386,4 +386,5 @@ const b = deepClone(a);
 b.list[0]=100,
 b.school.age = 99;
 console.log('a:', a);
-console.log('b:', b);
+console.log('b:', b); */
+
