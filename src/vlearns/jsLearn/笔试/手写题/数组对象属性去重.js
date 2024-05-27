@@ -142,7 +142,7 @@ const noRepeatArr33 = function(arr){
     arr.forEach(a => {
         let check = arr2.every(b => {
             return  a.id != b.id;
-        });
+        }); //every()都满足返回true，否则 false，a的每一项都与b的每一项不相同
         check ? arr2.push(a) : '';
     })
     return arr2;

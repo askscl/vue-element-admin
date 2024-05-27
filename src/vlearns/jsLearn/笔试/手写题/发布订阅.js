@@ -14,11 +14,15 @@ pubSub.subscribe = function(event, callback){
 }
 // 发布
 /* 
+subscribes subscribes subscribes subscribes subscribes subscribes subscribes subscribes
+publish publish publish publish publish publish publish publish publish publish
+slice slice slice slice slice slice slice slice slice slice slice slice slice
 Array.prototype.slice.call
 Array.prototype.slice.call
 Array.prototype.slice.call
-Array.prototype.slice.call
-Array.prototype.slice.call
+callback.apply(null, args)
+callback.apply(null, args)
+callback.apply(null, args)
 */
 pubSub.publish = function(event){//实际event后面会加上函数的参数
     if(this.subscribes && this.subscribes[event]){
@@ -26,7 +30,7 @@ pubSub.publish = function(event){//实际event后面会加上函数的参数
         console.log(args);
         this.subscribes[event].forEach((callback) =>{
             callback.apply(null, args);//因为参数可能是多个
-            // callback(args);--这样写会导致参数就一个
+            // callback(args);--这样写会导致参数就一个---args是一个数组
         });
     }
 }

@@ -12,3 +12,4 @@ promise.then((res) => {
 })
 
 console.log(4);
+

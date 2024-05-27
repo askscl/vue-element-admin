@@ -29,7 +29,7 @@
     4.1. this指向问题，需要写成fn.apply(this)
     4.2. 参数不要是可以省略的
 5.Date.now()可以获取当前时间
-
+arguments arguments arguments arguments arguments arguments arguments arguments
 */
 
 function throttle(fn, delay){

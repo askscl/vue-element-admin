@@ -388,3 +388,64 @@ b.school.age = 99;
 console.log('a:', a);
 console.log('b:', b); */
 
+/* justify-content: center;
+align-items: center;
+
+justify-content: center;
+align-items: center;
+
+justify-content: center;
+align-items: center; */
+
+/* concat concat concat
+slice slice slice
+substring substring substring
+substr substr substr
+indexOf indexOf indexOf
+includes includes includes
+toUpperCase toUpperCase toUpperCase
+toLowerCase toLowerCase toLowerCase
+replace replace replace
+split split split
+localeCompare localeCompare localeCompare
+
+concat 
+slice substring substr
+trim
+repeat
+replace */
+
+/* 
+push push push pop pop pop
+unshift unshift unshift
+shift shift shift
+reverse reverse reverse sort sort sort
+concat concat concat slice slice slice splice splice splice
+indexOf indexOf indexOf
+every every every some some some filter filter filter map map map forEach forEach forEach
+reduce reduce reduce
+
+join join join
+isArray isArray isArray
+keys keys keys 
+values values values 
+entries entries entries
+Array.from(arr.keys())
+Array.from(arr.values())
+Array.form(arr.entries())
+find find find findIndex findIndex findIndex
+concat concat concat slice slice slice
+filter filter filter map map map
+*/
+
+function a(num){
+    console.log('a:',num);
+    return function(val){
+        console.log('b-a:', num);
+        console.log('b', val);
+    }
+}
+
+const b = a(100);
+b(200);
+

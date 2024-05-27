@@ -8,7 +8,7 @@ range(0,30,5); => [0,5,10,15,20,25]
 
 function range(start, stop, step){
     const argLength = arguments.length;
-    let resultList = [];
+    const resultList = [];
     if(argLength === 1){
         for(let i = 0; i < start; i++){
             resultList.push(i);
@@ -28,7 +28,7 @@ function range(start, stop, step){
 
 function range2(start, stop, step){
     const argLength = arguments.length;
-    let resultList = [];
+    const resultList = [];
     if(argLength === 1){
         stop = start;
         start = 0;

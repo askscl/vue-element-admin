@@ -30,7 +30,7 @@ function numberFormat(num){
             arr.unshift(numStr.slice(i, i+3));
         }else{
             //==times
-            const endIndex = len - 3*j;
+            const endIndex = len - 3*j; //最后一次的索引, 最后一组剩余几位
             arr.unshift(numStr.slice(0, endIndex))
         }
         // console.log(arr);
@@ -41,6 +41,7 @@ function numberFormat(num){
 console.log(numberFormat(1234567890));
 // console.log(numberFormat(90));
 // console.log(numberFormat(7890));
+console.log(numberFormat(890));
 
 
 

@@ -5,4 +5,4 @@ const num = {
 };
 
 console.log(num.add());
-console.log(num.reduce());
+console.log(num.reduce()); // 报NaN
