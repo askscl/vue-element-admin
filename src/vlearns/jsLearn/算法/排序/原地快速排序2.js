@@ -6,7 +6,9 @@
 
     partition 函数用于划分数组。它接收一个数组 arr 和两个索引 low 和 high，并将数组划分为两部分。
     在函数内部，我们首先选择 arr[high] 作为基准值，然后遍历数组，
-    将所有小于基准值的元素与 arr[i + 1] 交换位置（其中 i 是小于基准值的元素的索引）。
+    =============将所有小于基准值的元素与 arr[i + 1] 交换位置（其中 i 是小于基准值的元素的索引）。==================
+    1.将小的元素放在指针i上
+    2.将大的元素放在指针j上
     最后，将基准值与 arr[i + 1] 交换位置，并返回 i + 1，即基准值的最终位置。
 
     备注：未花时间理解消化
@@ -21,17 +23,20 @@ function quickSort(arr, low = 0, high = arr.length - 1) {
     }  
     return arr;  
 }  
-  
+
+
+// 以high为基准值，将数组划分为两部分
 function partition(arr, low, high) {  
     let pivot = arr[high];  
-    let i = low - 1;  
+    let i = low - 1;  //作用：记录小于基准值的元素的索引
+    // 遍历数组，将小于基准值的元素与 arr[i + 1] 交换位置
     for (let j = low; j < high; j++) {  
         if (arr[j] < pivot) {  
             i++;  
             [arr[i], arr[j]] = [arr[j], arr[i]];  
         }  
     }  
-    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];  
+    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]]; // i+1是基准值的最终位置
     return i + 1;  
 }  
   

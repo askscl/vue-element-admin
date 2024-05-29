@@ -47,6 +47,7 @@ function quickSort(arr, left = 0, right = arr.length - 1){
 }
 
 //快排算法
+//以left为基准，将数组分为两部分，小于基准的放在左边，大于基准的放在右边
 function partition(arr, left, right){
     const pivotItem = arr[left];
     let i = left + 1;
