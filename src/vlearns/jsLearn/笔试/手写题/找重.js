@@ -9,9 +9,9 @@
  * @returns Array
  */
 function findSameItem(arr1, arr2){
-    let arr = [];
-    let arrIn1 = getSort([...arr1]);
-    let arrIn2 = getSort([...arr2]);
+    const arr = [];
+    const arrIn1 = getSort([...arr1]);
+    const arrIn2 = getSort([...arr2]);
     console.log(arrIn1);
     console.log(arrIn2);
     let i = 0, j = 0;

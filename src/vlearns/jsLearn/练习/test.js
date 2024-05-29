@@ -438,7 +438,7 @@ concat concat concat slice slice slice
 filter filter filter map map map
 */
 
-function a(num){
+/* function a(num){
     console.log('a:',num);
     return function(val){
         console.log('b-a:', num);
@@ -447,5 +447,10 @@ function a(num){
 }
 
 const b = a(100);
-b(200);
+b(200); */
 
+const aa=Math.floor(Math.random()*2); 
+const arr =new Array(10).fill(0).map(item =>{
+    return item=Math.floor(Math.random()*4);
+}); 
+console.log(arr);

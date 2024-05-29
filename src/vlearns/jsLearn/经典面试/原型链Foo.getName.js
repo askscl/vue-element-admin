@@ -14,12 +14,39 @@ function getName() { console.log(5); }
 
 // /*题目 */
 Foo.getName();
-getName();
-Foo().getName(); 
+getName();//---易错
+Foo().getName(); //---易错
 getName();
 new Foo.getName();
-new Foo().getName();
+new Foo().getName();//---易错
 new new Foo().getName();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // /*答案 */
 Foo.getName();//2
@@ -32,7 +59,7 @@ new new Foo().getName(); // 3
 
 /**
  * 考察的知识点：
- * 1.函数声明提升，被提升到顶部
+ * 1.函数声明提升，被提升到顶部，会被赋值；var变量声明提升，被提升到顶部，但不会被赋值
  * 2.this的指向
  * 3.new关键字的原理，new的优先级大于 .  的优先级
  *      3.1new关键字的嵌套， new new Foo().getName()  =>   new ( new Foo().getName() );

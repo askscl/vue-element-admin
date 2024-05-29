@@ -49,10 +49,10 @@ Foo().getName();//1
 //4.调用全局函数 getName
 getName();//1
 //5. new Foo.getName : 这里并没有调用Foo，所以其实是调用Foo函数对象自己的getName
-//前面这个new是吓唬你的
+//前面这个new是把getName当构造函数
 new Foo.getName()//2
 //6. new Foo() :返回实例化对象  调用getName访问原型中的方法
 new Foo().getName();//3
-//7. 多出来的new是吓唬你的，原理与6一致
-// 相当于  new   (new Foo.getName())  与6中的this指向有区别
+//7. new 构造函数
+// 相当于  new   (new Foo().getName())  
 new new Foo().getName();//3 

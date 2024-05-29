@@ -26,7 +26,7 @@
 const nums =[2,7,11,15,2], target =9;
 
 function twoSum(arr, target){
-    let map = new Map();
+    const map = new Map();
     let res = [];
     arr.forEach((item, index) =>{
         if(map.has(target - item)){

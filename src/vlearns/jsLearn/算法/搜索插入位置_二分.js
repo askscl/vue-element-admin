@@ -18,10 +18,10 @@
  */
 
 const arr = [1, 3, 5, 6], target = 5;
-let searchInsert = function (arr, target) {
+const searchIndex = function (arr, target) {
     let left = 0;
     let right = arr.length - 1;
-    while (right >= left) {//边界情况
+    while (right >= left) {//边界情况---如何确定？
         const mid = Math.floor((left + right) / 2);//二分法特色中间索引，作为比较参照物
         if (arr[mid] < target) {
             left = mid + 1;
@@ -36,5 +36,5 @@ let searchInsert = function (arr, target) {
 
 }
 
-const answer = searchInsert(arr, target);
+const answer = searchIndex(arr, target);
 console.log(answer);

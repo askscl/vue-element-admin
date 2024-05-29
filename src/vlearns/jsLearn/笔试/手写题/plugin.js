@@ -1,6 +1,5 @@
 /* 
-练习一：
-给源代码加前一行注释
+手写plugin
 
 思考：
 1.compiler.hooks.emit.tapAsync是Webpack Plugin中的一个固定格式，用于监听Webpack的emit事件，

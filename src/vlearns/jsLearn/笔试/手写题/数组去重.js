@@ -5,17 +5,17 @@ const arr = [3, 3, 6, 8, 10, 10];
  * indexOf
  */
 function noRepeat11(arr){
-    const noRepeatArr11 = arr.filter((item, index) => {
+    const arr2 = arr.filter((item, index) => {
         return arr.indexOf(item) === index; //因为indexOf 返回的是第一个的索引
     });
-    console.log('noRepeatArr1: ',noRepeatArr11);
+    console.log('noRepeatArr1: ', arr2);
 }
 // noRepeat11(arr);
 
 function noRepeat12(arr){
     const arr2 = [];
     arr.forEach(item =>{
-        if(arr2.indexOf(item) == -1){
+        if(arr2.indexOf(item) == -1){//注意此处是arr2
             arr2.push(item);
         }
     })
@@ -27,8 +27,8 @@ function noRepeat12(arr){
 function noRepeat13(arr){
     const arr2 = [];
     for(let i = 0; i < arr.length; i++){
-        //注意此处是原数组的indexOf方法
-        if(arr.indexOf(arr[i]) == i){
+        //注意此处是《原数组》的indexOf方法
+        if(arr.indexOf(arr[i]) == i){//因为indexOf 返回的是第一个的索引
             arr2.push(arr[i]);
         }
     }

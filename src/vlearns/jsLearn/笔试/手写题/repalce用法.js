@@ -9,11 +9,11 @@ offset：记录本次匹配的开始位置
 source：接受匹配的原始字符串
 */
 const str2 = str.replace(/_([a-z])([a-z])/g, function(matchStr, p1, p2,y, z){
-    console.log(match)
+    console.log(matchStr)
     console.log(p1)
     console.log(p2)
-    console.log(y)
-    console.log(z)
+    console.log('y:', y)
+    console.log('z:',z)
     return p1.toUpperCase();
 });
 
