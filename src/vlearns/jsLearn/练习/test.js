@@ -449,8 +449,32 @@ filter filter filter map map map
 const b = a(100);
 b(200); */
 
-const aa=Math.floor(Math.random()*2); 
+/* const aa=Math.floor(Math.random()*2); 
 const arr =new Array(10).fill(0).map(item =>{
     return item=Math.floor(Math.random()*4);
 }); 
-console.log(arr);
+console.log(arr); */
+
+/* console.log(typeof 100);
+console.log(typeof '100');
+console.log(typeof String(100));
+console.log(typeof new String(100));
+console.log(typeof Number(100));
+console.log(typeof new Number(100)); */
+
+
+
+var x = 2;
+var y = 0;
+var z = 0;
+function add(n) { return n = n +l; }
+y = add(x);
+function add(n) { return n = n + 3;}
+z= add(x);
+s=y+z;
+console.log(y);
+console.log(z);
+console.log(s);
+
+
+
