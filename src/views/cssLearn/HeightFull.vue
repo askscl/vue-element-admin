@@ -22,7 +22,7 @@ export default {
         this.resizeHeight();
     },
     beforeDestroy(){
-        window.removeEventListener('resize');
+        window.removeEventListener('resize', this.setHeightFull());
     },
     methods:{
         setHeightFull(){
@@ -34,8 +34,17 @@ export default {
         },
         resizeHeight(){
             window.addEventListener('resize', () =>{
-                this.setHeightFull();
+                this.debouce(this.setHeightFull(), 300);
             })
+        },
+        debouce(fn, delay){
+            let timer = null;
+            return function(){
+                clearTimeout(timer);
+                timer = setTimeout(() =>{
+                    fn.apply(this, arguments);
+                }, delay);
+            }
         }
     }
 }
