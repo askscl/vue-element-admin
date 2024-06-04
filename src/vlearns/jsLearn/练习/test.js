@@ -464,7 +464,7 @@ console.log(typeof new Number(100)); */
 
 
 
-var x = 2;
+/* var x = 2;
 var y = 0;
 var z = 0;
 function add(n) { return n = n +l; }
@@ -474,7 +474,26 @@ z= add(x);
 s=y+z;
 console.log(y);
 console.log(z);
-console.log(s);
+console.log(s); */
+
+
+
+
+
+setTimeout(() =>{
+    console.log(22222);
+});
+
+setTimeout(() =>{
+    console.log(22222);
+});
+setImmediate(()=>{
+    console.log(11111);
+});
+setTimeout(() =>{
+    console.log(22222);
+});
+
 
 
 
