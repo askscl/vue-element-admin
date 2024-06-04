@@ -30,7 +30,7 @@ process.nextTick(function () {  // n微1
 })
 
 setImmediate(() => {   // 宏2
-    console.info('9')  // setImmediate 可以将回调函数放置在当前事件循环的队列末尾
+    console.info('9')  // setImmediate 可以将回调函数放置在当前这一轮事件循环的队列末尾
 })
 
 new Promise(function (resolve) {
@@ -44,7 +44,7 @@ new Promise(function (resolve) {
 setTimeout(function () {   // 宏3
     console.log('12');
     setImmediate(() => {
-        console.info('13')
+        console.info('13')  // setImmediate 可以将回调函数放置在当前这一轮事件循环的队列末尾
     })
 
     process.nextTick(function () {
