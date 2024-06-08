@@ -257,8 +257,9 @@ module.exports = {
         config
             .when(process.env.NODE_ENV !== 'development',
                 config => {
-                    // script-ext-html-webpack-plugin 是一个 Webpack 插件，它主要用于优化和控制 HTML 文档中引入的 <script> 标签的属性。
-                    // 该插件能够给 script 标签添加额外的属性，例如 async、defer、module 等，以及内联脚本。
+                    
+                    // script-ext-html-webpack-plugin ：用于优化和控制 HTML 文档中引入的 <script> 标签的属性。
+                    // 给 script 标签添加额外的属性，例如 async、defer、module 等，以及内联脚本。
                     config
                         .plugin('ScriptExtHtmlWebpackPlugin')
                         .after('html')
@@ -267,7 +268,8 @@ module.exports = {
                             inline: /runtime\..*\.js$/
                         }])
                         .end()
-                    // 将不同的依赖项分割到不同的代码块中
+                    
+                    // 将不同的依赖项分割到不同的代码块中（策略：按业务和共用程度分割）
                     config
                         .optimization.splitChunks({
                             chunks: 'all', // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件
@@ -286,22 +288,23 @@ module.exports = {
                                 commons: {
                                     name: 'chunk-commons',
                                     test: resolve('src/components'), // can customize your rules
-                                    minChunks: 3, //  minimum common number // 最小共用次数
+                                    minChunks: 3, //  minimum common number // 最小共用次数（引用次数）
                                     priority: 5,
-                                    reuseExistingChunk: true // 表示是否使用已有的 chunk，如果为 true 则表示如果当前的 chunk 包含的模块已经被抽取出去了，那么将不会重新
+                                    reuseExistingChunk: true // 表示是否使用已有的 chunk，如果为 true 则表示如果当前的 chunk 包含的模块已经被抽取出去了，那么将不会重新打包
                                 }
                             }
                         })
                     // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
-                    //入口chunk中的运行时代码是指在入口chunk中包含的代码，这些代码在应用运行时会被执行。通常，这些代码是应用程序的主要逻辑，例如根组件、应用程序状态管理等。
+                    //入口chunk中的运行时代码: 在入口chunk中包含的代码，这些代码在应用运行时会被执行。通常，这些代码是应用程序的主要逻辑，例如根组件、应用程序状态管理等。
                     //在Webpack中，通过使用splitChunks可以将这些运行时代码提取出来，生成一个单独的chunk，以避免每次改动入口chunk时都需要重新打包整个应用。这样可以提高构建速度和缓存效率。
                     config
                         .optimization.runtimeChunk('single')
                     /* 
-                        config.optimization.runtimeChunk('single') 是 Webpack 配置中的一条指令，用于优化代码的打包和运行。
-                        具体来说，runtimeChunk 选项用于指定是否将 runtime 代码分割成单独的 chunk。
-                        >>>>>>>>>>>>当设置为 'single' 时，runtime 代码将被打包成一个单独的 chunk，这样可以减少重复的代码，提高加载性能。<<<<<<<<<<<<<<<
-                        这个选项通常与 splitChunks 一起使用，用于控制代码的分割和加载方式。通过将 runtime 代码与其他的 chunks 分割开来，可以更好地利用缓存和加载性能。
+                        config.optimization.runtimeChunk('single') ：用于优化代码的打包和运行。
+                        runtimeChunk : 是否将 runtime 代码分割成单独的 chunk。
+                        >>>>>>>>>>>>当设置为 'single' 时，runtime 代码将被打包成一个单独的 chunk，可以减少重复的代码，提高加载性能。<<<<<<<<<<<<<<<
+                        这个选项通常与 splitChunks 一起使用，用于控制代码的分割和加载方式。
+                        通过将 runtime 代码与其他的 chunks 分割开来，可以更好地利用缓存和加载性能。
                         需要注意的是，使用 runtimeChunk 选项可能会导致额外的 HTTP 请求数，因此在使用时需要权衡其带来的性能提升和可能的额外开销。
                     */
                 }
@@ -367,6 +370,7 @@ module.exports = {
         //cdn配置
         // 生产环境配置
         if (isProduction) {
+            
             // 生产环境注入cdn
             config.plugin('html')
                 .tap(args => {
