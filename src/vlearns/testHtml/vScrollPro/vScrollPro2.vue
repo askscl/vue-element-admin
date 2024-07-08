@@ -85,7 +85,7 @@ export default {
         getStartIndex(scrollTop) {
             // 每一项距顶部的距离
             let arr = this.itemTopCache;
-            let index = -1;
+            let index = -1; //要获取的目标索引，默认值为-1
             let left = 0,
                 right = arr.length - 1,
                 mid = Math.floor((left + right) / 2);
@@ -113,6 +113,7 @@ export default {
             index = left;
             return index;
         },
+        //启动函数
         onScroll() {
             
             // console.log(this.$refs.scrollsss.scrollTop);
@@ -137,31 +138,31 @@ export default {
 </script>
    
 <style scoped lang="scss">
-#app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
+    #app {
+        font-family: "Avenir", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+    }
 
-.phantom {
-    border: solid 1px #eee;
-    margin-top: 10px;
-    height: 600px;
-    overflow: auto;
-}
+    .phantom {
+        border: solid 1px #eee;
+        margin-top: 10px;
+        height: 600px;
+        overflow: auto;
+    }
 
-ul {
-    background: #ccc;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    li {
-        outline: solid 1px #fff;
-        &:nth-child(2n) {
-            background: #fff;
+    ul {
+        background: #ccc;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            outline: solid 1px #fff;
+            &:nth-child(2n) {
+                background: #fff;
+            }
         }
     }
-}
 </style>
