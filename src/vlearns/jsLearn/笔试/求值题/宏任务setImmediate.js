@@ -1,6 +1,6 @@
 /* 
     https://blog.csdn.net/xufang461010923/article/details/133126881
-    setImmediate 可以将回调函数放置在当前事件循环的队列末尾
+    setImmediate 可以将回调函数放置在当前事件循环的队列末尾--宏任务队列的头
 */
 console.log('1');   // 同1
 

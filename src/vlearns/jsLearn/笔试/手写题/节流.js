@@ -45,7 +45,7 @@ function throttle(fn, delay){
                 
                 fn.apply(this, args);   //args是一个类数组对象，记得用上apply, 不能使用call
                 
-                timer = null;  //这一句是否与clearTimeout(timer);等价?------不等价，根据测试打印，发现停止的计时器等于一个数字，无法用于if判断    //此处较容易写成以上的代码
+                timer = null;  //这一句是否与clearTimeout(timer);等价?------不等价，根据测试打印，发现停止的计时器等于一个数字，无法用于if判断    //此处较容易写成以上的代码；因为上面要用到布尔判定
                 // timer = undefined;
                 // console.log(`timer:${timer}`);
             }, delay);

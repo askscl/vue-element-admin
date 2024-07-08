@@ -480,7 +480,7 @@ console.log(s); */
 
 
 
-setTimeout(() =>{
+/* setTimeout(() =>{
     console.log(22222);
 });
 
@@ -492,7 +492,63 @@ setImmediate(()=>{
 });
 setTimeout(() =>{
     console.log(22222);
-});
+});  */
+
+
+
+/* const arr =  [123]
+function getDate(){
+    console.log(arr);    
+}
+
+
+
+var name ='张三'
+var person=(function(){
+    var name = '李四'
+    return {
+        name :'王五',
+        sayName:function(){
+            var name ='赵六';
+            console.log(this.name);
+        }
+    }
+})()
+person.sayName()//五
+person.sayName.call(window)//三
+window.addEventListener('DOMcontentLoaded',person.sayName)//undefined */
+//DOMcontentLoaded 是什么？--DomcontentLoaded 是 DOM 加载完之后触发的事件。
+
+// Object.prototype[Symbol.iterator]= function(){
+//     return Object.values(this)[Symbol.iterator]();
+// }
+
+/* Object.prototype[Symbol.iterator] = function* (){
+    yield* Object.values(this);
+}
+
+const obj = {
+    name:'张三',
+    age:18,
+    sayName:function(){
+        console.log(this.name);
+    }
+}
+
+for(let val of obj){ console.log(val)} */
+
+function func(){}
+let aa=typeof 1
+aa= typeof '1'
+aa = typeof true
+aa = typeof null
+aa = typeof undefined 
+aa = typeof Symbol(1)
+aa = typeof BigInt(2)
+aa = typeof {}
+aa = typeof func
+aa = typeof []
+console.log(aa);
 
 
 

@@ -23,6 +23,16 @@ class MyPlugin{
         //compiler.hooks.emit.tapAsync('插件名'，（编译结果，回调函数）=> {处理})，这个是固定格式吗？
         compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) =>{
             //compilation是编译后的结果？
+            /* 
+                compilation 对象代表一次资源的构建，compilation 实例能够访问所有的模块和它们的依赖。
+                一个 compilation 对象会对构建依赖图中所有模块，进行编译。 在编译阶段，模块会被加载(load)、封存(seal)、优化(optimize)、 分块(chunk)、哈希(hash)和重新创建(restore)。
+                主要属性
+                    compilation.modules 可以访问所有模块，打包的每一个文件都是一个模块
+                    compilation.chunks chunk 即是多个 modules 组成而来的一个代码块。入口文件引入的资源组成一个 chunk，通过代码分割的模块又是另外的 
+                    chunkcompilation.assets 可以访问本次打包生成所有文件的结果
+                    compilation.hooks 可以注册 tapable 的不同种类 Hook，用于在 compilation 编译模块阶段进行逻辑添加以及修改
+                compilation 暴露了与模块和依赖有关的粒度更小的事件钩子
+            */
             compilation.assets['main.js'] = {
                 source: () =>{
                     const originalSource = compilation.assets['main.js'].source();

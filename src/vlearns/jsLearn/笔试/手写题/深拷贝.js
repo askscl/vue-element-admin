@@ -1,6 +1,6 @@
 function deepClone(obj) {
 
-    if (typeof obj !== 'object') return obj;
+    if (typeof obj !== 'object' || obj == null) return obj;
 
     const newObj = Array.isArray(obj) ? [] : {};
     for (let i in obj) {
