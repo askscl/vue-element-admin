@@ -398,6 +398,33 @@ module.exports = {
                 plugins: [
                     //使用pxtovw组件
                     // declaration钩子拿 到所有css的AST，键值对（属性，属性值）
+                    /* 
+                        源码：
+                        PostCsspxToviewport.ts
+                        //postcss的插件呢， vite 内置了postCss无需安装
+                        import {Plugin} from 'postcss'
+                        const Option = {
+                            viewportWidth: 1920, //设计稿的视口宽度
+                            // unitToConvert: 'px', //需要转换的单位，默认为"px"
+                        }
+                        interface Option {
+                            viewportWidth?: number
+                        }
+                        export const PostCsspxToViewport = (option: Option = Option):Plugin => {
+                            const opt = Object.assign({}, Option, option);
+                            return {
+                                postcssPlugin: 'postcss-px-to-viewport',
+                                //这个钩子函数,可以拿到所有css的AST,有属性名，属性值
+                                Declaration(node){
+                                    //console.log(node.prop,node.value);
+                                    if(node.value.includes('px')'){
+                                        const num = parseFloat(node.value);
+                                        node.value = '${(num/opt.viewportWidth*100).toFix(2)}vw'
+                                    }
+                                }
+                            }
+                        }
+                    */
                     require("postcss-px-to-viewport")({
                         unitToConvert: 'pw', //需要转换的单位，默认为"px"；
                         viewportWidth: 1920, //设计稿的视口宽度
