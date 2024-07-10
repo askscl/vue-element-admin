@@ -159,7 +159,7 @@ export const constantRoutes = [
             {
                 path: 'testGrailLayout',
                 component: () => import('@/views/test/testGrailLayout'),
-                meta: { title: '圣杯布局' }
+                meta: { title: '圣杯[三栏]布局' }
             },
             {
                 path: 'twoDivLayout',

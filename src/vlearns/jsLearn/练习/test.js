@@ -537,7 +537,7 @@ const obj = {
 
 for(let val of obj){ console.log(val)} */
 
-function func(){}
+/* function func(){}
 let aa=typeof 1
 aa= typeof '1'
 aa = typeof true
@@ -548,8 +548,75 @@ aa = typeof BigInt(2)
 aa = typeof {}
 aa = typeof func
 aa = typeof []
-console.log(aa);
+console.log(aa); */
 
+/* const arr = [1,2,3,4,5,6,7,8,9,10]
+
+const arr2 = arr.some(item => item > 5); //true
+console.log(arr2);
+
+const arr3 = arr.every(item => item > 5); //false
+console.log(arr3);
+
+const arr4 = arr.filter(item => item >5); //[6,7,8,9,10]
+console.log(arr4);
+console.log(arr); //[1,2,3,4,5,6,7,8,9,10]
+
+const arr5 = arr.find(item => item > 5); //6
+console.log(arr5);
+console.log(arr.findIndex(item => item == 9)); // 8 */
+
+/* 
+push push push
+pop pop pop
+unshift unshift unshift 
+shift shift shift
+reverse reverse reverse
+sort sort sort
+concat concat concat 
+slice slice slice
+indexOf indexOf indexOf
+filter filter filter 
+map map map
+forEach forEach forEach
+reduce reduce reduce
+join join join
+isArray isArray isArray
+keys keys keys
+values values values
+entries entries entries
+find find find 
+findIndex findIndex findIndex
+Array.from Array.from Array.from
+
+\s 空格
+[a-zA-Z] 字母
+\d 正数字
+\w 正数字或者字母
+. 任意字符
+? 0或1
+* 0或多个
++ 1或多个
+
+Math.round 四舍五入 Math.round Math.round
+Math.ceil 向上取整 Math.ceil Math.ceil
+Math.floor 向下取整 Math.floor Math.floor
+Math.floor(Math.random()*10) 随机生成0-9的数字
+round round round 
+ceil ceil ceil 
+floor floor floor
+random random random
+\s \s \s \s \s
+[a-zA-Z] [a-zA-Z] [a-zA-Z]
+\d \d \d \d \d
+\w \w \w \w \w
+. . . . .
+? ? ? ? ?
+* * * * *
++ + + + +
+
+
+*/
 
 
 

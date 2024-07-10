@@ -19,7 +19,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-$color: ( a: red, b: green );//本质是个map, 不是对象
+$color: ( a: red, b: green );//本质是个map
 .tips{
     height: 100px;
     // background: map-get($map: $color, $key: 'a');//测试可以

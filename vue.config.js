@@ -50,7 +50,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // 压缩js
 const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
-const { PerfseePlugin } = require('@perfsee/webpack');  // 性能优化
+const { PerfseePlugin } = require('@perfsee/webpack');  // 开启本地性能分析
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin'); // 开启缓存
 
 //cdn配置star
@@ -397,6 +397,7 @@ module.exports = {
                 //给postcss-loader传递选项
                 plugins: [
                     //使用pxtovw组件
+                    // declaration钩子拿 到所有css的AST，键值对（属性，属性值）
                     require("postcss-px-to-viewport")({
                         unitToConvert: 'pw', //需要转换的单位，默认为"px"；
                         viewportWidth: 1920, //设计稿的视口宽度
