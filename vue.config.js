@@ -114,7 +114,7 @@ module.exports = {
     lintOnSave: false,
     // lintOnSave: process.env.NODE_ENV === 'development', //是否在开发环境下每次保存代码时都启用 eslint验证。--
     /*
-      配置Type: boolean | 'warning' | 'default' | 'error' 
+      配置Type: boolean | 'warning' | 'default' | 'error'
       Default: true
       value：
         false：关闭每次保存都进行检测
@@ -153,8 +153,8 @@ module.exports = {
         // it can be accessed in index.html to inject the correct title.
         name: name,
         devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
-        // devtool: process.env.NODE_ENV === 'development' ? 'eval-cheap-module-source-map' : 'nosources-source-map', 
-        // devtool: process.env.NODE_ENV === 'development' ? 'cheap-source-map' : 'nosources-source-map', 
+        // devtool: process.env.NODE_ENV === 'development' ? 'eval-cheap-module-source-map' : 'nosources-source-map',
+        // devtool: process.env.NODE_ENV === 'development' ? 'cheap-source-map' : 'nosources-source-map',
         resolve: {
             alias: {
                 '@': resolve('src')
@@ -172,7 +172,7 @@ module.exports = {
              * 如果想要上传打包产物到平台进行分析，则该选项必填。**
              * 给打包的产物指定一个项目内唯一的名字。
              *
-             * 
+             *
              * 在一次提交（单个 CI 工作流）中，如果有会构建多次，即有多个打包产物时会很有用。
              *
              * 因为我们和基准的对比是基于 `Entrypoint`，如果多次构建产生的打包产物的 `Entrypoint` 名字相同，我们无法确定哪个是正确的用来被对比的基准。
@@ -193,7 +193,7 @@ module.exports = {
                 /* new UglifyJsPlugin({
                     uglifyOptions: {
                         compress: {
-                            drop_console: true, // 删除所有的 `console` 语句，可以自定义其他压缩选项  
+                            drop_console: true, // 删除所有的 `console` 语句，可以自定义其他压缩选项
                         },
                     },
                 }), */
@@ -201,9 +201,9 @@ module.exports = {
                 new TerserPlugin({
                     terserOptions: {
                         compress: {
-                            drop_console: true, // 删除所有的 `console` 语句  
-                            collapse_vars: true, // 内嵌定义了但是只用到一次的变量  
-                            reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值  
+                            drop_console: true, // 删除所有的 `console` 语句
+                            collapse_vars: true, // 内嵌定义了但是只用到一次的变量
+                            reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值
                         },
                     },
                 }),
@@ -221,7 +221,7 @@ module.exports = {
                 rel: 'preload',
                 // to ignore runtime.js
                 // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-                /* 
+                /*
                     这是一个排除列表，用于指定不应被预加载的文件。这里，我们排除了以下文件：
                     源码映射文件（.map 结尾）
                     hot-update.js（热更新文件）
@@ -233,7 +233,7 @@ module.exports = {
         ])
 
         // when there are many pages, it will cause too many meaningless requests--删除名为 'prefetch' 的插件
-        config.plugins.delete('prefetch')
+        config.plugins.delete('prefetch') //删除默认的prefetch插件
 
         // set svg-sprite-loader
         config.module
@@ -257,7 +257,7 @@ module.exports = {
         config
             .when(process.env.NODE_ENV !== 'development',
                 config => {
-                    
+
                     // script-ext-html-webpack-plugin ：用于优化和控制 HTML 文档中引入的 <script> 标签的属性。
                     // 给 script 标签添加额外的属性，例如 async、defer、module 等，以及内联脚本。
                     config
@@ -268,7 +268,7 @@ module.exports = {
                             inline: /runtime\..*\.js$/
                         }])
                         .end()
-                    
+
                     // 将不同的依赖项分割到不同的代码块中（策略：按业务和共用程度分割）
                     config
                         .optimization.splitChunks({
@@ -299,7 +299,7 @@ module.exports = {
                     //在Webpack中，通过使用splitChunks可以将这些运行时代码提取出来，生成一个单独的chunk，以避免每次改动入口chunk时都需要重新打包整个应用。这样可以提高构建速度和缓存效率。
                     config
                         .optimization.runtimeChunk('single')
-                    /* 
+                    /*
                         config.optimization.runtimeChunk('single') ：用于优化代码的打包和运行。
                         runtimeChunk : 是否将 runtime 代码分割成单独的 chunk。
                         >>>>>>>>>>>>当设置为 'single' 时，runtime 代码将被打包成一个单独的 chunk，可以减少重复的代码，提高加载性能。<<<<<<<<<<<<<<<
@@ -310,15 +310,15 @@ module.exports = {
                 }
             )
 
-        // 添加图片加载器--报错：图片压缩乱码和找不到文件 --评估: 本项目assets图片很少，估计效果也不好 
-        /* 
+        // 添加图片加载器--报错：图片压缩乱码和找不到文件 --评估: 本项目assets图片很少，估计效果也不好
+        /*
             mozjpeg：用于压缩 JPEG 图片的选项。其中，progressive 设置为 true 表示使用渐进式 JPEG 格式，quality 设置为 65 表示压缩质量为 65%。
             optipng：用于优化 PNG 图片的选项。这里将 enabled 设置为 false 表示禁用 optipng 优化。
             pngquant：用于压缩 PNG 图片的选项。其中，quality 设置为 [0.65, 0.9] 表示压缩质量范围在 65% 到 90% 之间，speed 设置为 4 表示压缩速度为 4（速度越高，压缩时间越短）。
             gifsicle：用于优化 GIF 图片的选项。这里将 interlaced 设置为 false 表示禁用交错（interlaced）模式。
             webp：用于将图片转换为 WebP 格式的选项。其中，quality 设置为 75 表示压缩质量为 75%。
         */
-        
+
         /* config.module
             .rule('images')
             .use('image-webpack-loader')
@@ -342,10 +342,10 @@ module.exports = {
             })
             .end()
             .test(/\.(gif|png|jpe?g|svg)$/i)
-            .include.add(path.resolve(__dirname, 'src/assets')) // 设置需要处理的图片目录  
+            .include.add(path.resolve(__dirname, 'src/assets')) // 设置需要处理的图片目录
             .end();
         */
-       
+
 
         // 开启gzip压缩
         config.plugin('CompressionPlugin').use(
@@ -370,7 +370,7 @@ module.exports = {
         //cdn配置
         // 生产环境配置
         if (isProduction) {
-            
+
             // 生产环境注入cdn
             config.plugin('html')
                 .tap(args => {
@@ -398,7 +398,7 @@ module.exports = {
                 plugins: [
                     //使用pxtovw组件
                     // declaration钩子拿 到所有css的AST，键值对（属性，属性值）
-                    /* 
+                    /*
                         源码：
                         PostCsspxToviewport.ts
                         //postcss的插件呢， vite 内置了postCss无需安装

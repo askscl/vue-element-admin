@@ -1,10 +1,10 @@
-/* 
+/*
 addEventListener addEventListener addEventListener addEventListener addEventListener
 addEventListener addEventListener addEventListener addEventListener addEventListener
 defineProperty  defineProperty defineProperty defineProperty defineProperty
 */
 
-/* 
+/*
 justify-content justify-content justify-content justify-content
 justify-content
 align-items align-items align-items align-items align-items
@@ -12,10 +12,10 @@ flex flex flex flex flex
 flex-grow, flex-grow flex-grow flex-grow flex-grow
 flex-shrink shrink shrink shrink shrink
 basis basis basis basis basis
-ceil ceil ceil ceil ceil 
+ceil ceil ceil ceil ceil
 */
 
-/* 
+/*
     数组
     push push push push push
     pop pop pop pop pop
@@ -28,7 +28,7 @@ ceil ceil ceil ceil ceil
     splice splice splice splice splice
     indexOf indexOf indexOf indexOf indexOf
     lastIndexOf lastIndexOf lastIndexOf lastIndexOf lastIndexOf
-    every every every every every 
+    every every every every every
     some some some some some
     filter filter filter filter filter
     map map map map map
@@ -71,7 +71,7 @@ ceil ceil ceil ceil ceil
     values values values values values
     entries entries entries entries entries
     fill fill fill fill fill
-    find find find find find 
+    find find find find find
     findIndex findIndex findIndex findIndex findIndex
     Array.from Array.from Array.from Array.from
     replace replace replace replace replace
@@ -79,7 +79,7 @@ ceil ceil ceil ceil ceil
 
 */
 
-/* 
+/*
     字符串
     concat concat concat concat concat
     slice slice slice slice slice
@@ -101,14 +101,14 @@ ceil ceil ceil ceil ceil
     slice slice slice slice slice
     substring substring substring substring substring
     substr substr substr substr substr
-    trim trim trim trim trim 
+    trim trim trim trim trim
     repeat repeat repeat repeat repeat
     replace replace replace replace replace
 
 */
 
 
-/* 
+/*
 const pattern = /{{\w.\d?\s*\d+[a-zA-Z]}}/g
 */
 /* const arr = [1, 2, 3];
@@ -123,7 +123,7 @@ const arr2 = [
     }
 ] */
 // console.log(Array.from(arr.keys()))
-/* 
+/*
 arguments arguments arguments arguments arguments arguments
 Date.now() Date.now() Date.now() Date.now() Date.now()
 */
@@ -220,7 +220,7 @@ function stringToNumber(str){
 
 /* const arr = [1, 2, 3, 4, 5];
 function bianArr(arr){
-    if(arr == null) return 
+    if(arr == null) return
     for(let i = 0; i < arr.length; i++){
         console.log(arr[i]);
     }
@@ -289,7 +289,7 @@ function quickSort(arr, begin = 0, end=arr.length - 1){
         quickSort(arr, begin, midIndex - 1);
         quickSort(arr, midIndex + 1, end);
     }
-    
+
 }
 
 function partition(arr, left, right){
@@ -409,13 +409,13 @@ replace replace replace
 split split split
 localeCompare localeCompare localeCompare
 
-concat 
+concat
 slice substring substr
 trim
 repeat
 replace */
 
-/* 
+/*
 push push push pop pop pop
 unshift unshift unshift
 shift shift shift
@@ -427,8 +427,8 @@ reduce reduce reduce
 
 join join join
 isArray isArray isArray
-keys keys keys 
-values values values 
+keys keys keys
+values values values
 entries entries entries
 Array.from(arr.keys())
 Array.from(arr.values())
@@ -449,10 +449,10 @@ filter filter filter map map map
 const b = a(100);
 b(200); */
 
-/* const aa=Math.floor(Math.random()*2); 
+/* const aa=Math.floor(Math.random()*2);
 const arr =new Array(10).fill(0).map(item =>{
     return item=Math.floor(Math.random()*4);
-}); 
+});
 console.log(arr); */
 
 /* console.log(typeof 100);
@@ -498,7 +498,7 @@ setTimeout(() =>{
 
 /* const arr =  [123]
 function getDate(){
-    console.log(arr);    
+    console.log(arr);
 }
 
 
@@ -542,7 +542,7 @@ let aa=typeof 1
 aa= typeof '1'
 aa = typeof true
 aa = typeof null
-aa = typeof undefined 
+aa = typeof undefined
 aa = typeof Symbol(1)
 aa = typeof BigInt(2)
 aa = typeof {}
@@ -566,17 +566,17 @@ const arr5 = arr.find(item => item > 5); //6
 console.log(arr5);
 console.log(arr.findIndex(item => item == 9)); // 8 */
 
-/* 
+/*
 push push push
 pop pop pop
-unshift unshift unshift 
+unshift unshift unshift
 shift shift shift
 reverse reverse reverse
 sort sort sort
-concat concat concat 
+concat concat concat
 slice slice slice
 indexOf indexOf indexOf
-filter filter filter 
+filter filter filter
 map map map
 forEach forEach forEach
 reduce reduce reduce
@@ -585,7 +585,7 @@ isArray isArray isArray
 keys keys keys
 values values values
 entries entries entries
-find find find 
+find find find
 findIndex findIndex findIndex
 Array.from Array.from Array.from
 
@@ -602,8 +602,8 @@ Math.round 四舍五入 Math.round Math.round
 Math.ceil 向上取整 Math.ceil Math.ceil
 Math.floor 向下取整 Math.floor Math.floor
 Math.floor(Math.random()*10) 随机生成0-9的数字
-round round round 
-ceil ceil ceil 
+round round round
+ceil ceil ceil
 floor floor floor
 random random random
 \s \s \s \s \s
@@ -617,6 +617,29 @@ random random random
 
 
 */
+
+
+// const arr = [1,2,3,4,5,6,7,8,9,10]
+// for(let i=0;i<arr.length;i++){
+//     console.log(arr[i]);
+// }
+
+/* const obj = {
+    name:'张三',
+    age:18,
+    sayName:function(){
+        console.log(this.name);
+    }
+}
+
+for(const key in obj){
+    console.log(key);
+}
+
+const arr = [1,2,3,4,5,6,7,8,9,10]
+for(const val of arr){
+    console.log(val);
+} */
 
 
 
