@@ -641,5 +641,69 @@ for(const val of arr){
     console.log(val);
 } */
 
+/* // 缓存/记忆函数
+function memoize(func){
+    const cache = {};
+    return function(...args){
+        const n = args[0];
+        console.log(`n:${n}`);
+        if(n in cache){
+            console.log('命中缓存', cache);
+            return cache[n];
+        }else{
+            console.log('未命中缓存:', cache);
+            const result = func(...args);
+            cache[n] = result;
+            return result;
+        }
+    }
+}
+
+function add(a, b){
+    return a + b;
+}
+
+const memoizedAdd = memoize(add);
+console.log(memoizedAdd(1,2));
+console.log(memoizedAdd(1,2));
+
+
+function createCounter(){
+    let count = 0;
+    return function(){
+        return count++;
+        console.log(count);
+    }
+}
+
+const counter = createCounter(); */
+
+/*
+concat concat concat
+slice slice slice
+substring substring substring
+substr substr substr
+indexOf indexOf indexOf
+includes includes includes
+
+toUpperCase toUpperCase toUpperCase
+toLowerCase toLowerCase toLowerCase
+replace replace replace
+split split split
+localeCompare localeCompare localeCompare
+push push push pop pop pop
+unshift unshift unshift shift shift shift
+reverse reverse reverse sort sort sort
+concat concat concat slice slice slice splice splice splice
+indexOf indexOf indexOf 
+filter filter filter map map map
+ofrEach forEach forEace
+reduce reduce reduce join join join
+isArray isArray isArray
+
+concat slice filter map 
+concat slice filter map
+concat slice filter map
+*/
 
 
