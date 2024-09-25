@@ -1,5 +1,5 @@
-/* 
-手写loader
+/*
+手写loader--webpack
 
 思考：
 1.以下是您提供的map对象中各字段的解释：
