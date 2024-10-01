@@ -11,10 +11,10 @@ const arr = [
 
 
 /**
- * 推荐指数：5星
+ * 推荐指数：5星  🌟🌟🌟🌟🌟
  * 方法4：使用Map
- * @param {*} arr 
- * @returns 
+ * @param {*} arr
+ * @returns
  */
 
  const noRepeatArr4 = function (arr) {
@@ -34,12 +34,12 @@ const arr = [
 
 /**
  * 方法1：双层for循环
- * 
+ *
  * 注意点：
  * 1.i 的边界值是arr.length - 1？---因为最后一个，后面没数据比较了，不需要比较
  * 2.j的起始索引是i + 1？---当前数与，数后面的数字比较
  * 3.j--索引退一格
- * 
+ *
  */
 const noRepeatArr1 = function (arr) {
     for (let i = 0; i < arr.length - 1; i++) {
@@ -59,8 +59,8 @@ const noRepeatArr1 = function (arr) {
 // ===============================================================================================================
 /**
  * 方法2：indexOf()
- * @param {*} arr 
- * @returns 
+ * @param {*} arr
+ * @returns
  */
 const noRepeatArr2 = function (arr) {
     const idList = [];
@@ -81,8 +81,8 @@ const noRepeatArr2 = function (arr) {
 // ===============================================================================================================
 /**
  * 方法3：for循环，利用对象属性唯一性
- * @param {*} arr 
- * @returns 
+ * @param {*} arr
+ * @returns
  */
 
  const noRepeatArr31 = function (arr) {
@@ -132,13 +132,13 @@ const noRepeatArr33 = function(arr){
 /**
  * 方法5：every()都满足返回true，否则 false
  * 点评：逻辑有点绕，不方便记忆
- * @param {*} arr 
- * @returns 
+ * @param {*} arr
+ * @returns
  */
 
  const noRepeatArr5 = function (arr) {
     const arr2 = [];
-    
+
     arr.forEach(a => {
         let check = arr2.every(b => {
             return  a.id != b.id;

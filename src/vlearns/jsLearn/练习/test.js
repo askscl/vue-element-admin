@@ -695,15 +695,50 @@ push push push pop pop pop
 unshift unshift unshift shift shift shift
 reverse reverse reverse sort sort sort
 concat concat concat slice slice slice splice splice splice
-indexOf indexOf indexOf 
+indexOf indexOf indexOf
 filter filter filter map map map
 ofrEach forEach forEace
 reduce reduce reduce join join join
 isArray isArray isArray
 
-concat slice filter map 
 concat slice filter map
 concat slice filter map
+concat slice filter map
+*/
+
+/*
+concat concat concat
+slice slice slice substring substring substring
+substr substr substr
+indeOf indexOf indexOf
+includes includes includes
+toUpperCase toUpperCase toUpperCase
+toLowerCase toLowerCase toLowerCase
+replace replace replace
+split split split
+localeCompare localeCompare localeCompare
+concat slice substring substr
+trim
+repeat
+replace
+
+push push push pop pop pop
+unshift unshift unshift shift shift shift 
+reverse reverse reverse sort sort sort 
+concat concat concat slice slice slice splice splice splice
+indexOf indexOf indexOf
+filter filter filter map map map forEach forEach forEach
+reduce reduce reduce join join join
+isArray isArray isArray
+keys keys keys values values values entries entries entries
+find find find 
+Array.from Array.from  Array.from
+
+concat concat concat 
+slice slice slice 
+filter filter filter filter filter filter filter filter 
+map map map map map 
+
 */
 
 
