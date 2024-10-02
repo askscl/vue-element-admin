@@ -723,22 +723,42 @@ repeat
 replace
 
 push push push pop pop pop
-unshift unshift unshift shift shift shift 
-reverse reverse reverse sort sort sort 
+unshift unshift unshift shift shift shift
+reverse reverse reverse sort sort sort
 concat concat concat slice slice slice splice splice splice
 indexOf indexOf indexOf
 filter filter filter map map map forEach forEach forEach
 reduce reduce reduce join join join
 isArray isArray isArray
 keys keys keys values values values entries entries entries
-find find find 
+find find find
 Array.from Array.from  Array.from
 
-concat concat concat 
-slice slice slice 
-filter filter filter filter filter filter filter filter 
-map map map map map 
+concat concat concat
+slice slice slice
+filter filter filter filter filter filter filter filter
+map map map map map
 
 */
 
 
+/*
+yarn add --dev happypack
+const os = require('os')
+const HappyPack = require('happypack')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
+module: {
+  rules: [{
+    test: /\.js$\/,  // 把.js文件交给happypack执行
+    loader: "happypack/loader?id=happy-babek-js"
+    exclude: /node_modules/ // 排除node_modules
+  }
+]},
+config.plugins.push(
+  new HappyPack({
+    id: 'happy-babel-js',
+    loaders: ['babel-loader?cacheDirectory=true'],
+    threadPool: happyThreadPool
+  })
+)
+*/

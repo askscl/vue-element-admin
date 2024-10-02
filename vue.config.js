@@ -47,7 +47,6 @@ if (isProduction) {
 
 //打包优化
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 分析包大小
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');  // 压缩js
 const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
 const { PerfseePlugin } = require('@perfsee/webpack');  // 开启本地性能分析
@@ -188,17 +187,14 @@ module.exports = {
             }), */
             new HardSourceWebpackPlugin(), // 开启缓存
         ],
+        // 进行代码分割和提取公共代码, 压缩代码
         optimization: {
+            // minimizer: true, // 使用自带的压缩, production mode下面自动为true, 开发环境要手动设置
             minimizer: [
-                /* new UglifyJsPlugin({
-                    uglifyOptions: {
-                        compress: {
-                            drop_console: true, // 删除所有的 `console` 语句，可以自定义其他压缩选项
-                        },
-                    },
-                }), */
                 //TerserPlugin可以更好地针对 ES6 的代码进行处理
                 new TerserPlugin({
+                    cache: true, // 开启缓存
+                    parallel: true,  //开启多线程
                     terserOptions: {
                         compress: {
                             drop_console: true, // 删除所有的 `console` 语句
@@ -254,6 +250,8 @@ module.exports = {
             })
             .end()
 
+
+        // 开发环境配置
         config
             .when(process.env.NODE_ENV !== 'development',
                 config => {
@@ -345,15 +343,7 @@ module.exports = {
         */
 
 
-        // 开启gzip压缩
-        config.plugin('CompressionPlugin').use(
-            new CompressionPlugin({
-                algorithm: 'gzip', // 压缩算法
-                test: /\.js(\?.*)?$/i,
-                threshold: 10240, // 只有大小大于该值的资源会被处理 10240（即10KB）
-                minRatio: 0.8, //最小压缩率
-            }),
-        );
+
 
         //开启多进程打包
         /*
@@ -368,6 +358,17 @@ module.exports = {
         //cdn配置
         // 生产环境配置
         if (isProduction) {
+
+            // 开启gzip压缩
+            config.plugin('CompressionPlugin').use(
+                new CompressionPlugin({
+                    algorithm: 'gzip', // 压缩算法
+                    test: /\.js(\?.*)?$/i,
+                    threshold: 10240, // 只有大小大于该值的资源会被处理 10240（即10KB）
+                    minRatio: 0.8, //最小压缩率
+                }),
+            );
+
 
             // 生产环境注入cdn
             config.plugin('html')

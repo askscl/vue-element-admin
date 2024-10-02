@@ -264,6 +264,7 @@ node:16.19.0
 
 npm list webpack查看到的版本为
 webpack@4.46.0
+webpack@4.47.0  日期：2024年10月1日
 
 2023年12月20日
 npm版本号是 8.19.3
