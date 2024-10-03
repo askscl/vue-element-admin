@@ -146,6 +146,7 @@ module.exports = {
     },
 
 
+
     // 通过操作对象的形式来修改默认的webpack配置
     configureWebpack: {
         // provide the app's title in webpack's name field, so that
@@ -205,7 +206,8 @@ module.exports = {
                 }),
 
             ],
-        }
+        },
+
     },
 
 
@@ -314,7 +316,6 @@ module.exports = {
             gifsicle：用于优化 GIF 图片的选项。这里将 interlaced 设置为 false 表示禁用交错（interlaced）模式。
             webp：用于将图片转换为 WebP 格式的选项。其中，quality 设置为 75 表示压缩质量为 75%。
         */
-
         /* config.module
             .rule('images')
             .use('image-webpack-loader')
@@ -355,9 +356,26 @@ module.exports = {
          */
         // config.module.rule('js').test(/\.js$/).use('thread-loader').loader('thread-loader').end();
 
-        //cdn配置
+
+
+
+
         // 生产环境配置
         if (isProduction) {
+
+            // 打包分析
+            config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin);
+
+            //cdn配置,生产环境注入cdn
+            config.plugin('html')
+                .tap(args => {
+                    console.log(args[0]);
+                    args[0].cdn = CDNJsList
+                    return args
+                })
+
+            config.externals(externals); // 生产环境注入cdn
+
 
             // 开启gzip压缩
             config.plugin('CompressionPlugin').use(
@@ -370,17 +388,6 @@ module.exports = {
             );
 
 
-            // 生产环境注入cdn
-            config.plugin('html')
-                .tap(args => {
-                    console.log(args[0]);
-                    args[0].cdn = CDNJsList
-                    return args
-                })
-
-            config.externals(externals); // 生产环境注入cdn
-
-            config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin);// 打包分析
         }
 
     },
