@@ -250,6 +250,19 @@ Modern browsers and Internet Explorer 10+.
 
 Copyright (c) 2017-present PanJiaChen
 
+webapck版本：
+npm list webpack查看到的版本为
+webpack@4.46.0
+webpack@4.47.0  日期：2024年10月1日
+
+==================================================================
+vue-cli版本：
+路径：package.json里查看
+"@vue/cli-service": "4.4.4",
+
+==================================================================
+
+npm与node版本：
 以下版本均可运行
 版本要求：
 npm:6.14.11
@@ -262,9 +275,7 @@ node:16.13.2
 npm:7.7.0
 node:16.19.0
 
-npm list webpack查看到的版本为
-webpack@4.46.0
-webpack@4.47.0  日期：2024年10月1日
+
 
 2023年12月20日
 npm版本号是 8.19.3
