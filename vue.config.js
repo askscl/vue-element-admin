@@ -51,7 +51,7 @@ const TerserPlugin = require('terser-webpack-plugin');  // 压缩js
 const CompressionPlugin = require('compression-webpack-plugin');  // 压缩文件gzip
 const { PerfseePlugin } = require('@perfsee/webpack');  // 开启本地性能分析
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin'); // 开启缓存
-
+// const MyPlugin = require('./src/vlearns/jsLearn/笔试/手写题/plugin.js'); // 自定义插件
 //cdn配置star---vue全家桶+axios
     const CDNJsList = {
         title: '啦啦啦',
@@ -187,6 +187,7 @@ module.exports = {
                 enableAudit: true, // 是否开启本地性能分析
             }), */
             new HardSourceWebpackPlugin(), // 开启缓存
+            // new MyPlugin(), // 自定义插件
         ],
         // 进行代码分割和提取公共代码, 压缩代码
         optimization: {
