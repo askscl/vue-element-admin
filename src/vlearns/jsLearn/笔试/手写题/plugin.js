@@ -24,6 +24,7 @@ class MyPlugin{
     }
     apply(compiler){
         //compiler.hooks.emit.tapAsync('插件名'，（编译结果，回调函数）=> {处理})，这个是固定格式吗？
+        // 异步注册
         compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) =>{
             //compilation是编译后的结果？
             /*
