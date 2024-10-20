@@ -107,7 +107,7 @@ module.exports = {
      * In most cases please use '/' !!!
      * Detail: https://cli.vuejs.org/config/#publicpath
      */
-    publicPath: '/',
+    publicPath: '/', //打包后路径或者 资源文件加上域名前缀
     outputDir: 'dist',
     assetsDir: 'static',
     lintOnSave: false,
@@ -152,6 +152,15 @@ module.exports = {
         // provide the app's title in webpack's name field, so that
         // it can be accessed in index.html to inject the correct title.
         name: name,
+        /*
+            source-map, 会产生单独的映射文件，并标识出错误的行和列(大和全)；
+            eval-source-map，不会产生单独的文件，但可以显示报错的行和列；
+            cheap-module-source-map，会产生单独的映射文件，不会标识错误的列，但是会标识出错误的行；
+            cheap-module-eval-source-map，不会产生单独的映射文件，也不会标识错误的列，但是会标识出错误的行；
+            总结：
+            eval: 不产生单独文件
+            cheap-module: 不产生错误列信息
+        */
         devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
         // devtool: process.env.NODE_ENV === 'development' ? 'eval-cheap-module-source-map' : 'nosources-source-map',
         // devtool: process.env.NODE_ENV === 'development' ? 'cheap-source-map' : 'nosources-source-map',
@@ -284,7 +293,7 @@ module.exports = {
                                 },
                                 elementUI: {
                                     name: 'chunk-elementUI', // split elementUI into a single package
-                                    priority: 20, // // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
+                                    priority: 20, // // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app， 权重大的会优先抽离，抽离顺序按权重大到小
                                     test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
                                 },
                                 commons: {
