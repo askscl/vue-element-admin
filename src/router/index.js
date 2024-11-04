@@ -140,7 +140,7 @@ export const constantRoutes = [
                 component: () => import('@/views/test/iframe'),
                 meta: { title: 'iframe通信测试' }
             },
-            
+
             {
                 path: 'testUtils',
                 component: () => import('@/views/test/testUtils'),
@@ -150,6 +150,11 @@ export const constantRoutes = [
                 path: 'testTree',
                 component: () => import('@/views/test/testTree'),
                 meta: { title: 'el懒加载树测试' }
+            },
+            {
+              path: 'testTable',
+              component: () => import('@/views/test/testTable'),
+              meta: { title: 'elTable重构测试' }
             },
             {
                 path: 'testLine',
@@ -171,7 +176,7 @@ export const constantRoutes = [
                 component: () => import('@/views/test/testListMvvm'),
                 meta: { title: '解决修改数组下标的值，响应式失效' }
             },
-            
+
             /* {
                 path: 'vScrollPro',
                 component: () => import('@/vlearns/testHtml/vScrollPro/vScrollPro.vue'),
@@ -277,7 +282,7 @@ export const constantRoutes = [
                 component: () => import('@/views/cssLearn/learn01'),
                 meta: { title: 'learn01' }
             },
-            
+
         ]
     },
     {

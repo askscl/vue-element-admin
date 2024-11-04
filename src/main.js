@@ -20,6 +20,10 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+// elment-ui组件重构
+import ElTable2 from './components/ElTable2/el-table2.vue'
+Vue.component('el-table2', ElTable2)
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
