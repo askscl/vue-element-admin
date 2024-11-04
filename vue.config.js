@@ -163,7 +163,7 @@ module.exports = {
         */
         devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
         // devtool: process.env.NODE_ENV === 'development' ? 'eval-cheap-module-source-map' : 'nosources-source-map',
-        // devtool: process.env.NODE_ENV === 'development' ? 'cheap-source-map' : 'nosources-source-map',
+        // devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-source-map' : 'nosources-source-map',
         resolve: {
             alias: {
                 '@': resolve('src')
