@@ -35,7 +35,7 @@ export default {
                         'max-height': maxHeight + 'px'
                     };
                 }else if(maxHeight.match(/\d+(vh|%)/g)){
-                    // 整个if为修复后的代码--此处修复=====vh和百分比======的问题
+                    // 整个if为修复后的代码--此处修复=====当有固定浮动列时，用了vh和百分比======的问题
                     let resHeight = this.layout.scrollX ? `100% - ${this.layout.gutterWidth}px`: "100%"; //判断表格是否有横向滚动条，如果有，则需要减去gutterWidth
                     if (this.showHeader) {
                         resHeight = `${resHeight} - ${this.layout.headerHeight}px`;
@@ -52,7 +52,7 @@ export default {
 }
 </script>
 <style scoped>
-/* 以下三个css修复=====更改表格的布局方式为flex布局=======的问题 */
+/* 以下三个css修复=====更改表格的布局方式为flex布局，解决：当无固定浮动列时，用了vh和百分比，表身无滚动条的问题======= */
 .el-table{
     display: flex;
     flex-direction: column;
