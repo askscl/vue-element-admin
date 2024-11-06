@@ -1,6 +1,6 @@
 <script>
 /**
- * 修复element-ui table组件在外层table在设置maxHeight为百分比/vh时，表格高度计算错误的问题
+ * 修复element-ui table组件在外层table在设置maxHeight为百分比/vh时，表格身体高度计算错误的问题
  *
  * 源码查找：
  *  1.先关闭排除文件的过滤规则，再通过css类名，在全局搜索里找Table组件
@@ -35,7 +35,7 @@ export default {
                         'max-height': maxHeight + 'px'
                     };
                 }else if(maxHeight.match(/\d+(vh|%)/g)){
-                    // 整个if为修复后的代码--此处修复=====百分比======的问题
+                    // 整个if为修复后的代码--此处修复=====vh和百分比======的问题
                     let resHeight = this.layout.scrollX ? `100% - ${this.layout.gutterWidth}px`: "100%"; //判断表格是否有横向滚动条，如果有，则需要减去gutterWidth
                     if (this.showHeader) {
                         resHeight = `${resHeight} - ${this.layout.headerHeight}px`;
@@ -52,7 +52,7 @@ export default {
 }
 </script>
 <style scoped>
-/* 以下三个css修复=====vh=======的问题 */
+/* 以下三个css修复=====更改表格的布局方式为flex布局=======的问题 */
 .el-table{
     display: flex;
     flex-direction: column;

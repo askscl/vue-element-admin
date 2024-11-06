@@ -75,10 +75,11 @@
 <script>
 /*
 卡点：
-0.v-for="child in node.childNodes" 这里的node.childNodes替换成动态的居然不可以
+0.v-for="child in node.childNodes" 这里的node.childNodes替换成=====>动态的居然不可以
 1.子节点的列表是递归获取的，不知道如何替换成动态的
-2.每个子节点列表的高度是不固定的
-3.模块化：每个子节点列表是一个模块，用一个对象来管理数据？
+2.每个子节点列表的高度是不固定的===>可固定
+3.模块化：每个子节点列表是一个模块，用一个对象来管理数据？===》未验证
+4.什么时候启用虚拟列表：子元素个数大于100
 */
 import  ElTreeNode from 'element-ui/packages/tree/src/tree-node.vue'
 // console.log('===========111111');
@@ -91,8 +92,8 @@ export default {
     },
     computed:{
         getChildNodes(){
-            console.log(this.node.level);
-            if(this.node.childNodes.length > 0 && this.node.level === 2){
+            console.log('getChildNodes:this.node.level: ',this.node.level);
+            if(this.node.level === 1){
                 return this.liList
             }else{
                 console.log('this.node.childNodes111: ', this.node.childNodes);
@@ -116,7 +117,7 @@ export default {
     },
     methods: {
         liScroll(e) {
-            if(this.node.childNodes.length > 0 && this.node.level === 2 && (new Date().getTime() - this.lastTime) > 40){
+            if(this.node.level === 2 && (new Date().getTime() - this.lastTime) > 40){
                 this.scrollHei = e.target.scrollTop;
                 // console.log(this.scrollLiHeis);
                 this.scrollLiHeis = this.scrollHei - this.scrollHei % this.liHei; //自身-余数 = liHei的整数倍：为了让hasScrollLiNum的计算结果是整数，这个变量是整个虚拟滚动的核心
@@ -140,11 +141,13 @@ export default {
 
         },
         handleChildNodeExpand(nodeData, node, instance) {
+            console.log('handleChildNodeExpand:this.node.level: ',this.node.level);
+            if( this.node.level === 1){
+                this.virtualScrolling()
+            }
             this.broadcast('ElTreeNode', 'tree-node-expand', node);
             this.tree.$emit('node-expand', nodeData, node, instance);
-            /* if(this.node.childNodes.length > 0 && this.node.level === 2){
-                this.virtualScrolling()
-            } */
+
         },
     }
 }
