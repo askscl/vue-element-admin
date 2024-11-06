@@ -36,6 +36,7 @@
         </div>
 
         <br />
+        <!-- 以下元素没用的 v-if=false -->
         <div class="cont" v-if=false>
             <div class="inner"></div>
         </div>
@@ -68,9 +69,6 @@
     }
 </style>
 <script>
-    
-    
-     
     new Vue({
         el: '#app',
         data() {
@@ -81,7 +79,7 @@
                 liHei: 50,
                 ulHei: 500,
                 liLen: 0,//一页显示多少条
-                
+
                 scrollHei: 0,//滚动条滚动的距离
                 scrollLiHeis: 0,//已经滚动的li距离=======自身-余数 = liHei的整数倍,这个变量是整个虚拟滚动的核心
                 lastTime: 0
@@ -89,9 +87,9 @@
         },
         mounted() {
             this.virtualScrolling(100)
-            /* 
+            /*
             题目：固定高度的li，的虚拟滚动实现
-            
+
             注意事项：
                 1.如何计算起始索引
                     1.1取滚动条的e.target.scrollTop;
@@ -106,17 +104,17 @@
                 if((new Date().getTime() - this.lastTime) > 40){
                     this.scrollHei = e.target.scrollTop;
                     // console.log(this.scrollLiHeis);
-                    this.scrollLiHeis = this.scrollHei - this.scrollHei % this.liHei; //自身-余数 = liHei的整数倍,这个变量是整个虚拟滚动的核心
+                    this.scrollLiHeis = this.scrollHei - this.scrollHei % this.liHei; //自身-余数 = liHei的整数倍：为了让hasScrollLiNum的计算结果是整数，这个变量是整个虚拟滚动的核心
                     const hasScrollLiNum = this.scrollLiHeis / this.liHei;
                     this.liList = this.tableList.slice(hasScrollLiNum, hasScrollLiNum + this.liLen);
                     this.lastTime = new Date().getTime();
                 }
-                
+
 
             },
             /**初始化数据*/
             virtualScrolling(num) {
-                
+
                 const midList = [];
                 for (let i = 0; i < num; i++) {
                     midList.push(i+1)
