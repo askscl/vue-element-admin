@@ -1,5 +1,13 @@
 <template>
     <section class="content">
+        <el-table :data="tableData" max-height="50vh" >
+            <el-table-column fixed prop="date" label="日期" width="180">
+            </el-table-column>
+            <el-table-column prop="name" label="姓名" width="180">
+            </el-table-column>
+            <el-table-column prop="address" label="地址">
+            </el-table-column>
+        </el-table>
         <!-- <el-table2 :data="tableData" max-height="50%"> -->
         <el-table2 :data="tableData" max-height="50vh" >
             <el-table-column fixed prop="date" label="日期" width="180">
@@ -81,8 +89,14 @@ export default {
 </script>
 <style scoped>
 .content{
-    width: 400px;
     height: 300px;
+    display: flex;
+    justify-content: space-around;
+
+}
+.el-table{
+    width: 400px;
+    flex: unset;
 }
 
 </style>
