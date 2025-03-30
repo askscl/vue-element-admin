@@ -13,16 +13,16 @@ pubSub.subscribe = function(event, callback){
     this.subscribes[event].push(callback);
 }
 // 发布
-/* 
-subscribes subscribes subscribes subscribes subscribes subscribes subscribes subscribes
-publish publish publish publish publish publish publish publish publish publish
-slice slice slice slice slice slice slice slice slice slice slice slice slice
-Array.prototype.slice.call
-Array.prototype.slice.call
-Array.prototype.slice.call
-callback.apply(null, args)
-callback.apply(null, args)
-callback.apply(null, args)
+/*
+    subscribes subscribes subscribes subscribes subscribes subscribes subscribes subscribes
+    publish publish publish publish publish publish publish publish publish publish
+    slice slice slice slice slice slice slice slice slice slice slice slice slice
+    Array.prototype.slice.call
+    Array.prototype.slice.call
+    Array.prototype.slice.call
+    callback.apply(null, args)
+    callback.apply(null, args)
+    callback.apply(null, args)
 */
 pubSub.publish = function(event){//实际event后面会加上函数的参数
     if(this.subscribes && this.subscribes[event]){
