@@ -148,4 +148,4 @@ const noRepeatArr33 = function(arr){
     return arr2;
 }
 
-console.log('noRepeatArr5:', noRepeatArr5(arr));
+// console.log('noRepeatArr5:', noRepeatArr5(arr));

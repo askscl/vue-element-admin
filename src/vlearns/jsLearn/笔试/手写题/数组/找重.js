@@ -50,10 +50,116 @@ const arr2 = [
  * node findSameItem.js
  */
 
+
+
+
+
+
 /**
+ * 推荐指数：5星  🌟🌟🌟🌟🌟
+ * 点评：代码最简洁
  * 方法一：
+ * filter、find结合
+ */
+
+function findSameItem2(arr1, arr2){
+
+    return arr1.filter( item1 => arr2.find( item2 => item1.id === item2.id))
+}
+
+// const result2 = findSameItem2(arr1, arr2);
+// console.log('result2: ',result2);
+
+
+/**
+ * 方法二：
+ * filter、set结合
+ */
+
+ function findSameItem4(arr1, arr2){
+    const arr22 = new Set(arr2.map(item => item.id));
+    return arr1.filter(item => arr22.has(item.id));
+}
+
+// const result4 = findSameItem4(arr1, arr2);
+// console.log('result4: ',result4);
+
+/**
+ * 方法三：
+ * filter、map结合
+ */
+
+ function findSameItem5(arr1, arr2){
+    const arr22 = new Map(arr2.map(item => [item.id, item]));
+    return arr1.filter(item => arr22.has(item.id));
+}
+
+// const result5 = findSameItem5(arr1, arr2);
+// console.log('result5: ',result5);
+
+
+/**
+ * 方法四：
+ * filter、object结合
+ */
+
+ function findSameItem6(arr1, arr2){
+    const arrObj22 = arr2.reduce((acc, cur) => {
+        acc[cur.id] = cur;
+        return acc;
+    }, {});
+    return arr1.filter(item => arrObj22[item.id]);
+}
+
+// const result6 = findSameItem6(arr1, arr2);
+// console.log('result6: ',result6);
+
+//=======================以下方法，空间换时间============================
+/**
+ * 要拿到布尔值的方法有：
+ * 1、includes
+ * 2. set\map的has方法
+ * 3. obj和键
+ * 4. find
+*/
+
+/**
+ * 方法五：
+ * reduce和includes结合（ES7）
+ */
+
+function findSameItem3(arr1, arr2){
+    const idList = arr2.map(item => item.id);
+    return arr1.reduce((acc, cur) => {
+        if(idList.includes(cur.id)){
+            acc.push(cur);
+        }
+        return acc;
+    }, []);
+}
+
+const result3 = findSameItem3(arr1, arr2);
+console.log('result3: ',result3);
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 推荐指数：不推荐  🌟
+ *
+ *
+ * 方法六：
  * 归并查找相同的数组元素,
  * 数组1，有id，
+ *
+ *
  * 归并思想:
  * 前提：两个升序的数组
  * 设置两个指针，在相同的时候，同时位移，如果不相同，则谁小谁++，
@@ -61,7 +167,7 @@ const arr2 = [
  * @param {*} arr2
  * @returns Array
  */
-function findSameItem(arr1, arr2){
+ function findSameItem(arr1, arr2){
     const arr = [];
     const arrIn1 = getSort([...arr1]);
     const arrIn2 = getSort([...arr2]);
@@ -98,91 +204,3 @@ function getSort(arr){
 
 // const result = findSameItem(arr1, arr2);
 // console.log(result);
-
-
-
-
-/**
- * 点评：代码最简洁
- * 方法二：
- * filter和includes结合
- */
-
-function findSameItem2(arr1, arr2){
-
-    return arr1.filter( item1 => arr2.find( item2 => item1.id === item2.id))
-}
-
-// const result2 = findSameItem2(arr1, arr2);
-// console.log('result2: ',result2);
-
-
-//=======================以下方法，空间换时间============================
-/**
- * 要拿到布尔值的方法有：
- * 1、includes
- * 2. set\map的has方法
- * 3. obj和键
- * 4. find
-*/
-
-/**
- * 方法三：
- * reduce和includes结合
- */
-
-function findSameItem3(arr1, arr2){
-    const arr22 = arr2.map(item => item.id);
-    return arr1.reduce((acc, cur) => {
-        if(arr22.includes(cur.id)){
-            acc.push(cur);
-        }
-        return acc;
-    }, []);
-}
-
-// const result3 = findSameItem3(arr1, arr2);
-// console.log('result3: ',result3);
-
-
-/**
- * 方法四：
- * set、filter结合
- */
-
-function findSameItem4(arr1, arr2){
-    const arr22 = new Set(arr2.map(item => item.id));
-    return arr1.filter(item => arr22.has(item.id));
-}
-
-// const result4 = findSameItem4(arr1, arr2);
-// console.log('result4: ',result4);
-
-/**
- * 方法五：
- * map、filter结合
- */
-
-function findSameItem5(arr1, arr2){
-    const arr22 = new Map(arr2.map(item => [item.id, item]));
-    return arr1.filter(item => arr22.has(item.id));
-}
-
-// const result5 = findSameItem5(arr1, arr2);
-// console.log('result5: ',result5);
-
-/**
- * 方法六：
- * object、filter结合
- */
-
-function findSameItem6(arr1, arr2){
-    const arrObj22 = arr2.reduce((acc, cur) => {
-        acc[cur.id] = cur;
-        return acc;
-    }, {});
-    return arr1.filter(item => arrObj22[item.id]);
-}
-
-const result6 = findSameItem6(arr1, arr2);
-console.log('result6: ',result6);
