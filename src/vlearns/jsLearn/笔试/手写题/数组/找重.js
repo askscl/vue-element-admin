@@ -51,6 +51,14 @@ const arr2 = [
  */
 
 
+//=======================以下方法，空间换时间============================
+/**
+ * 要拿到布尔值的方法有：
+ * 1、find
+ * 2. set\map的has方法
+ * 3. obj和键
+ * 4. includes
+*/
 
 
 
@@ -114,14 +122,7 @@ function findSameItem2(arr1, arr2){
 // const result6 = findSameItem6(arr1, arr2);
 // console.log('result6: ',result6);
 
-//=======================以下方法，空间换时间============================
-/**
- * 要拿到布尔值的方法有：
- * 1、includes
- * 2. set\map的has方法
- * 3. obj和键
- * 4. find
-*/
+
 
 /**
  * 方法五：
